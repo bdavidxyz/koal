@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative "../config/environment"
+require "solid_queue/cli"
+
+puts "Starting jobs..."
+SolidQueue::Cli.start(ARGV)

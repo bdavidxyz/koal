@@ -1,0 +1,31 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+
+databases: &databases
+  primary:
+    <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
+  cache:
+    <<: *default
+    url: <%= URI.parse(ENV['DATABASE_URL']).tap { |u| u.path += '_cache' } if ENV['DATABASE_URL'] && !Rails.env.test? %>
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *default
+    url: <%= URI.parse(ENV['DATABASE_URL']).tap { |u| u.path += '_queue' } if ENV['DATABASE_URL'] && !Rails.env.test? %>
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *default
+    url: <%= URI.parse(ENV['DATABASE_URL']).tap { |u| u.path += '_cable' } if ENV['DATABASE_URL'] && !Rails.env.test? %>
+    migrations_paths: db/cable_migrate
+
+development:
+  <<: *databases
+
+test:
+  <<: *default
+  database: koal_test
+
+production:
+  <<: *databases
