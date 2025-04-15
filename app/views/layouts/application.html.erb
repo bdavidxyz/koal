@@ -30,6 +30,7 @@
     <%= debugbar_head  if defined? Debugbar %>
   </head>
   <body>
+    <%= render 'shared/navbar' %>
     <%= yield %>
     <%= debugbar_body if defined? Debugbar %>
   </body>
