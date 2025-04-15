@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     resource :password_reset,     only: [ :new, :edit, :create, :update ]
   end
   post "users/:user_id/masquerade", to: "masquerades#create", as: :user_masquerade
-  root "home#index"
   get "home/index"
   root to: "home#index"
 end
