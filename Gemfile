@@ -50,5 +50,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem 'vite_rails'
-gem 'dotenv-rails', groups: [:development, :test]
+
+gem "vite_rails"
+
+gem "dotenv-rails", groups: [:development, :test]
+
+gem "debugbar", groups: [ :development ]

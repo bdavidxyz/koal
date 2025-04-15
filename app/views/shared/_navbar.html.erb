@@ -1,0 +1,62 @@
+<header id="theheader" up-hungry>
+  <% if !is_hidden_navbar %>
+    <div class="font-montserrat w-full bg-primary xl:px-6 fixed top-0 h-20 z-20">
+      <nav class="js-navbar" aria-label="hamburger ui menu">
+        <div class="flex items-center justify-between">
+          <!-- Brand Logo -->
+          LOGO
+          <!-- Desktop Menu -->
+          <ul class="hidden items-center gap-3 lg:flex">
+            <li><a href="/" class="font-bold inline-flex leading-none text-center items-center justify-center whitespace-nowrap rounded-lg font-title ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary hover:bg-foreground hover:text-white h-12 px-3 xl:px-6 py-4 text-foreground">
+                Animateurs</a></li>
+            <li><a href="/fresks" class="font-bold inline-flex leading-none text-center items-center justify-center whitespace-nowrap rounded-lg font-title ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary hover:bg-foreground hover:text-white h-12 px-3 xl:px-6 py-4 text-foreground">
+                Fresques & ateliers</a></li>
+          </ul>
+          <!-- Mobile Menu Button -->
+          <button id="mobileMenuButton" aria-expanded="false" class="flex text-neutral-600 lg:hidden" aria-label="mobile menu" aria-controls="mobileMenu">
+            <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="#2b4a3b" class="size-16">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="#2b4a3b" class="size-16 hidden">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <!-- Mobile Menu -->
+          <ul id="mobileMenu" class="hidden h-full fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-10 flex flex-col divide-y divide-neutral-300 rounded-b-md border-b border-[#B3C1BA] bg-neutral-50 px-3 xl:px-6 pb-6 pt-20 lg:hidden">
+            <li class="py-6"><a href="/" class="w-full text-xl font-medium text-neutral-600 focus:underline">
+                Animateurs</a></li>
+            <li class="py-6"><a href="/fresks" class="w-full text-xl font-medium text-neutral-600 focus:underline">
+                Fresques & ateliers</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  <% end %>
+</header>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIconOpen = document.getElementById('menuIconOpen');
+    const menuIconClose = document.getElementById('menuIconClose');
+    let mobileMenuIsOpen = false;
+
+    mobileMenuButton.addEventListener('click', function () {
+      mobileMenuIsOpen = !mobileMenuIsOpen;
+      mobileMenu.classList.toggle('hidden', !mobileMenuIsOpen);
+      menuIconOpen.classList.toggle('hidden', mobileMenuIsOpen);
+      menuIconClose.classList.toggle('hidden', !mobileMenuIsOpen);
+      mobileMenuButton.setAttribute('aria-expanded', mobileMenuIsOpen);
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+        mobileMenuIsOpen = false;
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', mobileMenuIsOpen);
+      }
+    });
+  });
+</script>
