@@ -1,0 +1,7 @@
+<div up-flashes >
+  <% flash.each do |type, msg| %>
+    <div class="up_toast" data-msg='<%= msg.html_safe %>'>
+    </div>
+  <% end %>
+  <% flash.clear %>
+</div>

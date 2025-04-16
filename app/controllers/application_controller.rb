@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   before_action :set_current_request_details
+  before_action :set_current_session
   before_action :authenticate
 
   def find_bot
@@ -16,6 +17,11 @@ class ApplicationController < ActionController::Base
         Current.session = session_record
       else
         redirect_to sign_in_path
+      end
+    end
+    def set_current_session
+      if session_record = Session.find_by_id(cookies.signed[:session_token])
+        Current.session = session_record
       end
     end
 

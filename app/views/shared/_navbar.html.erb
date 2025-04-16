@@ -18,8 +18,10 @@
           <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Pricing</a></li>
           <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Customers</a></li>
           <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Blog</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="/sign_in">Log in</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="/sign_up">Sign Up</a></li>
+          <% unless Current&.user&.email&.present? %>
+            <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="/sign_in">Log in</a></li>
+            <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="/sign_up">Sign Up</a></li>
+          <% end %>
         </ul>
       </div>
     </nav>

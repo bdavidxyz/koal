@@ -2,11 +2,11 @@
 
 Minimalistic Rails 8 app.
 
-Responsive navbar
-Tailwind 4
-Sign in screen
-Sign up screen
-Debugbar locally
-Custom Google Font
-Cohesive design system
-Pre-built landing page
+- Responsive navbar
+- Tailwind 4
+- Sign in screen
+- Sign up screen
+- Debugbar locally
+- Custom Google Font
+- Cohesive design system
+- Pre-built landing page
