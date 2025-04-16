@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
   skip_before_action :authenticate
+  before_action :find_bot, only: :create
 
   def new
     @user = User.new

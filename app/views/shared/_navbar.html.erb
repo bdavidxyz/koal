@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4 pt-2"> <!-- Ajout du conteneur avec padding -->
     <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 text-lg text-gray-700 bg-white">
       <div>
-        <a class="text-primary text-2xl font-bold" href="#">LOGO</a>
+        <a class="text-primary text-2xl font-bold" href="/"><%= render 'shared/brand_logo' %></a>
       </div>
       <div id="menu-icon" class="cursor-pointer md:hidden block">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -18,7 +18,8 @@
           <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Pricing</a></li>
           <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Customers</a></li>
           <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Blog</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Sign Up</a></li>
+          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="/sign_in">Log in</a></li>
+          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="/sign_up">Sign Up</a></li>
         </ul>
       </div>
     </nav>

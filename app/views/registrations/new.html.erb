@@ -1,27 +1,27 @@
 <section class="mt-12">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-autolg:py-0">
-    LOGO
+    <%= render 'shared/brand_logo' %>
     <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-          Créer un nouveau compte
+          Create a new account
         </h1>
         <small>
           <% if Current.user %>
             <div>
-              Vous êtes déjà connecté(e) en tant que <%= Current.user.email %>
+              You are already connected as <%= Current.user.email %>
             </div>
             <div>
-              Souhaitez-vous <%= button_to "vous déconnecter?", Current.session, method: :delete, form_class: "inline-block", class: "font-medium text-blue-600 hover:underline" %>
+              Do you wish to <%= button_to "disconnect,", Current.session, method: :delete, form_class: "inline-block", class: "font-medium text-blue-600 hover:underline" %>
             </div>
           <% else %>
-            Déjà inscrit ? Vous  pouvez <%= link_to "vous connecter", sign_in_path, class: "font-medium text-blue-600 hover:underline" %>
+            Already subscribed ? You can <%= link_to "sign in here", sign_in_path, class: "font-medium text-blue-600 hover:underline" %>
           <% end %>
         </small>
         <%= form_with(url: sign_up_path, class: "space-y-4 md:space-y-6" ) do |form| %>
           <% if @user.errors.any? %>
             <div style="color: red">
-              <h2>⚠ <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+              <h2>⚠ <%= pluralize(@user.errors.count, "error") %> prohibited account creation:</h2>
               <ul class="list-disc">
                 <% @user.errors.each do |error| %>
                   <li><%= error.full_message %></li>
@@ -38,15 +38,15 @@
             <%= form.email_field :email, value: @user.email, required: true, autofocus: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
           </div>
           <div>
-            <%= form.label :password, "Mot de passe - au moins 12 caractères", class: "block mb-2 text-lg md:text-base font-medium text-gray-900" %>
+            <%= form.label :password, "Password - at least 12 characters long", class: "block mb-2 text-lg md:text-base font-medium text-gray-900" %>
             <%= form.password_field :password, required: true, autocomplete: "new-password", class: "bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
           </div>
           <div>
-            <%= form.label :password_confirmation, "Confirmation du mot de passe", class: "block mb-2 text-lg md:text-base font-medium text-gray-900" %>
+            <%= form.label :password_confirmation, "Password confirm", class: "block mb-2 text-lg md:text-base font-medium text-gray-900" %>
             <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
           </div>
           <div>
-            <%= form.submit "Créer mon compte", class: "cursor-pointer w-full text-white bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg md:text-base px-5 py-2.5 text-center" %>
+            <%= form.submit "Create my account", class: "cursor-pointer w-full text-white bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg md:text-base px-5 py-2.5 text-center" %>
           </div>
         <% end %>
       </div>

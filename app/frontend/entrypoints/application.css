@@ -1,4 +1,7 @@
+@import url("../css/main_css/custom.css");
+
 @import "tailwindcss";
+
 
 @theme {
   --color-primary-50: #eff6ff;
