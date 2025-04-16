@@ -10,3 +10,5 @@ Minimalistic Rails 8 app.
 - Custom Google Font
 - Cohesive design system
 - Pre-built landing page
+- Unpoly
+- Build-in toast solution both for frontend and backend

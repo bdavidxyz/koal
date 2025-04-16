@@ -18,7 +18,7 @@
             Not yet subscribed? Yes, <%= link_to "it's possible", sign_up_path, class: "font-medium text-blue-600 hover:underline" %>
           </small>
         <% end %>
-        <%= form_with(url: sign_in_path, class: "space-y-4 md:space-y-6", html:{"up-target" => ".main, .js-navbar", "up-preview" => "link-spinner"}) do |form| %>
+        <%= form_with(url: sign_in_path, class: "space-y-4 md:space-y-6") do |form| %>
           <% if request.params[:email_hint] %>
             <div style="color: red">
               <div>
