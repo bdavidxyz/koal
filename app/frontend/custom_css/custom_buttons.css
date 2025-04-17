@@ -1,0 +1,24 @@
+@layer components {
+  .btn {
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    text-decoration: none;
+    display: inline-flex;
+    box-shadow: 0 1px 2px #0000000d;
+  }
+  .btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-on-secondary);
+    border: 1px solid var(--border-secondary);
+  }
+  .btn-primary {
+    background: var(--bg-primary);
+    color: var(--text-on-primary);
+  }
+}

@@ -1,8 +1,10 @@
-.hp {
-  display: none;
-  position: absolute;
-  overflow: hidden;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
+@layer components {
+  .hp {
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
 }

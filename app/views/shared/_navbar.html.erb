@@ -1,27 +1,29 @@
 <header>
-  <div class="container mx-auto px-4 pt-2"> <!-- Ajout du conteneur avec padding -->
+  <div class="container mx-auto px-4 pt-2">
     <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 text-lg text-gray-700 bg-white">
       <div>
         <a class="text-primary text-2xl font-bold" href="/"><%= render 'shared/brand_logo' %></a>
       </div>
-      <div class="flex items-center">
-        <div id="menu-icon" class="cursor-pointer md:hidden block mr-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </div>
-        <%= render "shared/navbar_connected", display_mobile: true, foo: "1" %>
+      <div id="menu-icon" class="cursor-pointer md:hidden block">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
       </div>
       <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
-        <ul class="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0">
-          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Features</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Pricing</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Customers</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Blog</a></li>
-          <%= render "shared/navbar_connected", display_mobile: false, foo: "2" %>
+        <ul class="pt-4 text-sm text-gray-700 md:flex md:justify-between md:pt-0">
+          <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Features</a></li>
+          <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Pricing</a></li>
+          <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Customers</a></li>
+          <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Blog</a></li>
+          <% if Current&.user&.email&.present? %>
+            <li class="flex items-center justify-start md:justify-center ms-4"><a class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-[6px] text-sm px-5 py-2" href="/myaccount">My account</a></li>
+          <% else %>
+            <li class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-[6px] text-sm px-5 py-2 md:ms-4 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" href="/sign_in">Log in</a></li>
+            <li class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-[6px] text-sm px-5 py-2" href="/sign_up">Sign Up</a></li>
+          <% end %>
         </ul>
       </div>
     </nav>
@@ -37,25 +39,5 @@
     menu.classList.toggle('hidden');
     hamburgerIcon.classList.toggle('hidden');
     closeIcon.classList.toggle('hidden');
-  });
-
-  const avatarButton = document.getElementById('avatarButton');
-  const dropdownMenu = document.getElementById('dropdownMenu');
-
-  avatarButton.addEventListener('click', (e) => {
-  dropdownMenu.classList.toggle('hidden');
-  });
-
-  // Optional: close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-  if (!avatarButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-    dropdownMenu.classList.add('hidden');
-  }
-  });
-
-  // Example: handle logout
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-  alert("Logging out...");
-  // do logout logic here
   });
 </script>
