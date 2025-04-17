@@ -23,7 +23,9 @@
   <body>
     <%= render "shared/app_flash" %>
     <%= render 'shared/navbar' %>
-    <%= yield %>
+    <main id="main">
+      <%= yield %>
+    </main>
     <%= debugbar_body if defined? Debugbar %>
   </body>
 </html>
