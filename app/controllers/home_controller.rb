@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate
   def index
-    @user = User.first
+    # @user = User.first
   end
 end
