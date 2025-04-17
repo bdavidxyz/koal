@@ -13,13 +13,13 @@
         </svg>
       </div>
       <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
-        <ul class="pt-4 text-sm text-gray-700 md:flex md:justify-between md:pt-0">
-          <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Features</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Pricing</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Customers</a></li>
-          <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Blog</a></li>
+        <ul class="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0">
+          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Features</a></li>
+          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Pricing</a></li>
+          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Customers</a></li>
+          <li><a class="md:p-4 py-2 block hover:text-primary font-medium" href="#">Blog</a></li>
           <% if Current&.user&.email&.present? %>
-            <li class="flex items-center justify-start md:justify-center ms-4"><a class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-[6px] text-sm px-5 py-2" href="/myaccount">My account</a></li>
+            <li class="flex items-center justify-start md:justify-center md:ms-4"><a class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-[6px] text-sm px-5 py-2" href="/myaccount">My account</a></li>
           <% else %>
             <li class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-[6px] text-sm px-5 py-2 md:ms-4 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" href="/sign_in">Log in</a></li>
             <li class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-[6px] text-sm px-5 py-2" href="/sign_up">Sign Up</a></li>

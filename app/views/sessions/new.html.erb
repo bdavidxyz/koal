@@ -1,17 +1,17 @@
-<section class="mt-12 bg-[url('/img/dotted-cells.svg')]">
+<section class="mt-12">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-autolg:py-0">
     <%= render 'shared/brand_logo' %>
-    <div class="w-full bg-white rounded-lg shadow-xl/20 md:mt-0 sm:max-w-md xl:p-0">
+    <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
           Log in to your account
         </h1>
         <% if Current.user %>
           <small>
-            Vous êtes déjà connecté(e) en tant que <%= Current.user.email %>
+            You are already connected as <%= Current.user.email %>
           </small>
           <small class="block !mt-2">
-            Souhaitez-vous <%= button_to "vous déconnecter?", Current.session, method: :delete, form_class: "inline-block", class: "font-medium text-blue-600 hover:underline" %>
+            Do you wish to <%= button_to "log out?", Current.session, method: :delete, form_class: "inline-block", class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
           </small>
         <% else %>
           <small>
@@ -35,12 +35,12 @@
             <%= form.password_field :password, required: true, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
           </div>
           <div class="flex items-center justify-between">
-            <div class="flex items-start">
+            <div class="flex items-center">
               <div class="flex items-center h-5">
-                <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
+                <input id="remember" aria-describedby="remember" type="checkbox" class="cursor-pointer w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
               </div>
               <div class="ml-3 text-lg md:text-base">
-                <label for="remember" class="text-gray-500 cursor-pointer">Rester connecté</label>
+                <label for="remember" class="text-gray-500 cursor-pointer">Remember me</label>
               </div>
             </div>
             <%= link_to "Forgotten password?", new_identity_password_reset_path, class: "text-lg md:text-base font-medium text-primary-600 hover:underline" %>
