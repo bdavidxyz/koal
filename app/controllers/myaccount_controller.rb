@@ -10,5 +10,8 @@ class MyaccountController < ApplicationController
     }
   end
   def sessions
+    render locals: {
+      sessions: Current.user.sessions.order(created_at: :desc)
+    }
   end
 end
