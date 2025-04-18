@@ -8,7 +8,9 @@ class PasswordsController < ApplicationController
     if @user.update(user_params)
       redirect_to myaccount_path, notice: "Your password has been changed"
     else
-      render :edit, status: :unprocessable_entity
+      render partial: "myaccount/myaccount_password", status: :unprocessable_entity, locals: {
+        user: @user
+      }
     end
   end
 
