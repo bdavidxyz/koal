@@ -1,8 +1,8 @@
 class MyaccountController < ApplicationController
   def index
+    session = Current.session
     u = Current.user
     sessions = u.sessions
-    session = Current.session
     render locals: {
       email: u.email,
       session: session,
@@ -15,6 +15,11 @@ class MyaccountController < ApplicationController
     }
   end
   def password
+    render locals: {
+      user: Current.user
+    }
+  end
+  def profile
     render locals: {
       user: Current.user
     }
