@@ -51,4 +51,34 @@
       </div>
     </div>
   </section>
+  <section>
+    <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+      Connected devices
+    </h2>
+    <div class="mb-8 flex gap-8  mt-2">
+      <div class="flex-1">
+        <div class="text-neutral-700">
+          All the devices connnected to your account
+        </div>
+        <div class="mt-2">
+          <%= link_to "View connected devices", sessions_path, class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+      Danger zone
+    </h2>
+    <div class="mb-8 flex gap-8  mt-2">
+      <div class="flex-1">
+        <div class="text-neutral-700">
+          You can delete your account and all the associated data below
+        </div>
+        <div class="mt-2">
+          <%= link_to "Go to account deletion page", sessions_path, class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
