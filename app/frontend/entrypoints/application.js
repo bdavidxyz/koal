@@ -12,3 +12,4 @@ up.link.config.instantSelectors.push("a[href]");
 
 // disable/enable logs for Unpoly
 up.log.disable();
+up.fragment.config.autoFocus = "keep";

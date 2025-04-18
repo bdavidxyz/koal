@@ -16,6 +16,7 @@ class MyaccountController < ApplicationController
   end
   def password
     render locals: {
+      user: Current.user
     }
   end
 end
