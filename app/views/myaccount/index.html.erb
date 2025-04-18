@@ -1,58 +1,8 @@
-<p style="color: green"><%= notice %></p>
-<% if Current&.user&.email  %>
-  <p>Signed as <%= Current.user.email %></p>
-  <h2>Login and verification</h2>
-  <div>
-    <%= link_to "Change password", edit_password_path %>
-  </div>
-  <div>
-    <%= link_to "Change email address", edit_identity_email_path %>
-  </div>
-  <%= button_to "Signin as last user", user_masquerade_path(User.last) %>
-  <h2>Access history</h2>
-  <div>
-    <%= link_to "Devices & Sessions", sessions_path %>
-  </div>
-  <br>
-  <%= button_to "Log out", Current.session, method: :delete %>
-<% end %>
-<div class="flex flex-wrap my-4 lg:px-4">
+<div class="flex flex-wrap py-4 lg:px-4 bg-gray-50 h-screen">
   <div class="w-full mb-4 lg:w-1/4 lg:p-4">
-    <div class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700 rounded-sm text-sm font-medium">
-      <a class="block no-underline p-3 px-6 rounded-t text-gray-700 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:text-gray-200 dark:hover:bg-gray-700" href="/users/edit">Profile</a>
-      <a class="block no-underline p-3 px-6 bg-primary text-white hover:text-white" href="/account/password/edit">Password</a>
-      <a class="block no-underline p-3 px-6 text-gray-700 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:text-gray-200 dark:hover:bg-gray-700" href="/user/connected_accounts">Connected Accounts</a>
-      <a class="block no-underline p-3 px-6 text-gray-700 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:text-gray-200 dark:hover:bg-gray-700" href="/subscriptions">Billing</a>
-      <a class="block no-underline p-3 px-6 text-gray-700 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:text-gray-200 dark:hover:bg-gray-700" href="/accounts">Accounts</a>
-      <a class="block no-underline p-3 px-6 rounded-b text-gray-700 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:text-gray-200 dark:hover:bg-gray-700" href="/api_tokens">API</a>
-    </div>
+    <%= render "myaccount_menu" %>
   </div>
   <div class="w-full lg:w-3/4 lg:p-4">
-    <div class="lg:p-10 p-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-      <h1 class="h3 mb-4">Update Password</h1>
-      <form class="max-w-lg" action="/account/password" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off"><input type="hidden" name="authenticity_token" value="yd_cpr2i0oT5wstnrYipgwjIClmKxxwhb8CSe-TVNOnGIHkJdsqR6JaGot-Wfqdny8nTckL_X_aLzUGDqUn8qg" autocomplete="off">
-        <div class="form-group">
-          <label for="user_current_password">Current password</label>
-          <input autocomplete="current-password" placeholder="Current password" class="form-control" type="password" name="user[current_password]" id="user_current_password">
-          <p class="text-sm text-gray-600 mt-3">We need your current password to confirm your changes</p>
-        </div>
-        <div class="form-group">
-          <label for="user_password">New password</label>
-          <input autocomplete="new-password" placeholder="New password" class="form-control" type="password" name="user[password]" id="user_password">
-        </div>
-        <div class="form-group">
-          <label for="user_password_confirmation">Confirm new password</label>
-          <input autocomplete="new-password" placeholder="Confirm new password" class="form-control" type="password" name="user[password_confirmation]" id="user_password_confirmation">
-        </div>
-        <div class="form-group">
-          <input type="submit" name="commit" value="Update" class="btn btn-primary" data-disable-with="Update">
-        </div>
-      </form>
-    </div>
-    <div class="lg:p-10 mt-4 p-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-      <h2 class="h3">Two-factor Authentication</h2>
-      <p class="mb-4 text-gray-500">When you login, you will be required to enter a one-time code along to one of your devices.</p>
-      <a class="btn btn-secondary" href="/user/two_factor/backup_codes">Enable two-factor authentication</a>
-    </div>
+    <%= render "myaccount_base", email: email, session: session %>
   </div>
 </div>

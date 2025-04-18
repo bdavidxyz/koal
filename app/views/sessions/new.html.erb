@@ -5,7 +5,7 @@
     </div>
     <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 mb-96">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-700 md:text-2xl mb-0">
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-neutral-700 md:text-2xl mb-0">
           Log in to your account
         </h1>
         <% if Current.user %>
@@ -29,23 +29,23 @@
             </div>
           <% end %>
           <div class="mt-6">
-            <%= form.label :email, class: "block mb-2 text-sm font-medium text-gray-700" %>
-            <%= form.email_field :email, value: params[:email_hint], required: true, autofocus: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-700 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+            <%= form.label :email, class: "block mb-2 text-sm font-medium text-neutral-700" %>
+            <%= form.email_field :email, value: params[:email_hint], required: true, autofocus: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-neutral-700 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
           </div>
           <div class="hp">
             <input type="checkbox" value="1" name="hp" id="hp" autocomplete="off" tabindex="-1">
             <label for="hp">Huemans should NOT clik this.</label>
           </div>
           <div>
-            <%= form.label :password, "Password", class: "block mb-2 text-sm font-medium text-gray-700" %>
-            <%= form.password_field :password, required: true, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-gray-700 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+            <%= form.label :password, "Password", class: "block mb-2 text-sm font-medium text-neutral-700" %>
+            <%= form.password_field :password, required: true, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-neutral-700 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-center">
               <div class="flex items-center h-5">
                 <input id="remember" aria-describedby="remember" type="checkbox" class="cursor-pointer w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
               </div>
-              <div class="ml-3 text-sms">
+              <div class="ml-3 text-sm">
                 <label for="remember" class="text-gray-500 cursor-pointer">Remember me</label>
               </div>
             </div>
