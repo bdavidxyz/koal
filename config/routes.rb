@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   post "users/:user_id/masquerade", to: "masquerades#create", as: :user_masquerade
   get "home/index"
   get "myaccount", to: "myaccount#index"
+  get "myaccount/sessions", to: "myaccount#sessions"
   root to: "home#index"
 end

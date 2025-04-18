@@ -9,4 +9,6 @@ class MyaccountController < ApplicationController
       session_number: u.sessions.order(created_at: :desc)
     }
   end
+  def sessions
+  end
 end
