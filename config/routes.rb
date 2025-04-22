@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resource  :password, only: [ :update ]
   namespace :identity do
     resource :email,              only: [ :update ]
-    resource :email_verification, only: [ :show, :create]
+    resource :email_verification, only: [ :show, :create ]
     resource :password_reset,     only: [ :new, :edit, :create, :update ]
   end
   # post "users/:user_id/masquerade", to: "masquerades#create", as: :user_masquerade
