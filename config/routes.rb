@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   get "myaccount/sessions", to: "myaccount#sessions"
   get "myaccount/password", to: "myaccount#password"
   get "myaccount/profile", to: "myaccount#profile"
+  get "myaccount/billing", to: "myaccount#billing"
   root to: "home#index"
 end

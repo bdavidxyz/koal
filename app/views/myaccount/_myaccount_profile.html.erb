@@ -16,19 +16,21 @@
         </div>
       <% end %>
       <div>
-        <%= form.label :password_challenge, "Current password",  style: "display: block", class: "font-medium text-sm text-gray-700" %>
-        <%= form.password_field :password_challenge, required: true, autofocus: true, autocomplete: "current-password", placeholder: "Current password", class: "placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+        <%= form.label :current_avatar, "Avatar",  style: "display: block", class: "font-medium text-sm text-gray-700" %>
       </div>
-      <div class="text-sm text-neutral-600 mt-3">
-        We need your current password to confirm your changes
-      </div>
-      <div class="mt-6">
-        <%= form.label :password, "New password - 12 characters minimum", style: "display: block", class: "font-medium text-sm text-gray-700" %>
-        <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "New password", class: "placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+      <div class="text-sm text-neutral-600 ">
+        <img src="/img/avatardefault.svg" alt="Avatar" class="rounded-full w-12 border-2 border-gray-400" />
+        <div class="mt-2">
+          The avatar cannot be changed (yet)
+        </div>
       </div>
       <div class="mt-6">
-        <%= form.label :password_confirmation, "Confirm new password", style: "display: block", class: "font-medium text-sm text-gray-700" %>
-        <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm new password", class: "placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+        <%= form.label :full_name, "Full Name", style: "display: block", class: "font-medium text-sm text-gray-700" %>
+        <%= form.text_field :full_name, required: true, autocomplete: "new-password", placeholder: "Full Name", class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+      </div>
+      <div class="mt-6">
+        <%= form.label :email, "Email", style: "display: block", class: "font-medium text-sm text-gray-700" %>
+        <%= form.email_field :email, required: true, autocomplete: "email", placeholder: "Email", class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
       </div>
       <div class="mt-8">
         <%= form.submit "Save changes", class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" %>
