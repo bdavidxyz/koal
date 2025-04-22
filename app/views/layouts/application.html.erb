@@ -23,7 +23,7 @@
   <body class="h-full">
     <%= render "shared/app_flash" %>
     <%= render 'shared/navbar' %>
-    <main id="main" class="<%= request.path.include?('myaccount') ? 'bg-gray-50' : '' %> h-[calc(100vh-5rem)]">
+    <main id="main" class="main <%= request.path.include?('myaccount') ? 'bg-gray-50' : '' %> h-[calc(100vh-5rem)]">
       <%= yield %>
     </main>
     <%= debugbar_body if defined? Debugbar %>
