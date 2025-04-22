@@ -14,7 +14,7 @@
               You are already connected as <%= Current.user.email %>
             </div>
             <div>
-              Do you wish to <%= button_to "disconnect,", Current.session, method: :delete, form_class: "inline-block", class: "font-medium text-blue-600 hover:underline" %>
+              Do you wish to <%= button_to "log out?", Current.session, method: :delete, form_class: "inline-block", class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
             </div>
           <% else %>
             Already subscribed ? You can <%= link_to "sign in here", sign_in_path, class: "font-medium text-blue-600 hover:underline" %>

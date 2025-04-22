@@ -4,7 +4,10 @@
     <h1 class="flex-1 text-2xl font-bold -tracking-wide">Email</h1>
   </div>
   <section class="">
-    <% if !user.verified? %>
+    <% if user.verified? %>
+      <div class="">
+        Your current email is <%= user.email %>
+      </div>
       <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
         Change your email
       </h2>
@@ -19,28 +22,28 @@
             </ul>
           </div>
         <% end %>
-        <div>
-          <%= form.label :email, "New email", style: "display: block" %>
-          <%= form.email_field :email, required: true, autofocus: true %>
+        <div class="mt-4">
+          <%= form.label :email, "New email", style: "display: block", class: "font-medium text-sm text-gray-700" %>
+          <%= form.email_field :email, required: true, autofocus: true, class: "placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
         </div>
-        <div>
-          <%= form.label :password_challenge, style: "display: block" %>
-          <%= form.password_field :password_challenge, required: true, autocomplete: "current-password" %>
+        <div class="mt-2">
+          <%= form.label :password_challenge, style: "display: block", class: "font-medium text-sm text-gray-700" %>
+          <%= form.password_field :password_challenge, required: true, autocomplete: "current-password", class: "placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
         </div>
-        <div>
-          <%= form.submit "Save changes" %>
+        <div class="mt-8">
+          <%= form.submit "Save changes", class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" %>
         </div>
       <% end %>
     <% else %>
       <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
         Verify your email
       </h2>
-      <p>We sent a verification email to <%= user.email %>. Check that email and follow those instructions to confirm it's your email address.</p>
-      <p><%= button_to "Re-send verification email", identity_email_verification_path %></p>
+      <p class="mt-6">We sent a verification email to <%= user.email %> </p>
+      <p class="mt-2"><strong>Check that email</strong> and follow those instructions to confirm it's your email address.</p>
+      <div class="flex mt-4 items-center">
+        <%= button_to "Re-send verification email", identity_email_verification_path, class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" %>
+        <%= link_to "Back to my account", myaccount_path, class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 ms-4" %>
+      </div>
     <% end %>
-    <br>
-    <div>
-      <%= link_to "Back", root_path %>
-    </div>
   </section>
 </div>
