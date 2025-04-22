@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  #
+  # Account-related routes
+  #
   get  "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
   get  "sign_up", to: "registrations#new"
@@ -20,5 +23,9 @@ Rails.application.routes.draw do
   get "myaccount/billing", to: "myaccount#billing"
   get "myaccount/danger", to: "myaccount#danger"
   delete "myaccount/destroy", to: "myaccount#destroy_account"
+
+  #
+  # Pages routes
+  #
   root to: "home#index"
 end
