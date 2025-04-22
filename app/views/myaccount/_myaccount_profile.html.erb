@@ -33,7 +33,7 @@
         <%= form.email_field :email, required: true, autocomplete: "email", placeholder: "Email", readonly: "true", value: Current.user.email, class: "cursor-not-allowed text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-400 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3 bg-gray-50" %>
       </div>
       <div class="mt-2">
-        <%= link_to "Change email", edit_identity_email_path, class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
+        <%= link_to Current.user.verified? ? "Change email" : "⚠ Verify email", myaccount_email_path, class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
       </div>
       <div class="mt-8">
         <div class="flex">
