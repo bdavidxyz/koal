@@ -3,11 +3,13 @@ class Identity::EmailVerificationsController < ApplicationController
 
   before_action :set_user, only: :show
 
+  # @route GET /identity/email_verification (identity_email_verification)
   def show
     @user.update! verified: true
     redirect_to myaccount_path, notice: "Thank you for verifying your email address"
   end
 
+  # @route POST /identity/email_verification (identity_email_verification)
   def create
     send_email_verification
     redirect_to myaccount_path, notice: "We sent a verification email to your email address"

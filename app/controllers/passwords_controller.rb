@@ -4,6 +4,8 @@ class PasswordsController < ApplicationController
   def edit
   end
 
+  # @route PATCH /password (password)
+  # @route PUT /password (password)
   def update
     if @user.update(user_params)
       redirect_to myaccount_path, notice: "Your password has been changed"

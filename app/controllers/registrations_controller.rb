@@ -2,10 +2,12 @@ class RegistrationsController < ApplicationController
   skip_before_action :authenticate
   before_action :find_bot, only: :create
 
+  # @route GET /sign_up (sign_up)
   def new
     @user = User.new
   end
 
+  # @route POST /sign_up (sign_up)
   def create
     @user = User.new(user_params)
 

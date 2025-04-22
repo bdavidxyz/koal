@@ -58,3 +58,6 @@ gem "dotenv-rails", groups: [ :development, :test ]
 gem "debugbar", groups: [ :development ]
 
 gem "authentication-zero", "~> 4.0"
+
+# Annotate controllers
+gem "chusaku", require: false, groups: [ :development ]

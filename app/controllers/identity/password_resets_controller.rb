@@ -3,12 +3,15 @@ class Identity::PasswordResetsController < ApplicationController
 
   before_action :set_user, only: %i[ edit update ]
 
+  # @route GET /identity/password_reset/new (new_identity_password_reset)
   def new
   end
 
+  # @route GET /identity/password_reset/edit (edit_identity_password_reset)
   def edit
   end
 
+  # @route POST /identity/password_reset (identity_password_reset)
   def create
     if @user = User.find_by(email: params[:email], verified: true)
       send_password_reset_email
@@ -18,6 +21,8 @@ class Identity::PasswordResetsController < ApplicationController
     end
   end
 
+  # @route PATCH /identity/password_reset (identity_password_reset)
+  # @route PUT /identity/password_reset (identity_password_reset)
   def update
     if @user.update(user_params)
       redirect_to sign_in_path, notice: "Your password was reset successfully. Please sign in"

@@ -4,13 +4,16 @@ class SessionsController < ApplicationController
   before_action :find_bot, only: :create
   before_action :set_session, only: :destroy
 
+  # @route GET /sessions (sessions)
   def index
     @sessions = Current.user.sessions.order(created_at: :desc)
   end
 
+  # @route GET /sign_in (sign_in)
   def new
   end
 
+  # @route POST /sign_in (sign_in)
   def create
     if user = User.authenticate_by(email: params[:email], password: params[:password])
       @session = user.sessions.create!
@@ -22,6 +25,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # @route DELETE /sessions/:id (session)
   def destroy
     @session.destroy; redirect_to(myaccount_sessions_path, notice: "That session has been logged out")
   end

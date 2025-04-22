@@ -1,9 +1,12 @@
 class Identity::EmailsController < ApplicationController
   before_action :set_user
 
+  # @route GET /identity/email/edit (edit_identity_email)
   def edit
   end
 
+  # @route PATCH /identity/email (identity_email)
+  # @route PUT /identity/email (identity_email)
   def update
     if @user.update(user_params)
       redirect_to_root
