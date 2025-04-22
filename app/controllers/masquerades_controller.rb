@@ -6,7 +6,7 @@ class MasqueradesController < ApplicationController
     session_record = @user.sessions.create!
     cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
 
-    redirect_to root_path, notice: "Signed in successfully"
+    redirect_to myaccount_path, notice: "Signed in successfully"
   end
 
   private

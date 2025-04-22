@@ -14,8 +14,11 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, allow_nil: true, length: { minimum: 12 }
-
+  validates :name, presence: true, length: { minimum: 4 }
   normalizes :email, with: -> { _1.strip.downcase }
+
+  attribute :status_role, default: "regular"
+  enum :status_role, %w[superadmin regular].index_by(&:itself)
 
   before_validation if: :email_changed?, on: :update do
     self.verified = false
