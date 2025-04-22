@@ -28,5 +28,6 @@ class MyaccountController < ApplicationController
     user = Current.user
     Current.session.destroy
     user.destroy
+    redirect_to root_path, notice: "You account has been deleted."
   end
 end
