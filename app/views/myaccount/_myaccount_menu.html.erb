@@ -3,6 +3,7 @@
 <% active_css = "block no-underline p-3 px-6 bg-primary text-white hover:text-white" %>
 <div class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700 rounded-md text-sm font-medium">
   <a class="<%= activation == "profile" ? active_css : default_css %>" href="/myaccount/profile">Profile</a>
+  <a class="<%= activation == "email" ? active_css : default_css %>" href="/myaccount/email">Email</a>
   <a class="<%= activation == "password" ? active_css : default_css %>" href="/myaccount/password">Password</a>
   <a class="<%= activation == "sessions" ? active_css : default_css %>" href="/myaccount/sessions" up-focus="keep">Sessions</a>
   <a class="<%= activation == "billing" ? active_css : default_css %>" href="/myaccount/billing">Billing</a>
