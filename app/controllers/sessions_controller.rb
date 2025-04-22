@@ -4,11 +4,6 @@ class SessionsController < ApplicationController
   before_action :find_bot, only: :create
   before_action :set_session, only: :destroy
 
-  # @route GET /sessions (sessions)
-  def index
-    @sessions = Current.user.sessions.order(created_at: :desc)
-  end
-
   # @route GET /sign_in (sign_in)
   def new
   end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
   get  "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
-  resources :sessions, only: [ :index, :destroy ]
+  resources :sessions, only: [ :destroy ]
   resource  :password, only: [ :update ]
   namespace :identity do
     resource :email,              only: [ :update ]
