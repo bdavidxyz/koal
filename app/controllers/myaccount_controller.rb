@@ -14,6 +14,11 @@ class MyaccountController < ApplicationController
       sessions: Current.user.sessions.order(created_at: :desc)
     }
   end
+  def email
+    render locals: {
+      user: Current.user
+    }
+  end
   def password
     render locals: {
       user: Current.user
