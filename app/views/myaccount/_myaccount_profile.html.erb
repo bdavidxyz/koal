@@ -30,10 +30,18 @@
       </div>
       <div class="mt-6">
         <%= form.label :email, "Email", style: "display: block", class: "font-medium text-sm text-gray-700" %>
-        <%= form.email_field :email, required: true, autocomplete: "email", placeholder: "Email", class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+        <%= form.email_field :email, required: true, autocomplete: "email", placeholder: "Email", readonly: "true", value: Current.user.email, class: "cursor-not-allowed text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-400 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3 bg-gray-50" %>
+      </div>
+      <div class="mt-2">
+        <%= link_to "Change email", edit_identity_email_path, class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
       </div>
       <div class="mt-8">
-        <%= form.submit "Save changes", class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" %>
+        <div class="flex">
+          <div class="">
+            <%= form.submit "Save changes", class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" %>
+          </div>
+          <div class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-4 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" href="/myaccount/danger">Go to account deletion page</a></div>
+        </div>
       </div>
     <% end %>
   </section>
