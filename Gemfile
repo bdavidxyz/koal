@@ -53,7 +53,7 @@ end
 
 gem "vite_rails"
 
-gem "dotenv-rails", groups: [:development, :test]
+gem "dotenv-rails", groups: [ :development, :test ]
 
 gem "debugbar", groups: [ :development ]
 
