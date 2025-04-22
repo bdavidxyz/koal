@@ -1,6 +1,6 @@
 <header id="header" up-hungry class="border-b border-b-gray-200 shadow-[0_1px_2px_#0000000d] ">
   <div class="mx-auto px-8 pt-2 pb-2">
-    <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 text-lg text-neutral-700 bg-white">
+    <nav class="up_hamburger flex flex-wrap items-center justify-between w-full py-4 md:py-0 text-lg text-neutral-700 bg-white">
       <div>
         <a class="text-primary text-2xl font-bold" href="/"><%= render 'shared/brand_logo' %></a>
       </div>
@@ -29,15 +29,3 @@
     </nav>
   </div>
 </header>
-<script>
-  const menuIcon = document.querySelector('#menu-icon');
-  const menu = document.querySelector('#menu');
-  const hamburgerIcon = menuIcon.querySelector('svg:nth-child(1)');
-  const closeIcon = menuIcon.querySelector('svg:nth-child(2)');
-
-  menuIcon.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-    hamburgerIcon.classList.toggle('hidden');
-    closeIcon.classList.toggle('hidden');
-  });
-</script>
