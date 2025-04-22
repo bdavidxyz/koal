@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resource :email_verification, only: [ :show, :create]
     resource :password_reset,     only: [ :new, :edit, :create, :update ]
   end
-  post "users/:user_id/masquerade", to: "masquerades#create", as: :user_masquerade
+  # post "users/:user_id/masquerade", to: "masquerades#create", as: :user_masquerade
   get "home/index"
   get "myaccount", to: "myaccount#index"
   get "myaccount/sessions", to: "myaccount#sessions"
