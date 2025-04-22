@@ -31,7 +31,7 @@
           Your primary email is <%= email %>
         </div>
         <div class="mt-2">
-          <%= link_to Current.user.verified? ? "Change email" : "Verify email", myaccount_email_path, class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
+          <%= link_to Current.user.verified? ? "Change email" : "⚠ Verify email", myaccount_email_path, class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
         </div>
       </div>
     </div>
