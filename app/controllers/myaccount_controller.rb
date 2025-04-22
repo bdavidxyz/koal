@@ -25,6 +25,8 @@ class MyaccountController < ApplicationController
     }
   end
   def destroy_account
-
+    user = Current.user
+    Current.session.destroy
+    user.destroy
   end
 end
