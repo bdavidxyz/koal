@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   get "myaccount/password", to: "myaccount#password"
   get "myaccount/profile", to: "myaccount#profile"
   get "myaccount/billing", to: "myaccount#billing"
+  get "myaccount/danger", to: "myaccount#danger"
+  delete "myaccount/destroy", to: "myaccount#destroy_account"
   root to: "home#index"
 end

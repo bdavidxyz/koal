@@ -1,0 +1,18 @@
+<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10">
+  <div class="sm:flex items-center justify-between mb-3">
+    <h1 class="flex-1 text-2xl font-bold -tracking-wide">Billing</h1>
+  </div>
+  <div class="">
+    This is a work-in-progress. You can connect this section to Stripe (or equivalent!)
+  </div>
+  <div class="flex flex-wrap flex-end">
+    <div class="flex-1">
+      <h3 class="mb-4">Delete my account</h3>
+      <p class="text-sm">This will permanently erase all data associated with your account. This action cannot be undone.</p>
+      <div class="mt-2">
+        <form class="button_to" method="post" action="/users"><input type="hidden" name="_method" value="delete" autocomplete="off"><button class="btn btn-danger btn-outline primary" data-controller="bridge--sign-out" data-action="bridge--sign-out#signOut" data-bridge--sign-out-path-value="/api/v1/me" data-turbo-confirm="Are you sure?" data-turbo-confirm-text="bdavidxyz@gmail.com" data-turbo-confirm-description="This will permanently erase all data associated with your account. This action cannot be undone.<br/><br/>
+          To verify, type your email address to confirm and delete your account." type="submit">Delete my account</button><input type="hidden" name="authenticity_token" value="06rMPPQi-BRg7y0riJKkgTwXEyoKl1NNPT-t7Y0p7qXS7RQckwTWphleIIXWNdcCCt46Q-awBzWP2M6Bl0i-Iw" autocomplete="off"></form>
+    </div>
+  </div>
+</div>
+</div>
