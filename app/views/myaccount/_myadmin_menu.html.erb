@@ -1,7 +1,19 @@
-<%# locals: (activation:) %>
+<%# locals: (activation: nil) %>
 <% default_css = "block no-underline p-3 px-6 text-neutral-700 hover:text-neutral-700 hover:bg-gray-100" %>
 <% active_css = "block no-underline p-3 px-6 bg-primary text-white hover:text-white" %>
-<div class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700 rounded-md text-sm font-medium">
-  <a class="<%= activation == "user" ? active_css : default_css %>" href="/myaccount/user">Users</a>
-  <a class="<%= activation == "blog_article" ? active_css : default_css %>" href="/myaccount/blog_article">Blog articles</a>
+<% if Current.user.status_role == "superadmin" %>
+<% end %>
+<div class="mb-4">
+  <div class="text-md text-neutral-500 mb-2">
+    Admin area
+  </div>
+  <div class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700 rounded-md text-sm font-medium">
+    <a class="<%= activation == "user" ? active_css : default_css %>" href="/myaccount/user">Users</a>
+    <a class="<%= activation == "blog_article" ? active_css : default_css %>" href="/myaccount/blog_article">Blog articles</a>
+  </div>
+</div>
+<div class="">
+  <div class="text-md text-neutral-500 mb-2">
+    Your profile
+  </div>
 </div>

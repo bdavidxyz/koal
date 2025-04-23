@@ -1,9 +1,10 @@
 <%= render "shared/breadcrumb" %>
 <div class="flex flex-wrap py-4 lg:px-4 bg-gray-50">
   <div class="w-full mb-4 lg:w-1/4 lg:p-4">
+    <%= render "myadmin_menu" %>
     <%= render "myaccount_menu", activation: "none" %>
   </div>
   <div class="w-full lg:w-3/4 lg:p-4">
-    <%= render "myaccount_base", email: email, session: session %>
+    <%= render "myaccount_index", email: email, session: session %>
   </div>
 </div>
