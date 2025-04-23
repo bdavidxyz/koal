@@ -1,4 +1,8 @@
 class MyaccountUsersController < ApplicationController
+  include Rabarber::Authorization
+
+  grant_access roles: :superadmin
+
   def index
   end
   # @route GET /myaccount/users (myaccount_users)

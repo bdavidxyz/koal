@@ -1,6 +1,5 @@
 class RegistrationsController < ApplicationController
   skip_before_action :authenticate
-  skip_authorization
   before_action :find_bot, only: :create
 
   # @route GET /sign_up (sign_up)

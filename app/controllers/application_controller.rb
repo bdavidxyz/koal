@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include Rabarber::Authorization
 
   before_action :set_current_request_details
   before_action :set_current_session
@@ -14,12 +13,12 @@ class ApplicationController < ActionController::Base
   def current_user
     Current.user
   end
+  def when_unauthorized
+    head :not_found # pretend the page doesn't exist
+  end
 
   private
 
-    def when_unauthorized
-      head :not_found # pretend the page doesn't exist
-    end
     def authenticate
       if session_record = Session.find_by_id(cookies.signed[:session_token])
         Current.session = session_record

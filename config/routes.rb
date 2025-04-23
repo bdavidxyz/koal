@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   #
   # Admin dashboard: Users
   #
-  resource :myaccount_users, path: "myaccount/users"
+  resources :myaccount_users, path: "myaccount/users"
 
   #
   # Pages routes

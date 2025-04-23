@@ -1,5 +1,8 @@
 class MyaccountController < ApplicationController
+  include Rabarber::Authorization
+
   grant_access roles: :member
+
   # @route GET /myaccount (myaccount)
   def index
     session = Current.session
