@@ -1,5 +1,6 @@
 class Identity::EmailsController < ApplicationController
   before_action :set_user
+  grant_access roles: :member
 
   # @route PATCH /identity/email (identity_email)
   # @route PUT /identity/email (identity_email)

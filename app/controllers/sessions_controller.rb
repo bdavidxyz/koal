@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate, only: %i[ new create ]
-  grant_access roles: :member
+  skip_authorization only: %i[ new create ]
+  grant_access action: :destroy, roles: [ :member ]
 
   before_action :find_bot, only: :create
   before_action :set_session, only: :destroy

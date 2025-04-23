@@ -1,7 +1,9 @@
 class Identity::EmailVerificationsController < ApplicationController
   skip_before_action :authenticate, only: :show
+  skip_authorization only: %i[ show ]
 
   before_action :set_user, only: :show
+  grant_access action: :show, roles: [ :member ]
 
   # @route GET /identity/email_verification (identity_email_verification)
   def show
