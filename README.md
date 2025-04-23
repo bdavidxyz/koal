@@ -17,8 +17,21 @@ Minimalistic Rails 8 app.
 
 - Git
 - PostGre
-- NodeJS >= 2
+- NodeJS >= 22
 - Ruby > 3.3
+
+## Installation
+
+- git clone git@github.com:bdavidxyz/koal.git
+- cd koal
+- bundle install
+- npm install
+- VISUAL="code --wait" bin/rails credentials:edit
+- create .env file (see below)
+- RAILS_ENV=development bin/rails db:create db:migrate
+- bin/dev
+
+The app should be displayed at localhost:3000
 
 ## .env file
 
