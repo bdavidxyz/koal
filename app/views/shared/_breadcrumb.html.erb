@@ -31,6 +31,9 @@
       <% elsif current_page?(controller: 'myaccount', action: 'email') %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
         <%= render "shared/breadcrumb_one", text: "Email", is_active: false %>
+      <% elsif current_page?(controller: 'myaccount_users') %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
+        <%= render "shared/breadcrumb_one", text: "Users", is_active: false %>
       <% end %>
     </ol>
   </div>
