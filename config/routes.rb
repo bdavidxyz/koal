@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   delete "myaccount/destroy", to: "myaccount#destroy_account"
 
   #
+  # Admin dashboard: Users
+  #
+  resource :myaccount_users, path: "myaccount/users"
+
+  #
   # Pages routes
   #
   root to: "home#index"
