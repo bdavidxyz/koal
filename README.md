@@ -22,7 +22,7 @@ Minimalistic Rails 8 app.
 
 ## Installation
 
-- git clone git@github.com:bdavidxyz/koal.git
+- git clone `git@github.com:bdavidxyz/koal.git`
 - cd koal
 - bundle install
 - npm install

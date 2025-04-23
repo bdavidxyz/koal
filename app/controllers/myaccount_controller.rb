@@ -1,5 +1,5 @@
 class MyaccountController < ApplicationController
-
+  include Rabarber::Authorization
 
   grant_access roles: :member
 

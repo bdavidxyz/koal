@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Rabarber::Authorization
+
   before_action :set_current_request_details
   before_action :set_current_session
   before_action :authenticate
