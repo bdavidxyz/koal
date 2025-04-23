@@ -11,10 +11,6 @@ class ApplicationController < ActionController::Base
     head :ok
   end
 
-  def current_user
-    Current.user
-  end
-
   private
     def authenticate
       if session_record = Session.find_by_id(cookies.signed[:session_token])

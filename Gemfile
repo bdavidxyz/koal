@@ -64,3 +64,9 @@ gem "chusaku", require: false, groups: [ :development ]
 
 # Authorizations
 gem "rabarber"
+
+# Debug
+gem "rabarber"
+
+# Print nicely
+gem "awesome_print", groups: [ :development, :test ]

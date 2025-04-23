@@ -76,6 +76,7 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
     authentication-zero (4.0.3)
+    awesome_print (1.9.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     benchmark (0.4.0)
@@ -347,6 +348,7 @@ PLATFORMS
 
 DEPENDENCIES
   authentication-zero (~> 4.0)
+  awesome_print
   bcrypt (~> 3.1.7)
   bootsnap
   brakeman

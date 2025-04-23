@@ -1,7 +1,7 @@
 <%# locals: (activation: nil) %>
 <% default_css = "block no-underline p-3 px-6 text-neutral-700 hover:text-neutral-700 hover:bg-gray-100" %>
 <% active_css = "block no-underline p-3 px-6 bg-primary text-white hover:text-white" %>
-<% if Current.user.has_role?(:superadmin) %>
+<%= visible_to(:superadmin) do %>
   <div class="mb-4">
     <div class="text-md text-neutral-500 mb-2">
       Admin area
