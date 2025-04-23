@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
-
+  # Session callbacks
   before_action :set_current_request_details
   before_action :set_current_session
   before_action :authenticate
+  # include after callbacks, see https://github.com/enjaku4/rabarber/issues/74
+  include Rabarber::Authorization
 
   def find_bot
     return unless params[:hp] == "1"
