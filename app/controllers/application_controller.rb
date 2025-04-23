@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   include Rabarber::Authorization
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  # allow_browser versions: :modern
 
   before_action :set_current_request_details
   before_action :set_current_session
@@ -12,7 +10,16 @@ class ApplicationController < ActionController::Base
     head :ok
   end
 
+  # Required by Rabarber
+  def current_user
+    Current.user
+  end
+
   private
+
+    def when_unauthorized
+      head :not_found # pretend the page doesn't exist
+    end
     def authenticate
       if session_record = Session.find_by_id(cookies.signed[:session_token])
         Current.session = session_record

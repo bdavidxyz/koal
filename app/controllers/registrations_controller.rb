@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
   skip_before_action :authenticate
+  skip_authorization
   before_action :find_bot, only: :create
 
   # @route GET /sign_up (sign_up)
@@ -10,8 +11,8 @@ class RegistrationsController < ApplicationController
   # @route POST /sign_up (sign_up)
   def create
     @user = User.new(user_params)
-
     if @user.save
+      @user.assign_roles(:member)
       session_record = @user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
 
