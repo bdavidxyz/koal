@@ -1,6 +1,7 @@
 class PasswordsController < ApplicationController
   before_action :set_user
   grant_access roles: :member
+
   def edit
   end
 
