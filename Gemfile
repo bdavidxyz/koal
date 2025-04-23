@@ -61,3 +61,6 @@ gem "authentication-zero", "~> 4.0"
 
 # Annotate controllers
 gem "chusaku", require: false, groups: [ :development ]
+
+# Authorizations
+gem "rabarber"

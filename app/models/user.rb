@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Rabarber::HasRoles
+
   has_secure_password
 
   generates_token_for :email_verification, expires_in: 2.days do
@@ -16,9 +18,6 @@ class User < ApplicationRecord
   validates :password, allow_nil: true, length: { minimum: 12 }
   validates :name, allow_nil: true, length: { minimum: 4 }
   normalizes :email, with: -> { _1.strip.downcase }
-
-  attribute :status_role, default: "regular"
-  enum :status_role, %w[superadmin regular].index_by(&:itself)
 
   before_validation if: :email_changed?, on: :update do
     self.verified = false
