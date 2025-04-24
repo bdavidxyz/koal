@@ -3,7 +3,6 @@ class Identity::EmailVerificationsController < ApplicationController
   skip_authorization only: %i[ show ]
 
   before_action :set_user, only: :show
-  grant_access action: :show, roles: [ :member ]
 
   # @route GET /identity/email_verification (identity_email_verification)
   def show
@@ -12,6 +11,7 @@ class Identity::EmailVerificationsController < ApplicationController
   end
 
   # @route POST /identity/email_verification (identity_email_verification)
+  grant_access action: :create, roles: [ :member ]
   def create
     send_email_verification
     redirect_to myaccount_path, notice: "We sent a verification email to your email address"

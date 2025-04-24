@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate, only: %i[ new create ]
   skip_authorization only: %i[ new create ]
-  grant_access action: :destroy, roles: [ :member ]
 
   before_action :find_bot, only: :create
   before_action :set_session, only: :destroy
@@ -23,6 +22,7 @@ class SessionsController < ApplicationController
   end
 
   # @route DELETE /sessions/:id (session)
+  grant_access action: :destroy, roles: [ :member ]
   def destroy
     @session.destroy; redirect_to(myaccount_sessions_path, notice: "That session has been logged out")
   end
