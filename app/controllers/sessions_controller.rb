@@ -1,14 +1,15 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate, only: %i[ new create ]
-  # skip_authorization only: %i[ new create ]
 
   before_action :find_bot, only: :create
   before_action :set_session, only: :destroy
 
+  grant_access action: :new
   # @route GET /sign_in (sign_in)
   def new
   end
 
+  grant_access action: :create
   # @route POST /sign_in (sign_in)
   def create
     if user = User.authenticate_by(email: params[:email], password: params[:password])
@@ -21,8 +22,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  # @route DELETE /sessions/:id (session)
   grant_access action: :destroy, roles: [ :member ]
+  # @route DELETE /sessions/:id (session)
   def destroy
     @session.destroy; redirect_to(myaccount_sessions_path, notice: "That session has been logged out")
   end

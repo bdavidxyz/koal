@@ -1,17 +1,19 @@
 class Identity::PasswordResetsController < ApplicationController
   skip_before_action :authenticate
-  skip_authorization
 
   before_action :set_user, only: %i[ edit update ]
 
+  grant_access action: :new
   # @route GET /identity/password_reset/new (new_identity_password_reset)
   def new
   end
 
+  grant_access action: :edit
   # @route GET /identity/password_reset/edit (edit_identity_password_reset)
   def edit
   end
 
+  grant_access action: :create
   # @route POST /identity/password_reset (identity_password_reset)
   def create
     if @user = User.find_by(email: params[:email], verified: true)
@@ -22,6 +24,7 @@ class Identity::PasswordResetsController < ApplicationController
     end
   end
 
+  grant_access action: :update
   # @route PATCH /identity/password_reset (identity_password_reset)
   # @route PUT /identity/password_reset (identity_password_reset)
   def update
