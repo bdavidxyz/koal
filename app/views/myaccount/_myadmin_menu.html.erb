@@ -1,6 +1,14 @@
 <%# locals: (activation: nil) %>
 <% default_css = "block no-underline p-3 px-6 text-neutral-700 hover:text-neutral-700 hover:bg-gray-100" %>
 <% active_css = "block no-underline p-3 px-6 bg-primary text-white hover:text-white" %>
+<div class="text-md text-neutral-500 mb-4">
+  <div class="">
+    <%= current_user.email %>
+  </div>
+  <div class="">
+    <%= button_to "Log out", Current.session, method: :delete, class: "cursor-pointer font-medium text-blue-600 hover:underline", form: {"up-submit" => "false"} %>
+  </div>
+</div>
 <%= visible_to(:superadmin) do %>
   <div class="mb-4">
     <div class="text-md text-neutral-500 mb-2">
