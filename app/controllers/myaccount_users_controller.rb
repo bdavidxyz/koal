@@ -5,6 +5,7 @@ class MyaccountUsersController < ApplicationController
   grant_access roles: :superadmin, action: :index
   # @route GET /myaccount/users (myaccount_users)
   def index
+    @users = User.all
   end
 
   grant_access roles: :superadmin, action: :show

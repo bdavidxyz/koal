@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Rabarber::HasRoles
+  include ImmutableSlug
 
   has_secure_password
 
@@ -26,4 +27,9 @@ class User < ApplicationRecord
   after_update if: :password_digest_previously_changed? do
     sessions.where.not(id: Current.session).delete_all
   end
+
+  def generated_slug_on_creation
+    self.slug = "user_#{SecureRandom.hex[0...4]}a#{id}"
+  end
+
 end
