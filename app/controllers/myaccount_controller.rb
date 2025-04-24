@@ -3,14 +3,6 @@ class MyaccountController < ApplicationController
 
   # @route GET /myaccount (myaccount)
   def index
-    session = Current.session
-    u = Current.user
-    sessions = u.sessions
-    render locals: {
-      email: u.email,
-      session: session,
-      session_number: u.sessions.order(created_at: :desc)
-    }
   end
   # @route GET /myaccount/sessions (myaccount_sessions)
   def sessions

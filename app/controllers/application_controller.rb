@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
   def current_user
     Current.user
   end
+  # Be homogeneous with current_user above
+  def current_session
+    Current.session
+  end
   def when_unauthorized
     head :not_found # pretend the page doesn't exist
   end
@@ -22,15 +26,13 @@ class ApplicationController < ActionController::Base
   private
 
     def authenticate
-      if session_record = Session.find_by_id(cookies.signed[:session_token])
-        Current.session = session_record
-      else
+      if not @session_record
         redirect_to sign_in_path
       end
     end
     def set_current_session
-      if session_record = Session.find_by_id(cookies.signed[:session_token])
-        Current.session = session_record
+      if @session_record = Session.find_by_id(cookies.signed[:session_token])
+        Current.session = @session_record
       end
     end
 
