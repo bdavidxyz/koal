@@ -38,10 +38,12 @@ class MyaccountController < ApplicationController
   end
 
   grant_access roles: :member, action: :billing
+  # @route GET /myaccount/billing (myaccount_billing)
   def billing
   end
 
   grant_access roles: :member, action: :danger
+  # @route GET /myaccount/danger (myaccount_danger)
   def danger
   end
 
