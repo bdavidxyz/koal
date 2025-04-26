@@ -13,8 +13,11 @@
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Action</th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Email</th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Verified?</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Created At</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Updated At</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+            <a href="?<%= build_href_to_sort('created_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Created at</a>
+          </th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+            <a href="?<%= build_href_to_sort('updated_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Updated at</a>          </th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
