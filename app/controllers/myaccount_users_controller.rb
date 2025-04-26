@@ -1,6 +1,5 @@
 class MyaccountUsersController < ApplicationController
 
-
   grant_access roles: :superadmin, action: :index
   # @route GET /myaccount/users (myaccount_users)
   def index
@@ -32,10 +31,21 @@ class MyaccountUsersController < ApplicationController
   # @route PATCH /myaccount/users/:id (myaccount_user)
   # @route PUT /myaccount/users/:id (myaccount_user)
   def update
+    @user = User.find_by(slug: params[:id]) or not_found
+    if @user.update(user_params)
+      redirect_to myaccount_users_path, notice: "User was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   grant_access roles: :superadmin, action: :destroy
   # @route DELETE /myaccount/users/:id (myaccount_user)
   def destroy
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:email, :verified)
   end
 end
