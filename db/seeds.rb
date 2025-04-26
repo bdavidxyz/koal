@@ -1,12 +1,5 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# Users seeds
+
 a_user = User.create!(
   email: 'a@user.com',
   password: 'SecurePassword123!',
@@ -14,8 +7,87 @@ a_user = User.create!(
 )
 a_user.assign_roles(:superadmin)
 
+b_user = User.create!(
+  email: 'b@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
+)
+
 c_user = User.create!(
   email: 'c@user.com',
   password: 'SecurePassword123!',
   verified: false,
+)
+c_user.assign_roles(:superadmin)
+
+d_user = User.create!(
+  email: 'd@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
+)
+
+e_user = User.create!(
+  email: 'e@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
+)
+
+f_user = User.create!(
+  email: 'f@user.com',
+  password: 'SecurePassword123!',
+  verified: false,
+)
+
+g_user = User.create!(
+  email: 'g@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
+)
+
+h_user = User.create!(
+  email: 'h@user.com',
+  password: 'SecurePassword123!',
+  verified: false,
+)
+
+i_user = User.create!(
+  email: 'i@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
+)
+
+j_user = User.create!(
+  email: 'j@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
+)
+
+k_user = User.create!(
+  email: 'k@user.com',
+  password: 'SecurePassword123!',
+  verified: false,
+)
+
+l_user = User.create!(
+  email: 'l@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
+)
+
+m_user = User.create!(
+  email: 'm@user.com',
+  password: 'SecurePassword123!',
+  verified: false,
+)
+
+n_user = User.create!(
+  email: 'n@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
+)
+
+o_user = User.create!(
+  email: 'o@user.com',
+  password: 'SecurePassword123!',
+  verified: true,
 )

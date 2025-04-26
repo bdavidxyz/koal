@@ -43,7 +43,7 @@ class MyaccountUsersController < ApplicationController
   def destroy
     user = retrieve_user
     user.destroy
-    redirect_to myaccount_user_list_path, notice: "User was successfully deleted."
+    redirect_to myaccount_path, notice: "User was successfully deleted."
   end
 
   private
