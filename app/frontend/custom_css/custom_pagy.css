@@ -1,0 +1,81 @@
+.pagy {
+  display: inline-flex;
+  position: relative;
+  isolate: isolate; /* pour focus z-index */
+  border-radius: 0.375rem; /* rounded-md */
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-xs */
+  overflow: hidden;
+}
+
+.pagy a, 
+.pagy span {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem; /* py-2 px-4 */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+  text-decoration: none;
+  color: #111827; /* text-gray-900 */
+  border: 1px solid #d1d5db; /* ring-1 ring-gray-300 */
+  background-color: white;
+}
+
+.pagy a:hover,
+.pagy span:hover {
+  background-color: #f9fafb; /* hover:bg-gray-50 */
+}
+
+.pagy a:focus,
+.pagy span:focus {
+  z-index: 20;
+  outline-offset: 0;
+}
+
+.pagy a.current {
+  background-color: #1447e6; /* bg-indigo-600 */
+  color: white;
+  z-index: 10;
+}
+
+.pagy a.current:focus-visible {
+  outline: 2px solid #1447e6; /* outline-indigo-600 */
+  outline-offset: 2px;
+}
+
+.pagy span {
+  color: #374151; /* text-gray-700 */
+}
+
+.pagy a:first-child {
+  border-top-left-radius: 0.375rem; /* rounded-l-md */
+  border-bottom-left-radius: 0.375rem;
+  padding: 0.5rem; /* px-2 py-2 */
+  color: #9ca3af; /* text-gray-400 */
+}
+
+.pagy a:last-child {
+  border-top-right-radius: 0.375rem; /* rounded-r-md */
+  border-bottom-right-radius: 0.375rem;
+  padding: 0.5rem; /* px-2 py-2 */
+  color: #9ca3af; /* text-gray-400 */
+}
+
+/* cache certains éléments en dessous de md */
+.pagy .gap {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .pagy .gap {
+    display: inline-flex;
+  }
+}
+
+/* Styles pour les icônes SVG dans les boutons Previous/Next */
+.pagy svg {
+  width: 1.25rem; /* size-5 */
+  height: 1.25rem;
+  fill: currentColor;
+}

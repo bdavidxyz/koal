@@ -1,8 +1,23 @@
 class MyaccountUsersController < ApplicationController
+  include Pagy::Backend
+
   grant_access roles: :superadmin, action: :index
   # @route GET /myaccount/users (myaccount_user)
   def index
-    @users = User.all
+    sort = {}
+    if params[:sort] && params[:direction]
+      sort[params[:sort]] = params[:direction]
+    else
+      sort[:updated_at] = "desc"
+    end
+    scope = User.order(sort)
+    users = !!q ? Fuzzy::Search.new(scope, User, q).run : scope
+    begin
+      @pagy, @users = pagy(users, limit: 10)
+    rescue Pagy::OverflowError
+      params[:page] = 1
+      retry
+    end
   end
 
   grant_access roles: :superadmin, action: :show
