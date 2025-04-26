@@ -1,7 +1,6 @@
 .pagy {
   display: inline-flex;
   position: relative;
-  isolate: isolate; /* pour focus z-index */
   border-radius: 0.375rem; /* rounded-md */
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-xs */
   overflow: hidden;
@@ -36,6 +35,7 @@
   background-color: #1447e6; /* bg-indigo-600 */
   color: white;
   z-index: 10;
+  border-radius: 6px;
 }
 
 .pagy a.current:focus-visible {
