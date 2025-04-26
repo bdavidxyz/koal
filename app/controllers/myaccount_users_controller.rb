@@ -41,6 +41,9 @@ class MyaccountUsersController < ApplicationController
   grant_access roles: :superadmin, action: :destroy
   # @route DELETE /myaccount/users/:slug
   def destroy
+    user = retrieve_user
+    user.destroy
+    redirect_to myaccount_user_list_path, notice: "User was successfully deleted."
   end
 
   private
