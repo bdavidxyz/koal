@@ -48,6 +48,6 @@ class MyaccountUsersController < ApplicationController
     User.find_by(slug: params[:slug]) or not_found
   end
   def user_params
-    params.require(:user).permit(:email, :verified)
+    params.require(:user).permit(:email, :name, :verified)
   end
 end

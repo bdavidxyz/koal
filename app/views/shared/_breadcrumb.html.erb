@@ -41,7 +41,7 @@
       <% elsif current_page?(controller: 'myaccount_users', action: 'edit') %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
-        <%= render "shared/breadcrumb_one", text: "User #{params[:slug]}", link: "/myaccount/users/#{params[:slug]}" %>
+        <%= render "shared/breadcrumb_one", text: "User #{@user.id}", link: "/myaccount/users/#{params[:slug]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% end %>
     </ol>

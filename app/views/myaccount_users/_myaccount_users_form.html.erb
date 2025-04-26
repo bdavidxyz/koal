@@ -12,7 +12,11 @@
     <% end %>
     <div class="form-group mt-3">
       <%= form.label :email, "Email", class: "block font-medium text-sm text-gray-700" %>
-      <%= form.text_field :email, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3", value: target_user.email %>
+      <%= form.text_field :email, value: target_user.email, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+    </div>
+    <div class="form-group mt-3">
+      <%= form.label :name, "Name", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.text_field :name, value: target_user.name, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
     </div>
     <div class="form-group mt-3">
       <%= form.label :verified, "Verified", class: "font-semibold text-sm" %>
