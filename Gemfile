@@ -57,13 +57,14 @@ gem "dotenv-rails", groups: [ :development, :test ]
 
 gem "debugbar", groups: [ :development ]
 
-gem "authentication-zero", "~> 4.0"
-
 # Annotate controllers
 gem "chusaku", require: false, groups: [ :development ]
 
 # Authorizations
 gem "rabarber"
 
-# Print nicely
+# Print nicely locally
 gem "awesome_print", groups: [ :development, :test ]
+
+# Paginate large dataset
+gem "pagy"
