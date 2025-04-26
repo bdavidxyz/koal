@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   include Rabarber::HasRoles
+  include SearchableResource
+
+  searchable_attributes :email
 
   has_secure_password
 
