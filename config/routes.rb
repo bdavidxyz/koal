@@ -27,8 +27,15 @@ Rails.application.routes.draw do
   #
   # Admin dashboard: Users
   #
-  resources :myaccount_users, path: "myaccount/users"
-
+  scope path: "myaccount/users", as: "myaccount_user" do
+    get    "/",            to: "myaccount_users#index", as: :list
+    get    "/new",          to: "myaccount_users#new"
+    post   "/",            to: "myaccount_users#create", as: :create
+    get    "/:slug",        to: "myaccount_users#show"
+    get    "/:slug/edit",   to: "myaccount_users#edit", as: :edit
+    put    "/:slug",        to: "myaccount_users#update", as: :update
+    delete "/:slug",        to: "myaccount_users#destroy", as: :destroy
+  end
   #
   # Pages routes
   #
