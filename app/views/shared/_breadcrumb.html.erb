@@ -12,32 +12,32 @@
         </div>
       </li>
       <% if current_page?(controller: 'myaccount', action: 'index') %>
-        <%= render "shared/breadcrumb_one", text: "My account", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account" %>
       <% elsif current_page?(controller: 'myaccount', action: 'password') %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Password", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Password" %>
       <% elsif current_page?(controller: 'myaccount', action: 'profile') %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Profile", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Profile" %>
       <% elsif current_page?(controller: 'myaccount', action: 'sessions') %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Sessions", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Sessions" %>
       <% elsif current_page?(controller: 'myaccount', action: 'billing') %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Billing", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Billing" %>
       <% elsif current_page?(controller: 'myaccount', action: 'danger') %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Danger", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Danger" %>
       <% elsif current_page?(controller: 'myaccount', action: 'email') %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Email", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Email" %>
       <% elsif current_page?(controller: 'myaccount_users', action: 'index') %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Users", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Users" %>
       <% elsif current_page?(controller: 'myaccount_users', action: 'edit') %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users", is_active: true %>
-        <%= render "shared/breadcrumb_one", text: "Edit", is_active: false %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
+        <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% end %>
     </ol>
   </div>
