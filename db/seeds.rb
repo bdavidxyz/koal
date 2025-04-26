@@ -12,4 +12,10 @@ a_user = User.create!(
   password: 'SecurePassword123!',
   verified: true,
 )
-a_user.assign_roles(:member, :superadmin)
+a_user.assign_roles(:superadmin)
+
+c_user = User.create!(
+  email: 'c@user.com',
+  password: 'SecurePassword123!',
+  verified: false,
+)

@@ -14,7 +14,6 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.assign_roles(:member)
       session_record = @user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
 

@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   include Rabarber::HasRoles
-  include ImmutableSlug
 
   has_secure_password
 
@@ -28,8 +27,14 @@ class User < ApplicationRecord
     sessions.where.not(id: Current.session).delete_all
   end
 
-  def generated_slug_on_creation
+  after_create :generate_decent_slug
+  def generate_decent_slug
     self.slug = "user_#{SecureRandom.hex[0...4]}a#{id}"
+    self.save
   end
 
+  after_create :welcome_as_member
+  def welcome_as_member
+    self.assign_roles(:member)
+  end
 end
