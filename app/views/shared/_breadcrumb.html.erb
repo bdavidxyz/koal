@@ -34,9 +34,14 @@
       <% elsif current_page?(controller: 'myaccount_users', action: 'index') %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Users" %>
+      <% elsif current_page?(controller: 'myaccount_users', action: 'show') %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
+        <%= render "shared/breadcrumb_one", text: "User #{params[:id]}" %>
       <% elsif current_page?(controller: 'myaccount_users', action: 'edit') %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
+        <%= render "shared/breadcrumb_one", text: "User #{params[:id]}", link: "/myaccount/users/#{params[:id]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% end %>
     </ol>
