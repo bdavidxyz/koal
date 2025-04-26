@@ -1,5 +1,4 @@
 class MyaccountUsersController < ApplicationController
-  include Rabarber::Authorization
 
 
   grant_access roles: :superadmin, action: :index
@@ -21,6 +20,7 @@ class MyaccountUsersController < ApplicationController
   grant_access roles: :superadmin, action: :edit
   # @route GET /myaccount/users/:id/edit (edit_myaccount_user)
   def edit
+    @user = User.find_by(slug: params[:id]) or not_found
   end
 
   grant_access roles: :superadmin, action: :create

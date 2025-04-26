@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
   def when_unauthorized
     head :not_found # pretend the page doesn't exist
   end
+  def not_found
+    raise ActionController::RoutingError.new("Not Found")
+  end
 
   private
 
