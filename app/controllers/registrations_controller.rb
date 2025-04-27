@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
-
   before_action :find_bot, only: :create
+
 
   grant_access action: :new
   # @route GET /sign_up (sign_up)

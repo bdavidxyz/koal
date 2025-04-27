@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  require_auth action: :destroy
   grant_access action: :destroy, roles: [ :member ]
   # @route DELETE /sessions/:id (session)
   def destroy
