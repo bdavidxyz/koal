@@ -1,10 +1,19 @@
 class ApplicationController < ActionController::Base
+  class_attribute :authentication_requirements, default: {}
   # Session callbacks
   before_action :set_current_request_details
   before_action :set_current_session
-  before_action :authenticate
+  before_action :check_authentication_requirement
   # include after callbacks, see https://github.com/enjaku4/rabarber/issues/74
   include Rabarber::Authorization
+
+  def self.require_auth(action: nil)
+    if action
+      self.authentication_requirements = authentication_requirements.merge(action.to_sym => true)
+    else
+      before_action :ensure_authenticated!
+    end
+  end
 
   def find_bot
     return unless params[:hp] == "1"
@@ -28,12 +37,15 @@ class ApplicationController < ActionController::Base
   def q
     params[:q]
   end
-
+  def ensure_authenticated!
+    if not @session_record
+      redirect_to sign_in_path
+    end
+  end
   private
-
-    def authenticate
-      if not @session_record
-        redirect_to sign_in_path
+    def check_authentication_requirement
+      if self.class.authentication_requirements[action_name.to_sym]
+        ensure_authenticated!
       end
     end
     def set_current_session

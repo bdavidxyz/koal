@@ -1,11 +1,12 @@
 class MyaccountController < ApplicationController
-
-  grant_access roles: :member, action: :index
+  require_auth action: :index
+  grant_access action: :index, roles: :member
   # @route GET /myaccount (myaccount)
   def index
   end
 
-  grant_access roles: :member, action: :sessions
+  require_auth action: :sessions
+  grant_access action: :sessions, roles: [ :member ]
   # @route GET /myaccount/sessions (myaccount_sessions)
   def sessions
     render locals: {
@@ -13,7 +14,8 @@ class MyaccountController < ApplicationController
     }
   end
 
-  grant_access roles: :member, action: :email
+  require_auth action: :email
+  grant_access action: :email, roles: [ :member ]
   # @route GET /myaccount/email (myaccount_email)
   def email
     render locals: {
@@ -21,7 +23,8 @@ class MyaccountController < ApplicationController
     }
   end
 
-  grant_access roles: :member, action: :password
+  require_auth action: :password
+  grant_access action: :password, roles: [ :member ]
   # @route GET /myaccount/password (myaccount_password)
   def password
     render locals: {
@@ -29,7 +32,8 @@ class MyaccountController < ApplicationController
     }
   end
 
-  grant_access roles: :member, action: :profile
+  require_auth action: :profile
+  grant_access action: :profile, roles: [ :member ]
   # @route GET /myaccount/profile (myaccount_profile)
   def profile
     render locals: {
@@ -37,22 +41,25 @@ class MyaccountController < ApplicationController
     }
   end
 
-  grant_access roles: :member, action: :billing
+  require_auth action: :billing
+  grant_access action: :billing, roles: [ :member ]
   # @route GET /myaccount/billing (myaccount_billing)
   def billing
   end
 
-  grant_access roles: :member, action: :danger
+  require_auth action: :danger
+  grant_access action: :danger, roles: [ :member ]
   # @route GET /myaccount/danger (myaccount_danger)
   def danger
   end
 
-  grant_access roles: :member, action: :destroy_account
+  require_auth action: :destroy_account
+  grant_access action: :destroy_account, roles: [ :member ]
   # @route DELETE /myaccount/destroy (myaccount_destroy)
   def destroy_account
     user = Current.user
     Current.session.destroy
     user.destroy
-    redirect_to root_path, notice: "You account has been deleted."
+    redirect_to root_path, notice: "Your account has been deleted."
   end
 end
