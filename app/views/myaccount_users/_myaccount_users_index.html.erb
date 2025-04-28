@@ -3,7 +3,7 @@
     <h1 class="flex-1 text-2xl font-bold -tracking-wide">Users</h1>
     <form class="search" up-target=".table-scroll" up-focus="#q" up-history="true" method="get">
       <input type="hidden" name="page" id="page" value="<%= params[:page] || 1 %>" autocomplete="off">
-      <input type="search" name="q" id="q" placeholder="Search" value="<%= params[:q] %>" class="appearance-none bg-[#fff] rounded-[.375rem] [box-shadow:inset_0_0_0_1px_#9ca3af] leading-[1.85rem] px-[.75rem] py-[.375rem]">
+      <input type="search" name="q" id="q" placeholder="Search" value="<%= params[:q] %>" class="appearance-none bg-[#fff] rounded-[.375rem] [box-shadow:inset_0_0_0_1px_#9ca3af] leading-[1.85rem] px-[.75rem] py-[.190rem]">
     </form>
     <%= link_to "New user", myaccount_user_new_path, class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
   </div>

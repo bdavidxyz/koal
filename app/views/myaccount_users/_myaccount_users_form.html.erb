@@ -21,7 +21,7 @@
     <% if not @user.slug %>
       <div class="form-group mt-3">
         <%= form.label :password, "Password", class: "block font-medium text-sm text-gray-700" %>
-        <%= form.text_field :password, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+        <%= form.password_field :password, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
       </div>
     <% end %>
     <div class="form-group mt-3">
