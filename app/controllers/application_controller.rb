@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   # include after callbacks, see https://github.com/enjaku4/rabarber/issues/74
   include Rabarber::Authorization
 
+  def self.no_auth_for(action)
+    grant_access action: action
+  end
+
   def self.require_auth(action: nil)
     if action
       self.authentication_requirements = authentication_requirements.merge(action.to_sym => true)

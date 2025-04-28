@@ -27,9 +27,7 @@ class MyaccountController < ApplicationController
   grant_access action: :password, roles: [ :member ]
   # @route GET /myaccount/password (myaccount_password)
   def password
-    render locals: {
-      user: Current.user
-    }
+    @user = Current.user
   end
 
   require_auth action: :profile

@@ -1,6 +1,7 @@
 class PasswordsController < ApplicationController
-  require_auth action: :edit
-  grant_access action: :edit, roles: [ :member ]
+  #
+  require_auth action: :update
+  grant_access action: :update, roles: [ :member ]
   # @route PATCH /password (password)
   # @route PUT /password (password)
   def update
