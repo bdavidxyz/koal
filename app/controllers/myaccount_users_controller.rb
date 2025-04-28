@@ -32,6 +32,7 @@ class MyaccountUsersController < ApplicationController
   grant_access action: :new, roles: [ :superadmin ]
   # @route GET /myaccount/users/new (myaccount_user_new)
   def new
+    @user = User.new
   end
 
   require_auth action: :edit
@@ -45,6 +46,12 @@ class MyaccountUsersController < ApplicationController
   grant_access action: :create, roles: [ :superadmin ]
   # @route POST /myaccount/users (myaccount_user)
   def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to myaccount_user_list_path, notice: "User was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   require_auth action: :update
@@ -75,6 +82,6 @@ class MyaccountUsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :verified)
+    params.require(:user).permit(:email, :name, :verified, :password)
   end
 end

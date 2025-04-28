@@ -31,6 +31,10 @@
       <% elsif current_page?(controller: 'myaccount', action: 'email') %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Email" %>
+      <% elsif current_page?(controller: 'myaccount_users', action: 'new') %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
+        <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
+        <%= render "shared/breadcrumb_one", text: "Create new User" %>
       <% elsif current_page?(controller: 'myaccount_users', action: 'index') %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Users" %>
