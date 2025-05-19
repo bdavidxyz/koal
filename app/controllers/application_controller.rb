@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :check_authentication_requirement
   # include after callbacks, see https://github.com/enjaku4/rabarber/issues/74
   include Rabarber::Authorization
+  with_authorization
 
   def self.no_auth_for(action)
     grant_access action: action
