@@ -37,6 +37,18 @@ Rails.application.routes.draw do
     delete "/:slug",        to: "myaccount_users#destroy", as: :destroy
   end
   #
+  # Admin dashboard: BlogArticles
+  #
+  scope path: "myaccount/blog_articles", as: "myaccount_blogarticle" do
+    get    "/",            to: "myaccount_blogarticles#index", as: :list
+    get    "/new",          to: "myaccount_blogarticles#new"
+    post   "/",            to: "myaccount_blogarticles#create", as: :create
+    get    "/:slug",        to: "myaccount_blogarticles#show"
+    get    "/:slug/edit",   to: "myaccount_blogarticles#edit", as: :edit
+    put    "/:slug",        to: "myaccount_blogarticles#update", as: :update
+    delete "/:slug",        to: "myaccount_blogarticles#destroy", as: :destroy
+  end
+  #
   # Pages routes
   #
   root to: "home#index"
