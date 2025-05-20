@@ -22,7 +22,7 @@
       <% elsif current_page?(controller: 'myaccount', action: 'sessions') %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Sessions" %>
-      <% elsif current_page?(controller: 'myaccount', action: 'billing') %>
+      <% elsif current_named_route == :myaccount_billing %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Billing" %>
       <% elsif current_page?(controller: 'myaccount', action: 'danger') %>
@@ -31,18 +31,18 @@
       <% elsif current_page?(controller: 'myaccount', action: 'email') %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Email" %>
-      <% elsif current_page?(controller: 'myaccount_users', action: 'new') %>
+      <% elsif current_named_route == :myaccount_user_new %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
         <%= render "shared/breadcrumb_one", text: "Create new User" %>
-      <% elsif current_page?(controller: 'myaccount_users', action: 'index') %>
+      <% elsif current_named_route == :myaccount_user_list %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Users" %>
-      <% elsif current_page?(controller: 'myaccount_users', action: 'show') %>
+      <% elsif current_named_route == :myaccount_user_show %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
         <%= render "shared/breadcrumb_one", text: "User #{params[:slug]}" %>
-      <% elsif current_page?(controller: 'myaccount_users', action: 'edit') %>
+      <% elsif current_named_route == :myaccount_user_edit %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
         <%= render "shared/breadcrumb_one", text: "User #{params[:slug]}", link: "/myaccount/users/#{params[:slug]}" %>
