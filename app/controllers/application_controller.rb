@@ -28,11 +28,11 @@ class ApplicationController < ActionController::Base
 
   # Required by Rabarber
   def current_user
-    Current.user
+    helpers.current_user
   end
   # Be homogeneous with current_user above
   def current_session
-    Current.session
+    helpers.current_session
   end
   def when_unauthorized
     head :not_found # pretend the page doesn't exist

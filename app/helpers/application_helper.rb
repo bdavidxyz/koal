@@ -4,7 +4,7 @@ module ApplicationHelper
   include CurrentRouteHelper
 
   def current_user
-    Current.user
+    Current.user || User.new
   end
   def current_session
     Current.session
