@@ -1,0 +1,3 @@
+class Chronicle < ApplicationRecord
+
+end
