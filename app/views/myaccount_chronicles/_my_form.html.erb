@@ -14,11 +14,27 @@
       <%= form.label :slug, "slug", class: "block font-medium text-sm text-gray-700" %>
       <%= form.text_field :slug, value: target_chronicle.slug, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
     </div>
+    <div class="form-group mt-3">
+      <%= form.label :title, "Title", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.text_field :title, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-full py-1 px-3" %>
+    </div>
+    <div class="form-group mt-3">
+      <%= form.label :chapo, "Chapo", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.text_area :chapo, rows: 3, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-full py-1 px-3" %>
+    </div>
+    <div class="form-group mt-3">
+      <%= form.label :kontent, "Content", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.text_area :kontent, rows: 10, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-full py-1 px-3" %>
+    </div>
+    <div class="form-group mt-3">
+      <%= form.label :published_at, "Publish Date", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.datetime_field :published_at, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+    </div>
     <div class="form-actions mt-6">
       <%= form.submit target_submit, class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" %>
       <%= link_to "Cancel", myaccount_chronicle_list_path, class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
       <% if @chronicle.slug %>
-        <%= link_to "View chronicle", myaccount_chronicle_path(@chronicle.slug), class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
+        <%= link_to "View chronicle", myaccount_chronicle_show_path(@chronicle.slug), class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
       <% end %>
     </div>
   <% end %>

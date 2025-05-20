@@ -82,6 +82,6 @@ class MyaccountChroniclesController < ApplicationController
   end
 
   def chronicle_params
-    params.require(:chronicle).permit(:title, :kontent, :slug)
+    params.require(:chronicle).permit(:title, :kontent, :slug, :chapo, :published_at)
   end
 end
