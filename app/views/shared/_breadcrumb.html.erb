@@ -11,24 +11,24 @@
           </a>
         </div>
       </li>
-      <% if current_page?(controller: 'myaccount', action: 'index') %>
+      <% if current_named_route == :myaccount %>
         <%= render "shared/breadcrumb_one", text: "My account" %>
-      <% elsif current_page?(controller: 'myaccount', action: 'password') %>
+      <% elsif current_named_route == :myaccount_password %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Password" %>
-      <% elsif current_page?(controller: 'myaccount', action: 'profile') %>
+      <% elsif current_named_route == :myaccount_profile %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Profile" %>
-      <% elsif current_page?(controller: 'myaccount', action: 'sessions') %>
+      <% elsif current_named_route == :myaccount_sessions %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Sessions" %>
       <% elsif current_named_route == :myaccount_billing %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Billing" %>
-      <% elsif current_page?(controller: 'myaccount', action: 'danger') %>
+      <% elsif current_named_route == :myaccount_danger %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Danger" %>
-      <% elsif current_page?(controller: 'myaccount', action: 'email') %>
+      <% elsif current_named_route == :myaccount_email %>
         <%= render "shared/breadcrumb_one", text: "My account", link: "/myaccount" %>
         <%= render "shared/breadcrumb_one", text: "Email" %>
       <% elsif current_named_route == :myaccount_user_new %>
