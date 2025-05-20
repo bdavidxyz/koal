@@ -1,0 +1,50 @@
+<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10">
+  <div class="sm:flex items-center justify-between mb-8">
+    <h1 class="flex-1 text-2xl font-bold -tracking-wide">Chronicles</h1>
+    <form class="search" up-target=".table-scroll" up-focus="#q" up-history="true" method="get">
+      <input type="hidden" name="page" id="page" value="<%= params[:page] || 1 %>" autocomplete="off">
+      <input type="search" name="q" id="q" placeholder="Search" value="<%= params[:q] %>" class="appearance-none bg-[#fff] rounded-[.375rem] [box-shadow:inset_0_0_0_1px_#9ca3af] leading-[1.85rem] px-[.75rem] py-[.190rem]">
+    </form>
+    <%= link_to "New chronicle", myaccount_chronicle_new_path, class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
+  </div>
+  <div class="">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead>
+        <tr>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Action</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Id</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Slug</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+            <a href="?<%= build_href_to_sort('created_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Created at</a>
+          </th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+            <a href="?<%= build_href_to_sort('updated_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Updated at</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @chronicles.each do |chronicle| %>
+          <tr>
+            <td class="py-2 text-xs pl-4">
+              <%= link_to "Edit", myaccount_chronicle_edit_path(chronicle.slug), class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+              <%= link_to "Show", myaccount_chronicle_path(chronicle.slug), class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+            </td>
+            <td class="py-2 text-xs pl-6"><%= chronicle.id %></td>
+            <td class="py-2 text-xs pl-6"><%= truncate(chronicle&.slug, length: 20, omission: "...") %></td>
+            <td class="py-2 text-xs pl-6">
+              <div><%= chronicle.created_at.strftime('%-d %b %Y') %></div>
+              <div><%= chronicle.created_at.strftime('%H:%M:%S') %></div>
+            </td>
+            <td class="py-2 text-xs pl-6">
+              <div><%= chronicle.updated_at.strftime('%-d %b %Y') %></div>
+              <div><%= chronicle.updated_at.strftime('%H:%M:%S') %></div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <ul class="mt-6">
+    <%== pagy_nav(@pagy) %>
+  </ul>
+</div>

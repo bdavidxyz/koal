@@ -29,25 +29,27 @@ Rails.application.routes.draw do
   #
   scope path: "myaccount/users", as: "myaccount_user" do
     get    "/",            to: "myaccount_users#index", as: :list
-    get    "/new",          to: "myaccount_users#new"
+    get    "/new",         to: "myaccount_users#new"
     post   "/",            to: "myaccount_users#create", as: :create
-    get    "/:slug",        to: "myaccount_users#show"
-    get    "/:slug/edit",   to: "myaccount_users#edit", as: :edit
-    put    "/:slug",        to: "myaccount_users#update", as: :update
-    delete "/:slug",        to: "myaccount_users#destroy", as: :destroy
+    get    "/:slug",       to: "myaccount_users#show"
+    get    "/:slug/edit",  to: "myaccount_users#edit", as: :edit
+    put    "/:slug",       to: "myaccount_users#update", as: :update
+    delete "/:slug",       to: "myaccount_users#destroy", as: :destroy
   end
+
   #
-  # Admin dashboard: BlogArticles
+  # Admin dashboard: Chronicles
   #
-  scope path: "myaccount/blog_articles", as: "myaccount_blogarticle" do
-    get    "/",            to: "myaccount_blogarticles#index", as: :list
-    get    "/new",          to: "myaccount_blogarticles#new"
-    post   "/",            to: "myaccount_blogarticles#create", as: :create
-    get    "/:slug",        to: "myaccount_blogarticles#show"
-    get    "/:slug/edit",   to: "myaccount_blogarticles#edit", as: :edit
-    put    "/:slug",        to: "myaccount_blogarticles#update", as: :update
-    delete "/:slug",        to: "myaccount_blogarticles#destroy", as: :destroy
+  scope path: "myaccount/chronicles", as: "myaccount_chronicle" do
+    get    "/",            to: "myaccount_chronicles#index", as: :list
+    get    "/new",         to: "myaccount_chronicles#new"
+    post   "/",            to: "myaccount_chronicles#create", as: :create
+    get    "/:slug",       to: "myaccount_chronicles#show"
+    get    "/:slug/edit",  to: "myaccount_chronicles#edit", as: :edit
+    put    "/:slug",       to: "myaccount_chronicles#update", as: :update
+    delete "/:slug",       to: "myaccount_chronicles#destroy", as: :destroy
   end
+
   #
   # Pages routes
   #
