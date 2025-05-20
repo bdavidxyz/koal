@@ -27,7 +27,7 @@
           <tr>
             <td class="py-2 text-xs pl-4">
               <%= link_to "Edit", myaccount_user_edit_path(user.slug), class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
-              <%= link_to "Show", myaccount_user_path(user.slug), class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+              <%= link_to "Show", myaccount_user_show_path(user.slug), class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
             </td>
             <td class="py-2 text-xs pl-6"><%= user.id %></td>
             <td class="py-2 text-xs pl-6"><%= truncate(user&.slug, length: 20, omission: "...") %></td>

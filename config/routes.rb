@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   #
   scope path: "myaccount/users", as: "myaccount_user" do
     get    "/",            to: "myaccount_users#index", as: :list
-    get    "/new",         to: "myaccount_users#new"
+    get    "/new",         to: "myaccount_users#new", as: :new
     post   "/",            to: "myaccount_users#create", as: :create
-    get    "/:slug",       to: "myaccount_users#show"
+    get    "/:slug",       to: "myaccount_users#show", as: :show
     get    "/:slug/edit",  to: "myaccount_users#edit", as: :edit
     put    "/:slug",       to: "myaccount_users#update", as: :update
     delete "/:slug",       to: "myaccount_users#destroy", as: :destroy
@@ -42,9 +42,9 @@ Rails.application.routes.draw do
   #
   scope path: "myaccount/chronicles", as: "myaccount_chronicle" do
     get    "/",            to: "myaccount_chronicles#index", as: :list
-    get    "/new",         to: "myaccount_chronicles#new"
+    get    "/new",         to: "myaccount_chronicles#new", as: :new
     post   "/",            to: "myaccount_chronicles#create", as: :create
-    get    "/:slug",       to: "myaccount_chronicles#show"
+    get    "/:slug",       to: "myaccount_chronicles#show", as: :show
     get    "/:slug/edit",  to: "myaccount_chronicles#edit", as: :edit
     put    "/:slug",       to: "myaccount_chronicles#update", as: :update
     delete "/:slug",       to: "myaccount_chronicles#destroy", as: :destroy
