@@ -1,6 +1,7 @@
 module ApplicationHelper
   include Pagy::Frontend
   include Rabarber::Helpers
+  include CurrentRouteHelper
 
   def current_user
     Current.user
