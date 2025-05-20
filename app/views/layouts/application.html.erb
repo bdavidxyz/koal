@@ -24,14 +24,6 @@
     <%= render "shared/app_flash" %>
     <%= render 'shared/navbar' %>
     <main id="main" class="main <%= request.path.include?('myaccount') ? 'bg-gray-50' : '' %> h-[calc(100vh-5rem)]">
-      <pre>
-Route: <%= current_named_route %>
-Path: <%= request.path %>
-Method: <%= request.method %>
-Controller: <%= controller_name%>
-Action: <%= controller.action_name%>
-Method: <%= request.method %>
-</pre>
       <%= yield %>
     </main>
     <%= debugbar_body if defined? Debugbar %>
