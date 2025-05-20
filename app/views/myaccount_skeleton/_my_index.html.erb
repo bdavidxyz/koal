@@ -12,13 +12,14 @@
       <thead>
         <tr>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Action</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Email</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Verified?</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Id</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Slug</th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
             <a href="?<%= build_href_to_sort('created_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Created at</a>
           </th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
-            <a href="?<%= build_href_to_sort('updated_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Updated at</a>          </th>
+            <a href="?<%= build_href_to_sort('updated_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Updated at</a>
+          </th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
@@ -28,8 +29,8 @@
               <%= link_to "Edit", myaccount_user_edit_path(user.slug), class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
               <%= link_to "Show", myaccount_user_path(user.slug), class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
             </td>
-            <td class="py-2 text-xs pl-6"><%= user.email %></td>
-            <td class="py-2 text-xs pl-6"><%= user.verified %></td>
+            <td class="py-2 text-xs pl-6"><%= user.id %></td>
+            <td class="py-2 text-xs pl-6"><%= truncate(user&.slug, length: 20, omission: "...") %></td>
             <td class="py-2 text-xs pl-6">
               <div><%= user.created_at.strftime('%-d %b %Y') %></div>
               <div><%= user.created_at.strftime('%H:%M:%S') %></div>
