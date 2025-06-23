@@ -6,10 +6,10 @@
     "rollup": "^4.40.0",
     "run-pty": "^5.0.0",
     "tailwindcss": "^4.1.4",
-    "vite": "^5.4.18",
+    "unpoly": "3.10.2",
+    "vite": "^6.3.5",
     "vite-plugin-rails": "^0.5.0",
-    "vite-plugin-ruby": "^5.1.1",
-    "unpoly": "3.10.2"
+    "vite-plugin-ruby": "^5.1.1"
   },
   "dependencies": {
     "esbuild": ">=0.25.0"
