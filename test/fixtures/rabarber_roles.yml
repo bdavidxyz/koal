@@ -1,0 +1,15 @@
+member:
+  id: 1
+  name: member
+  context_type: null
+  context_id: null
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+superadmin:
+  id: 2
+  name: superadmin
+  context_type: null
+  context_id: null
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

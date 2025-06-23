@@ -1,0 +1,11 @@
+jane_member:
+  role_id: 1 # member
+  roleable_id: 1 # jane
+
+jane_superadmin:
+  role_id: 2 # superadmin
+  roleable_id: 1 # jane
+
+alicia_member:
+  role_id: 1 # member
+  roleable_id: 2 # alicia
