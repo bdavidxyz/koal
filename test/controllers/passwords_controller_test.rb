@@ -3,8 +3,6 @@ require "test_helper"
 class PasswordsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = sign_in_as(users(:jane))
-    ap "-------------------------------@user :---------------------------------"
-    ap @user
   end
 
   test "should get edit" do
@@ -17,10 +15,10 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to myaccount_path
   end
 
-  # test "should not update password with wrong password challenge" do
-  #   patch password_url, params: { password_challenge: "SecretWrong1*3", password: "Secret6*4*2*", password_confirmation: "Secret6*4*2*" }
+  test "should not update password with wrong password challenge" do
+    patch password_url, params: { password_challenge: "SecretWrong1*3", password: "Secret6*4*2*", password_confirmation: "Secret6*4*2*" }
 
-  #   assert_response :unprocessable_entity
-  #   assert_select "li", /Password challenge is invalid/
-  # end
+    assert_response :unprocessable_entity
+    assert_select "li", /Password challenge is invalid/
+  end
 end
