@@ -68,3 +68,6 @@ gem "awesome_print", groups: [ :development, :test ]
 
 # Paginate large dataset
 gem "pagy"
+
+# Code coverage
+gem "simplecov", require: false, groups: [ :test ]
