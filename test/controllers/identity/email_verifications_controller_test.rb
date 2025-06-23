@@ -11,14 +11,14 @@ class Identity::EmailVerificationsControllerTest < ActionDispatch::IntegrationTe
       post identity_email_verification_url
     end
 
-    assert_redirected_to root_url
+    assert_redirected_to myaccount_path
   end
 
   test "should verify email" do
     sid = @user.generate_token_for(:email_verification)
 
     get identity_email_verification_url(sid: sid, email: @user.email)
-    assert_redirected_to root_url
+    assert_redirected_to myaccount_path
   end
 
   test "should not verify email with expired token" do
@@ -28,7 +28,7 @@ class Identity::EmailVerificationsControllerTest < ActionDispatch::IntegrationTe
 
     get identity_email_verification_url(sid: sid, email: @user.email)
 
-    assert_redirected_to edit_identity_email_url
+    assert_redirected_to myaccount_path
     assert_equal "That email verification link is invalid", flash[:alert]
   end
 end
