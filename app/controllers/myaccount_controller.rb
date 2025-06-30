@@ -9,6 +9,7 @@ class MyaccountController < ApplicationController
   grant_access action: :sessions, roles: [ :member ]
   # @route GET /myaccount/sessions (myaccount_sessions)
   def sessions
+    debugger
     @sessions = Current.user.sessions.order(created_at: :desc)
   end
 

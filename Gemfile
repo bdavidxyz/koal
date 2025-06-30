@@ -71,3 +71,6 @@ gem "pagy"
 
 # Code coverage
 gem "simplecov", require: false, groups: [ :test ]
+
+gem 'debase', '0.2.9'
+gem 'ruby-debug-ide', '~> 0.7.2'
