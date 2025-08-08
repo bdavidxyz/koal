@@ -18,7 +18,7 @@ Minimalistic Rails 8 app.
 - Git
 - PostGre
 - NodeJS >= 22
-- Ruby > 3.3
+- Ruby >= 3.2.2
 
 ## Installation
 
