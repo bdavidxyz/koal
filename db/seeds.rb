@@ -1,6 +1,10 @@
 # Users seeds
 
-a_user = User.create!(
+# Only seed if there are no users in the database
+if User.count == 0
+  puts "Seeding users..."
+
+  a_user = User.create!(
   email: 'a@user.com',
   password: 'SecurePassword123!',
   verified: true,
@@ -91,3 +95,8 @@ o_user = User.create!(
   password: 'SecurePassword123!',
   verified: true,
 )
+
+  puts "Users seeded successfully!"
+else
+  puts "Users already exist in database. Skipping user seeds."
+end
