@@ -51,6 +51,12 @@ Rails.application.routes.draw do
   end
 
   #
+  # Public chronicles routes
+  #
+  get "chronicles", to: "chronicles#index"
+  get "chronicles/:slug", to: "chronicles#show", as: :chronicle
+
+  #
   # Pages routes
   #
   root to: "home#index"
