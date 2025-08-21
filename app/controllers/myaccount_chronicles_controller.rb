@@ -13,12 +13,7 @@ class MyaccountChroniclesController < ApplicationController
     end
     scope = Chronicle.order(sort)
     chronicles = !!q ? Fuzzy::Search.new(scope, Chronicle, q).run : scope
-    begin
-      @pagy, @chronicles = pagy(chronicles, limit: 10)
-    rescue Pagy::OverflowError
-      params[:page] = 1
-      retry
-    end
+    @pagy, @chronicles = pagy(chronicles, limit: 10)
   end
 
   require_auth action: :show
