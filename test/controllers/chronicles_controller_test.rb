@@ -48,14 +48,12 @@ class ChroniclesControllerTest < ActionDispatch::IntegrationTest
       published_at: 1.day.from_now
     )
 
-    assert_raises(ActionController::RoutingError) do
-      get chronicle_path(unpublished.slug)
-    end
+    get chronicle_path(unpublished.slug)
+    assert_response :not_found
   end
 
   test "should return 404 for non-existent chronicle" do
-    assert_raises(ActionController::RoutingError) do
-      get chronicle_path("non-existent-slug")
-    end
+    get chronicle_path("non-existent-slug")
+    assert_response :not_found
   end
 end

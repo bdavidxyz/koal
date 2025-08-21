@@ -1,0 +1,2 @@
+- Launch every "rails" command with "bin/rails"
+- Launch a test with my custom command "tbr", for example don't use "rails test mytest.rb", but "tbr test mytest.rb"

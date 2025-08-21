@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
-  grant_access action: :index
+
+  skip_authorization
+
   # @route GET /home/index (home_index)
   # @route GET / (root)
   def index
