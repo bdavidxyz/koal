@@ -1,0 +1,1 @@
+- Do not insert white space on empty lines
