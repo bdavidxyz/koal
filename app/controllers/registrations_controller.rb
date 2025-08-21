@@ -19,7 +19,7 @@ class RegistrationsController < ApplicationController
       send_email_verification
       redirect_to myaccount_email_path, notice: "Welcome! You have signed up successfully"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

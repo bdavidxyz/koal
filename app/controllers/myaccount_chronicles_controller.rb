@@ -50,7 +50,7 @@ class MyaccountChroniclesController < ApplicationController
     if @chronicle.save
       redirect_to myaccount_chronicle_list_path, notice: "Chronicle was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -62,7 +62,7 @@ class MyaccountChroniclesController < ApplicationController
     if @chronicle.update(chronicle_params)
       redirect_to myaccount_chronicle_list_path, notice: "Chronicle was successfully updated."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

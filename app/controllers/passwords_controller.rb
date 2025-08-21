@@ -9,12 +9,12 @@ class PasswordsController < ApplicationController
     if @user.update(user_params)
       redirect_to myaccount_path, notice: "Your password has been changed"
     else
-      render partial: "myaccount/myaccount_password", status: :unprocessable_entity
+      render partial: "myaccount/myaccount_password", status: :unprocessable_content
       # Below also works with flash message, not that the template is rendered within the layout,
       # Thus rendering the flash as expected
       #
       # flash.now[:alert] = "Error occured"
-      # render :update, status: :unprocessable_entity
+      # render :update, status: :unprocessable_content
     end
   end
 
