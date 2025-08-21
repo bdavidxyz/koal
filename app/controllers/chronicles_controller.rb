@@ -3,6 +3,7 @@ class ChroniclesController < ApplicationController
 
   skip_authorization
 
+
   # @route GET /chronicles (chronicles)
   def index
     sort = {}
@@ -13,12 +14,7 @@ class ChroniclesController < ApplicationController
     end
     scope = Chronicle.where("published_at IS NOT NULL AND published_at <= ?", Time.current).order(sort)
     chronicles = params[:q].present? ? Fuzzy::Search.new(scope, Chronicle, params[:q]).run : scope
-    begin
-      @pagy, @chronicles = pagy(chronicles, limit: 10)
-    rescue Pagy::OverflowError
-      params[:page] = 1
-      retry
-    end
+    @pagy, @chronicles = pagy(chronicles, limit: 10)
   end
 
   # @route GET /chronicles/:slug
@@ -36,4 +32,5 @@ class ChroniclesController < ApplicationController
       chronicle
     end
   end
+
 end

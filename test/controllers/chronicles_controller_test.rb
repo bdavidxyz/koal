@@ -56,11 +56,4 @@ class ChroniclesControllerTest < ActionDispatch::IntegrationTest
     get chronicle_path("non-existent-slug")
     assert_response :not_found
   end
-
-  test "should handle pagination overflow gracefully" do
-    # Request a page that doesn't exist to trigger Pagy::OverflowError
-    get chronicles_path(page: 999)
-    assert_response :success
-    assert_not_nil assigns(:chronicles)
-  end
 end
