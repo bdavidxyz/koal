@@ -13,12 +13,7 @@ class MyaccountUsersController < ApplicationController
     end
     scope = User.order(sort)
     users = !!q ? Fuzzy::Search.new(scope, User, q).run : scope
-    begin
-      @pagy, @users = pagy(users, limit: 10)
-    rescue Pagy::OverflowError
-      params[:page] = 1
-      retry
-    end
+    @pagy, @users = pagy(users, limit: 10)
   end
 
   require_auth action: :show
