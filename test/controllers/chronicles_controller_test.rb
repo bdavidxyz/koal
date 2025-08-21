@@ -10,7 +10,7 @@ class ChroniclesControllerTest < ActionDispatch::IntegrationTest
     get chronicles_path
     assert_response :success
     assert_not_nil assigns(:chronicles)
-    assert_select "h1", "Chronicles"
+    assert_select "h1", "Our Blog"
   end
 
   test "should search chronicles" do
