@@ -70,6 +70,9 @@ gem "awesome_print", groups: [ :development, :test ]
 # Paginate large dataset
 gem "pagy"
 
+# Test controllers decently
+gem "rails-controller-testing"
+
 # Code coverage
 gem "simplecov", require: false, groups: [ :test ]
 
