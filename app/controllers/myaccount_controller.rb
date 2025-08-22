@@ -1,6 +1,6 @@
 class MyaccountController < ApplicationController
   require_auth action: :index
-  grant_access action: :index, roles: :member
+  grant_access action: :index, roles: [ :member ]
   # @route GET /myaccount (myaccount)
   def index
   end
