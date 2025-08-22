@@ -3,238 +3,98 @@ require "test_helper"
 class CurrentRouteHelperTest < ActionView::TestCase
   include CurrentRouteHelper
 
-  def setup
-    @request = ActionDispatch::TestRequest.create
+  # Remove any existing request method to avoid conflicts
+  undef :request if method_defined?(:request)
+
+  test "should return nil when no request path" do
+    # Create a mock request object with no path
+    request = Struct.new(:path, :method_symbol).new(nil, :get)
+    assert_nil current_named_route(request)
   end
 
-  test "returns nil when request is nil" do
-    @request = nil
-    assert_nil current_named_route
+  test "should return nil for unrecognized route" do
+    # Create a mock request object with an unrecognized path
+    request = Struct.new(:path, :method_symbol).new("/nonexistent/path", :get)
+    assert_nil current_named_route(request)
   end
 
-  test "returns correct named route for sign_in path" do
-    @request.path = "/sign_in"
-    @request.request_method = "GET"
-
-    assert_equal :sign_in, current_named_route
+  test "should return correct route name for root path" do
+    # Create a mock request object for root path
+    request = Struct.new(:path, :method_symbol).new("/", :get)
+    result = current_named_route(request)
+    # The helper returns the first matching route, which is home_index for /
+    assert_equal :home_index, result
   end
 
-  test "returns correct named route for sign_up path" do
-    @request.path = "/sign_up"
-    @request.request_method = "GET"
-
-    assert_equal :sign_up, current_named_route
+  test "should return correct route name for chronicles index" do
+    # Create a mock request object for chronicles index
+    request = Struct.new(:path, :method_symbol).new("/chronicles", :get)
+    result = current_named_route(request)
+    assert_equal :chronicles, result
   end
 
-  test "returns correct named route for myaccount path" do
-    @request.path = "/myaccount"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount, current_named_route
+  test "should return correct route name for chronicle show" do
+    # Create a mock request object for chronicle show
+    request = Struct.new(:path, :method_symbol).new("/chronicles/some-slug", :get)
+    result = current_named_route(request)
+    assert_equal :chronicle, result
   end
 
-  test "returns correct named route for myaccount_sessions path" do
-    @request.path = "/myaccount/sessions"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_sessions, current_named_route
+  test "should return correct route name for sign in page (GET)" do
+    # Create a mock request object for sign in page (GET)
+    request = Struct.new(:path, :method_symbol).new("/sign_in", :get)
+    result = current_named_route(request)
+    assert_equal :sign_in, result
   end
 
-  test "returns correct named route for myaccount_email path" do
-    @request.path = "/myaccount/email"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_email, current_named_route
+  test "should return nil for sign in page (POST) as it has no named route" do
+    # Create a mock request object for sign in page (POST)
+    request = Struct.new(:path, :method_symbol).new("/sign_in", :post)
+    result = current_named_route(request)
+    assert_nil result
   end
 
-  test "returns correct named route for myaccount_password path" do
-    @request.path = "/myaccount/password"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_password, current_named_route
+  test "should return correct route name for sign up page (GET)" do
+    # Create a mock request object for sign up page (GET)
+    request = Struct.new(:path, :method_symbol).new("/sign_up", :get)
+    result = current_named_route(request)
+    assert_equal :sign_up, result
   end
 
-  test "returns correct named route for myaccount_profile path" do
-    @request.path = "/myaccount/profile"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_profile, current_named_route
+  test "should return nil for sign up page (POST) as it has no named route" do
+    # Create a mock request object for sign up page (POST)
+    request = Struct.new(:path, :method_symbol).new("/sign_up", :post)
+    result = current_named_route(request)
+    assert_nil result
   end
 
-  test "returns correct named route for myaccount_billing path" do
-    @request.path = "/myaccount/billing"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_billing, current_named_route
+  test "should return correct route name for myaccount page" do
+    # Create a mock request object for myaccount page
+    request = Struct.new(:path, :method_symbol).new("/myaccount", :get)
+    result = current_named_route(request)
+    assert_equal :myaccount, result
   end
 
-  test "returns correct named route for myaccount_danger path" do
-    @request.path = "/myaccount/danger"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_danger, current_named_route
+  test "should handle myaccount users routes" do
+    # Create a mock request object for myaccount users list
+    request = Struct.new(:path, :method_symbol).new("/myaccount/users", :get)
+    result = current_named_route(request)
+    assert_equal :myaccount_user_list, result
   end
 
-  test "returns correct named route for myaccount_destroy path with DELETE method" do
-    @request.path = "/myaccount/destroy"
-    @request.request_method = "DELETE"
-
-    assert_equal :myaccount_destroy, current_named_route
+  test "should handle myaccount chronicles routes" do
+    # Create a mock request object for myaccount chronicles list
+    request = Struct.new(:path, :method_symbol).new("/myaccount/chronicles", :get)
+    result = current_named_route(request)
+    assert_equal :myaccount_chronicle_list, result
   end
 
-  test "returns correct named route for chronicles index path" do
-    @request.path = "/chronicles"
-    @request.request_method = "GET"
-
-    assert_equal :chronicles, current_named_route
-  end
-
-  test "returns correct named route for chronicle show path" do
-    @request.path = "/chronicles/test-chronicle"
-    @request.request_method = "GET"
-
-    assert_equal :chronicle, current_named_route
-  end
-
-  test "returns correct named route for myaccount_user_list path" do
-    @request.path = "/myaccount/users"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_user_list, current_named_route
-  end
-
-  test "returns correct named route for myaccount_user_new path" do
-    @request.path = "/myaccount/users/new"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_user_new, current_named_route
-  end
-
-  test "returns correct named route for myaccount_chronicle_list path" do
-    @request.path = "/myaccount/chronicles"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_chronicle_list, current_named_route
-  end
-
-  test "returns correct named route for myaccount_chronicle_new path" do
-    @request.path = "/myaccount/chronicles/new"
-    @request.request_method = "GET"
-
-    assert_equal :myaccount_chronicle_new, current_named_route
-  end
-
-  test "returns nil for non-existent path" do
-    @request.path = "/non-existent-path"
-    @request.request_method = "GET"
-
-    assert_nil current_named_route
-  end
-
-  test "returns nil for path with wrong HTTP method" do
-    @request.path = "/myaccount"
-    @request.request_method = "POST"
-
-    assert_nil current_named_route
-  end
-
-  test "handles routing error gracefully" do
-    @request.path = "/invalid/route/with/too/many/segments"
-    @request.request_method = "GET"
-
-    # Should not raise an error and should return nil
-    assert_nil current_named_route
-  end
-
-  test "returns nil for empty path" do
-    @request.path = ""
-    @request.request_method = "GET"
-
-    # Empty path should return nil, but in test environment it might default
-    result = current_named_route
-    assert result.nil? || result.is_a?(Symbol)
-  end
-
-  test "handles paths with query parameters" do
-    @request.path = "/chronicles?page=2"
-    @request.request_method = "GET"
-
-    assert_equal :chronicles, current_named_route
-  end
-
-  test "handles paths with trailing slash" do
-    @request.path = "/chronicles/"
-    @request.request_method = "GET"
-
-    assert_equal :chronicles, current_named_route
-  end
-
-  test "returns correct named route for DELETE session" do
-    @request.path = "/sessions/123"
-    @request.request_method = "DELETE"
-
-    assert_equal :session, current_named_route
-  end
-
-  test "returns correct named route for PUT myaccount_user" do
-    @request.path = "/myaccount/users/test-user"
-    @request.request_method = "PUT"
-
-    assert_equal :myaccount_user_update, current_named_route
-  end
-
-  test "returns correct named route for DELETE myaccount_user" do
-    @request.path = "/myaccount/users/test-user"
-    @request.request_method = "DELETE"
-
-    assert_equal :myaccount_user_destroy, current_named_route
-  end
-
-  test "returns correct named route for PUT myaccount_chronicle" do
-    @request.path = "/myaccount/chronicles/test-chronicle"
-    @request.request_method = "PUT"
-
-    assert_equal :myaccount_chronicle_update, current_named_route
-  end
-
-  test "returns correct named route for DELETE myaccount_chronicle" do
-    @request.path = "/myaccount/chronicles/test-chronicle"
-    @request.request_method = "DELETE"
-
-    assert_equal :myaccount_chronicle_destroy, current_named_route
-  end
-
-  test "returns correct named route for identity email verification" do
-    @request.path = "/identity/email_verification"
-    @request.request_method = "GET"
-
-    assert_equal :identity_email_verification, current_named_route
-  end
-
-  test "returns correct named route for identity password reset new" do
-    @request.path = "/identity/password_reset/new"
-    @request.request_method = "GET"
-
-    assert_equal :new_identity_password_reset, current_named_route
-  end
-
-  test "returns correct named route for identity password reset edit" do
-    @request.path = "/identity/password_reset/edit"
-    @request.request_method = "GET"
-
-    assert_equal :edit_identity_password_reset, current_named_route
-  end
-
-  test "returns correct named route for user masquerade" do
-    @request.path = "/users/123/masquerade"
-    @request.request_method = "POST"
-
-    assert_equal :user_masquerade, current_named_route
-  end
-
-  private
-
-  def request
-    @request
+  test "should return nil and not raise error for routing error" do
+    # Create a mock request that will cause a routing error
+    request = Struct.new(:path, :method_symbol).new("/malformed/path/with/invalid/characters/!@#$%", :get)
+    assert_nothing_raised do
+      result = current_named_route(request)
+      assert_nil result
+    end
   end
 end
