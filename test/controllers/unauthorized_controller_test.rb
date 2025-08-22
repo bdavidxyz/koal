@@ -6,16 +6,21 @@ class UnauthorizedControllerTest < ActionDispatch::IntegrationTest
     @user_without_superadmin = users(:alicia) # only has member role
   end
 
-  test "demonstrates that when_unauthorized is being called through Rabarber authorization" do
-    # Sign in as a user without superadmin role
+  test "shows different authorization behavior for different actions" do
     sign_in_as(@user_without_superadmin)
 
-    # Try to access an action that requires :superadmin role
-    # This should trigger Rabarber's authorization check, which calls when_unauthorized
+    # Test the index action
     get myaccount_chronicle_list_path
+    assert_response :redirect
+    assert_redirected_to root_path
 
-    # Currently getting redirect because Rabarber::Authorization's when_unauthorized 
-    # method redirects back to root_path for HTML requests
+    # Test the show action
+    get myaccount_chronicle_show_path("some-slug")
+    assert_response :redirect
+    assert_redirected_to root_path
+
+    # Test the create action
+    post myaccount_chronicle_create_path, params: { chronicle: { title: "Test" } }
     assert_response :redirect
     assert_redirected_to root_path
   end

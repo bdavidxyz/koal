@@ -11,10 +11,6 @@ module ReusableController
     helpers.current_user
   end
 
-  def when_unauthorized
-    head :not_found # pretend the page doesn't exist
-  end
-
   def not_found
     raise ActionController::RoutingError.new("Not Found")
   end

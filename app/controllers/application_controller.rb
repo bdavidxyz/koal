@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include PaginableController
-  include AuthenticableController
   include ReusableController
+  include AuthenticableController
 
   # Session callbacks
   before_action :set_current_request_details
