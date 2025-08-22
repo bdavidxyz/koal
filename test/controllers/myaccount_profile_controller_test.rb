@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MyaccountControllerTest < ActionDispatch::IntegrationTest
+class MyaccountProfileControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = sign_in_as(users(:jane))
   end
