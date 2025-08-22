@@ -7,11 +7,7 @@ module AuthenticableController
 
   class_methods do
     def require_auth(action: nil)
-      if action
-        self.authentication_requirements = authentication_requirements.merge(action.to_sym => true)
-      else
-        before_action :ensure_authenticated!
-      end
+      self.authentication_requirements = authentication_requirements.merge(action.to_sym => true)
     end
   end
 
