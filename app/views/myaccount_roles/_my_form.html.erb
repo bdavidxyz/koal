@@ -1,0 +1,28 @@
+<div class="m-4">
+  <%= form_with url: target_url, method: target_method, local: true, html: { 'up-submit': true } do |form| %>
+    <% if target_role.respond_to?(:errors) && target_role.errors.any? %>
+      <div class="formerrors">
+        <p><strong><%= pluralize(target_role.errors.count, "error") %> prevented the form from being saved</strong></p>
+        <ul class="list-disc pl-6">
+          <% target_role.errors.each do |field, messages| %>
+            <% [messages].flatten.each do |message| %>
+              <li><%= "#{field.to_s.humanize} #{message}" %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group mt-3">
+      <%= form.label :name, "Role name", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.text_field :name, value: target_role.name, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
+      <div class="text-xs text-gray-500 mt-1">Role names should be lowercase and use underscores for spaces (e.g., 'content_manager')</div>
+    </div>
+    <div class="form-actions mt-6">
+      <%= form.submit target_submit, class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" %>
+      <%= link_to "Cancel", myaccount_role_list_path, class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
+      <% if target_role.name %>
+        <%= link_to "View role", myaccount_role_show_path(target_role.name), class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

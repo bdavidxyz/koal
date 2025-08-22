@@ -51,6 +51,19 @@ Rails.application.routes.draw do
   end
 
   #
+  # Admin dashboard: Roles
+  #
+  scope path: "myaccount/roles", as: "myaccount_role" do
+    get    "/",            to: "myaccount_roles#index", as: :list
+    get    "/new",         to: "myaccount_roles#new", as: :new
+    post   "/",            to: "myaccount_roles#create", as: :create
+    get    "/:name",       to: "myaccount_roles#show", as: :show
+    get    "/:name/edit",  to: "myaccount_roles#edit", as: :edit
+    put    "/:name",       to: "myaccount_roles#update", as: :update
+    delete "/:name",       to: "myaccount_roles#destroy", as: :destroy
+  end
+
+  #
   # Public chronicles routes
   #
   get "chronicles", to: "chronicles#index"

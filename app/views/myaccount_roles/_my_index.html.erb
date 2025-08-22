@@ -1,0 +1,50 @@
+<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10">
+  <div class="sm:flex items-center justify-between mb-8">
+    <h1 class="flex-1 text-2xl font-bold -tracking-wide">Roles</h1>
+    <form class="search" up-target=".table-scroll" up-focus="#q" up-history="true" method="get">
+      <input type="hidden" name="page" id="page" value="<%= params[:page] || 1 %>" autocomplete="off">
+      <input type="search" name="q" id="q" placeholder="Search" value="<%= params[:q] %>" class="appearance-none bg-[#fff] rounded-[.375rem] [box-shadow:inset_0_0_0_1px_#9ca3af] leading-[1.85rem] px-[.75rem] py-[.190rem]">
+    </form>
+    <%= link_to "New role", myaccount_role_new_path, class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
+  </div>
+  <div class="">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead>
+        <tr>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Action</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+            <a href="?<%= build_href_to_sort('name', request.query_parameters) %>" class="cursor-pointer hover:underline">Name</a>
+          </th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Assignees</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @roles.each do |role| %>
+          <tr>
+            <td class="py-2 text-xs pl-4">
+              <%= link_to "Edit", myaccount_role_edit_path(role.name), class: "cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+              <%= link_to "Show", myaccount_role_show_path(role.name), class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+            </td>
+            <td class="py-2 text-xs pl-6"><%= role.name %></td>
+            <td class="py-2 text-xs pl-6"><%= role.assignees_count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% if @pagy.pages > 1 %>
+    <div class="mt-6 flex justify-center">
+      <div class="pagination">
+        <% if @pagy.page > 1 %>
+          <%= link_to "Previous", myaccount_role_list_path(page: @pagy.page - 1), class: "px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700" %>
+        <% end %>
+        <span class="px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300">
+          Page <%= @pagy.page %> of <%= @pagy.pages %>
+        </span>
+        <% if @pagy.page < @pagy.pages %>
+          <%= link_to "Next", myaccount_role_list_path(page: @pagy.page + 1), class: "px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
