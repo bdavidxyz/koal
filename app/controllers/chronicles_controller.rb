@@ -1,9 +1,7 @@
 class ChroniclesController < ApplicationController
   include Pagy::Backend
 
-  skip_authorization
-
-
+  grant_access action: :index
   # @route GET /chronicles (chronicles)
   def index
     sort = {}
@@ -17,6 +15,7 @@ class ChroniclesController < ApplicationController
     @pagy, @chronicles = pagy(chronicles, limit: 10)
   end
 
+  grant_access action: :show
   # @route GET /chronicles/:slug
   def show
     @chronicle = retrieve_chronicle

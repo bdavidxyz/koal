@@ -1,8 +1,7 @@
 class MyaccountUsersController < ApplicationController
   include Pagy::Backend
 
-  require_auth
-
+  require_auth action: :index
   grant_access action: :index, roles: [ :superadmin ]
   # @route GET /myaccount/users (myaccount_user)
   def index
@@ -17,24 +16,28 @@ class MyaccountUsersController < ApplicationController
     @pagy, @users = pagy(users, limit: 10)
   end
 
+  require_auth action: :show
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/users/:slug
   def show
     @user = retrieve_user
   end
 
+  require_auth action: :new
   grant_access action: :new, roles: [ :superadmin ]
   # @route GET /myaccount/users/new (myaccount_user_new)
   def new
     @user = User.new
   end
 
+  require_auth action: :edit
   grant_access action: :edit, roles: [ :superadmin ]
   # @route GET /myaccount/users/:slug/edit
   def edit
     @user = retrieve_user
   end
 
+  require_auth action: :create
   grant_access action: :create, roles: [ :superadmin ]
   # @route POST /myaccount/users (myaccount_user)
   def create
@@ -46,6 +49,7 @@ class MyaccountUsersController < ApplicationController
     end
   end
 
+  require_auth action: :update
   grant_access action: :update, roles: [ :superadmin ]
   # @route PUT /myaccount/users/:slug
   def update
@@ -57,6 +61,7 @@ class MyaccountUsersController < ApplicationController
     end
   end
 
+  require_auth action: :destroy
   grant_access action: :destroy, roles: [ :superadmin ]
   # @route DELETE /myaccount/users/:slug
   def destroy
