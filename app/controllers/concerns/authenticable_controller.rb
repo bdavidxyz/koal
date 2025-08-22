@@ -6,10 +6,6 @@ module AuthenticableController
   end
 
   class_methods do
-    def no_auth_for(action)
-      grant_access action: action
-    end
-
     def require_auth(action: nil)
       if action
         self.authentication_requirements = authentication_requirements.merge(action.to_sym => true)
