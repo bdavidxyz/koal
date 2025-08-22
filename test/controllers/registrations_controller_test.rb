@@ -13,4 +13,13 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to myaccount_email_path
   end
+
+  test "should render new when validation fails" do
+    assert_no_difference("User.count") do
+      post sign_up_url, params: { email: "invalid-email", password: "short", password_confirmation: "short" }
+    end
+
+    assert_response :unprocessable_content
+    assert_template :new
+  end
 end
