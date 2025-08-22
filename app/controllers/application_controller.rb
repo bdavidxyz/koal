@@ -22,11 +22,6 @@ class ApplicationController < ActionController::Base
     helpers.current_user
   end
 
-  # Be homogeneous with current_user above
-  def current_session
-    helpers.current_session
-  end
-
   def when_unauthorized
     head :not_found # pretend the page doesn't exist
   end
