@@ -11,6 +11,11 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index with sorting parameters" do
+    get myaccount_user_list_url, params: { sort: "email", direction: "asc" }
+    assert_response :success
+  end
+
   test "should get new" do
     get myaccount_user_new_url
     assert_response :success
@@ -22,6 +27,14 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to myaccount_user_list_url
+  end
+
+  test "should not create user with invalid data" do
+    assert_no_difference("User.count") do
+      post myaccount_user_create_url, params: { user: { email: "", name: "ab", password: "short" } }
+    end
+    assert_response :unprocessable_content
+    assert_template :new
   end
 
   test "should show user" do
@@ -37,6 +50,12 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
   test "should update user" do
     put myaccount_user_update_url(slug: @other_user.slug), params: { user: { email: @other_user.email, name: @other_user.name, slug: @other_user.slug } }
     assert_redirected_to myaccount_user_list_url
+  end
+
+  test "should not update user with invalid data" do
+    put myaccount_user_update_url(slug: @other_user.slug), params: { user: { email: "", name: "ab" } }
+    assert_response :unprocessable_content
+    assert_template :edit
   end
 
   test "should destroy user" do
