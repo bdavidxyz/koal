@@ -12,7 +12,7 @@ class MyaccountChroniclesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index with sort and direction parameters" do
-    get myaccount_chronicle_list_url, params: { sort: "title", direction: "asc" }
+    get myaccount_chronicle_list_url, params: { sort: "title", direction: "asc", q: "" }
     assert_response :success
   end
 
