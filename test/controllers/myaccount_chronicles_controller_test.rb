@@ -11,6 +11,11 @@ class MyaccountChroniclesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index with sort and direction parameters" do
+    get myaccount_chronicle_list_url, params: { sort: "title", direction: "asc" }
+    assert_response :success
+  end
+
   test "should get new" do
     get myaccount_chronicle_new_url
     assert_response :success
@@ -45,5 +50,20 @@ class MyaccountChroniclesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to myaccount_url
+  end
+
+  test "should not create chronicle with invalid params" do
+    assert_no_difference("Chronicle.count") do
+      post myaccount_chronicle_create_url, params: { chronicle: { chapo: @chronicle.chapo, kontent: @chronicle.kontent, published_at: @chronicle.published_at, slug: "new_slug", title: "" } }
+    end
+
+    assert_response :unprocessable_content
+    assert_template :new
+  end
+
+  test "should not update chronicle with invalid params" do
+    put myaccount_chronicle_update_url(slug: @chronicle.slug), params: { chronicle: { chapo: @chronicle.chapo, kontent: @chronicle.kontent, published_at: @chronicle.published_at, slug: @chronicle.slug, title: "" } }
+    assert_response :unprocessable_content
+    assert_template :edit
   end
 end
