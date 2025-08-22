@@ -22,4 +22,10 @@ class Identity::EmailsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_content
     assert_select "li", /Password challenge is invalid/
   end
+
+  test "should redirect with notice when email doesn't change" do
+    patch identity_email_url, params: { email: "jane@hotmail.com", password_challenge: "Secret1*3*5*" }
+    assert_redirected_to myaccount_path
+    assert_not_nil flash[:notice]
+  end
 end
