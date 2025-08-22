@@ -1,13 +1,9 @@
 module CurrentRouteHelper
-  def current_named_route(the_request = nil)
-    local_request = the_request
-    if defined? (request)
-      local_request = request
-    end
-    return nil unless local_request&.path
+  def current_named_route
+    return nil unless defined?(request) && request&.path
 
-    path = local_request.path
-    method = local_request.method_symbol
+    path = request.path
+    method = request.method_symbol
 
     # On récupère les paramètres reconnus (controller, action, etc.)
     recognized = Rails.application.routes.recognize_path(path, method: method)
