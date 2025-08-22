@@ -5,5 +5,5 @@ alwaysApply: true
 ---
 
 - Launch every "rails" command with "bin/rails"
-- Rely on system-wide command "tbr" to launch Rails test (it's inside my .bashrc)
-- For example, launching the whole test suite is "tbr t"
+- Rely on system-wide command "tbr t" to launch Rails test
+- For example, launching a particular test is "tbr t test/helpers/current_route_helper_test.rb"
