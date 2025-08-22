@@ -12,7 +12,4 @@ class ApplicationController < ActionController::Base
   include Rabarber::Authorization
   # https://github.com/brownboxdev/rabarber?tab=readme-ov-file#authorization-rules
   with_authorization
-
-
-
 end
