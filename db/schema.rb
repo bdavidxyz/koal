@@ -24,6 +24,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_05_051350) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "blogtag_blogposts", force: :cascade do |t|
+    t.bigint "blogtag_id"
+    t.bigint "blogpost_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blogpost_id"], name: "index_blogtag_blogposts_on_blogpost_id"
+    t.index ["blogtag_id"], name: "index_blogtag_blogposts_on_blogtag_id"
+  end
+
   create_table "blogtagblogposts", force: :cascade do |t|
     t.bigint "blogtag_id"
     t.bigint "blogpost_id"
