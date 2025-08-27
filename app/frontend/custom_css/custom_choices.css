@@ -1,7 +1,7 @@
 /* Import Choices.js CSS */
 @import "choices.js/public/assets/styles/choices.css";
-
-/* Custom styling for Choices.js tags */
+/* 
+/* 
 .choices {
   margin-bottom: 0;
 }
@@ -40,7 +40,7 @@
 .choices__button {
   background-color: transparent;
   border: none;
-  color: #6b7280;
+  color: #1e40af !important;
   cursor: pointer;
   font-size: 0.75rem;
   margin-left: 0.25rem;
@@ -104,14 +104,12 @@
   font-style: italic;
 }
 
-/* Make sure tags display nicely in forms */
 .form-group .choices {
   width: 100%;
 }
 
-/* Ensure proper spacing */
 .choices__list--multiple {
   display: flex;
   flex-wrap: wrap;
   gap: 0.125rem;
-}
+} */
