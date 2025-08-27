@@ -51,6 +51,19 @@ Rails.application.routes.draw do
   end
 
   #
+  # Admin dashboard: Blogtags
+  #
+  scope path: "myaccount/blogtags", as: "myaccount_blogtag" do
+    get    "/",            to: "myaccount_blogtags#index", as: :list
+    get    "/new",         to: "myaccount_blogtags#new", as: :new
+    post   "/",            to: "myaccount_blogtags#create", as: :create
+    get    "/:slug",       to: "myaccount_blogtags#show", as: :show
+    get    "/:slug/edit",  to: "myaccount_blogtags#edit", as: :edit
+    put    "/:slug",       to: "myaccount_blogtags#update", as: :update
+    delete "/:slug",       to: "myaccount_blogtags#destroy", as: :destroy
+  end
+
+  #
   # Public blogposts routes
   #
   get "blogposts", to: "blogposts#index"

@@ -1,0 +1,12 @@
+<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10">
+  <div class="sm:flex items-center justify-between mb-8">
+    <h1 class="flex-1 text-2xl font-bold -tracking-wide">Create a new Blogtag</h1>
+  </div>
+  <div class="">
+    <%= render "my_form",
+      target_blogtag: @blogtag,
+      target_url: myaccount_blogtag_create_path,
+      target_method: :tag,
+      target_submit: "Create Blogtag" %>
+  </div>
+</div>

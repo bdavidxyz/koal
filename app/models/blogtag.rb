@@ -1,14 +1,3 @@
-
-# == Schema Information
-#
-# Table name: ctags
-#
-#  id         :bigint           not null, primary key
-#  name       :string
-#  slug       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
 class Blogtag < ApplicationRecord
   include ImmutableSlug
   include SearchableResource
@@ -18,7 +7,7 @@ class Blogtag < ApplicationRecord
   has_many :blogtagblogposts
   has_many :blogposts, through: :blogtagblogposts
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { minimum: 2 }
 
   def generated_slug_on_creation
     self.slug = "#{name.parameterize}"
