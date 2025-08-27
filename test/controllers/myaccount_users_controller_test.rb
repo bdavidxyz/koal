@@ -31,7 +31,7 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user with roles" do
     member_role = Rabarber::Role.find_by(name: "member")
-    
+
     assert_difference("User.count") do
       post myaccount_user_create_url, params: {
         user: {
@@ -74,7 +74,7 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should update user with roles" do
     superadmin_role = Rabarber::Role.find_by(name: "superadmin")
-    
+
     put myaccount_user_update_url(slug: @other_user.slug), params: {
       user: {
         email: @other_user.email,
@@ -83,7 +83,7 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
         role_ids: [superadmin_role.id.to_s]
       }
     }
-    
+
     @other_user.reload
     assert @other_user.has_role?(:superadmin)
     assert_redirected_to myaccount_user_list_url
@@ -93,9 +93,9 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
     # First ensure user has member role
     @other_user.assign_roles(:member)
     assert @other_user.has_role?(:member)
-    
+
     superadmin_role = Rabarber::Role.find_by(name: "superadmin")
-    
+
     put myaccount_user_update_url(slug: @other_user.slug), params: {
       user: {
         email: @other_user.email,
@@ -104,7 +104,7 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
         role_ids: [superadmin_role.id.to_s]
       }
     }
-    
+
     @other_user.reload
     assert @other_user.has_role?(:superadmin)
     # Note: User might still have the default :member role from after_create callback
