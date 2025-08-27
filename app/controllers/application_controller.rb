@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   include Rabarber::Authorization
   # https://github.com/brownboxdev/rabarber?tab=readme-ov-file#authorization-rules
   with_authorization
+
+  def when_unauthorized
+    head :not_found # Custom behavior to hide existence of protected resources
+  end
 end
