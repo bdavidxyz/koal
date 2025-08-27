@@ -1,12 +1,10 @@
 first_blogtag:
-  id: 1
   name: "Alpha"
   slug: "alpha"
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
 
 second_blogtag:
-  id: 2
   name: "Beta"
   slug: "beta"
   created_at: <%= Time.current %>
