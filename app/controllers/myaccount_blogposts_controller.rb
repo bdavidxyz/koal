@@ -41,8 +41,9 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :create, roles: [ :superadmin ]
   # @route POST /myaccount/blogposts (myaccount_blogpost)
   def create
-    @blogpost = Blogpost.new(blogpost_params)
+    @blogpost = Blogpost.new(blogpost_params_without_blogtags)
     if @blogpost.save
+      update_blogtag_associations(@blogpost)
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully created."
     else
       render :new, status: :unprocessable_content
@@ -54,7 +55,8 @@ class MyaccountBlogpostsController < ApplicationController
   # @route PUT /myaccount/blogposts/:slug
   def update
     @blogpost = retrieve_blogpost
-    if @blogpost.update(blogpost_params)
+    if @blogpost.update(blogpost_params_without_blogtags)
+      update_blogtag_associations(@blogpost)
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully updated."
     else
       render :edit, status: :unprocessable_content
@@ -77,6 +79,23 @@ class MyaccountBlogpostsController < ApplicationController
   end
 
   def blogpost_params
+    params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at, blogtag_ids: [])
+  end
+
+  def blogpost_params_without_blogtags
     params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at)
+  end
+
+  def update_blogtag_associations(blogpost)
+    # Remove all existing blogtag associations
+    blogpost.blogtag_blogposts.destroy_all
+
+    # Create new associations if blogtag_ids are provided
+    if params[:blogpost][:blogtag_ids].present?
+      blogtag_ids = params[:blogpost][:blogtag_ids].reject(&:blank?)
+      blogtag_ids.each do |blogtag_id|
+        blogpost.blogtag_blogposts.create(blogtag_id: blogtag_id)
+      end
+    end
   end
 end
