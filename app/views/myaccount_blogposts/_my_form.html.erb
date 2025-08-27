@@ -11,12 +11,26 @@
       </div>
     <% end %>
     <div class="form-group mt-3">
-      <%= form.label :slug, "slug", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.label :slug, "Slug", class: "block font-medium text-sm text-gray-700" %>
       <%= form.text_field :slug, value: target_blogpost.slug, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
     </div>
     <div class="form-group mt-3">
       <%= form.label :title, "Title", class: "block font-medium text-sm text-gray-700" %>
       <%= form.text_field :title, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-full py-1 px-3" %>
+    </div>
+    <div class="form-group mt-3">
+      <%= form.label :blogtag_names, "Tags", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.select :blogtag_names,
+          [],
+          { include_blank: false },
+          {
+            multiple: true,
+            class: "up_choices text-sm",
+            'up-data': {
+              'allTags': Blogtag.all.pluck(:name),
+              'selectedTags': target_blogpost.blogtags.pluck(:name)
+            }.to_json
+          } %>
     </div>
     <div class="form-group mt-3">
       <%= form.label :chapo, "Chapo", class: "block font-medium text-sm text-gray-700" %>
