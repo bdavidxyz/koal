@@ -4,8 +4,8 @@ class Blogtag < ApplicationRecord
 
   searchable_attributes :slug, :name
 
-  has_many :blogtagblogposts
-  has_many :blogposts, through: :blogtagblogposts
+  has_many :blogtag_blogposts, class_name: 'BlogtagBlogpost'
+  has_many :blogposts, through: :blogtag_blogposts
 
   validates :name, presence: true, uniqueness: true, length: { minimum: 2 }
 

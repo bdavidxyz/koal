@@ -1,0 +1,13 @@
+first_blogtag:
+  id: 1
+  name: "World"
+  slug: "world"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+second_blogtag:
+  id: 2
+  name: "Numeric"
+  slug: "numeric"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

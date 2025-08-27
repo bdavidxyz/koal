@@ -9,7 +9,8 @@ if User.count == 0
     'users',
     'rabarber_roles',
     'rabarber_roles_roleables',
-    'blogposts'
+    'blogposts',
+    'blogtags'
   ])
 
   puts "Fixtures loaded successfully!"

@@ -13,7 +13,16 @@ class MyaccountBlogtagsController < ApplicationController
     end
     scope = Blogtag.order(sort)
     blogtags = !!q ? Fuzzy::Search.new(scope, Blogtag, q).run : scope
-    @pagy, @blogtags = pagy(blogtags, limit: 10)
+    
+    respond_to do |format|
+      format.html do
+        @pagy, @blogtags = pagy(blogtags, limit: 10)
+      end
+      format.json do
+        # For ChoicesJS - return all tags without pagination
+        render json: scope.select(:name, :slug).map { |tag| { name: tag.name, slug: tag.slug } }
+      end
+    end
   end
 
   require_auth action: :show

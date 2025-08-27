@@ -41,8 +41,9 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :create, roles: [ :superadmin ]
   # @route POST /myaccount/blogposts (myaccount_blogpost)
   def create
-    @blogpost = Blogpost.new(blogpost_params)
+    @blogpost = Blogpost.new(blogpost_only_params)
     if @blogpost.save
+      assign_tags(@blogpost, tag_names_from_params)
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully created."
     else
       render :new, status: :unprocessable_content
@@ -54,7 +55,8 @@ class MyaccountBlogpostsController < ApplicationController
   # @route PUT /myaccount/blogposts/:slug
   def update
     @blogpost = retrieve_blogpost
-    if @blogpost.update(blogpost_params)
+    if @blogpost.update(blogpost_only_params)
+      assign_tags(@blogpost, tag_names_from_params)
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully updated."
     else
       render :edit, status: :unprocessable_content
@@ -77,6 +79,27 @@ class MyaccountBlogpostsController < ApplicationController
   end
 
   def blogpost_params
+    params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at, blogtag_names: [])
+  end
+
+  def blogpost_only_params
     params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at)
+  end
+
+  def tag_names_from_params
+    blogpost_params[:blogtag_names]
+  end
+
+  def assign_tags(blogpost, tag_names)
+    return unless tag_names.present?
+
+    # Clear existing associations
+    blogpost.blogtags.clear
+
+    # Process tag names and create/find tags
+    tag_names.compact_blank.each do |tag_name|
+      tag = Blogtag.find_or_create_by(name: tag_name.strip)
+      blogpost.blogtags << tag unless blogpost.blogtags.include?(tag)
+    end
   end
 end

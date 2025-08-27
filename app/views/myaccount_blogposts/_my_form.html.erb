@@ -27,6 +27,20 @@
       <%= form.text_area :kontent, rows: 10, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-full py-1 px-3" %>
     </div>
     <div class="form-group mt-3">
+      <%= form.label :blogtag_names, "Tags", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.select :blogtag_names,
+          [],
+          { include_blank: false },
+          {
+            multiple: true,
+            class: "up_choices_tags text-sm",
+            'up-data': {
+              'load-url': myaccount_blogtag_list_path(format: :json),
+              'selected-tags': target_blogpost.blogtags.pluck(:name)
+            }.to_json
+          } %>
+    </div>
+    <div class="form-group mt-3">
       <%= form.label :published_at, "Publish Date", class: "block font-medium text-sm text-gray-700" %>
       <%= form.datetime_field :published_at, class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
     </div>
