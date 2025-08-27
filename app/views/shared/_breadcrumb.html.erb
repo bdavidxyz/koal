@@ -63,6 +63,22 @@
         <%= render "shared/breadcrumb_one", text: "Blogposts", link: "/myaccount/blogposts" %>
         <%= render "shared/breadcrumb_one", text: "Blogpost #{params[:slug]}", link: "/myaccount/blogposts/#{params[:slug]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
+      <% elsif current_named_route == :myaccount_blogtag_new %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogtag_new_path %>
+        <%= render "shared/breadcrumb_one", text: "Blogtags", link: "/myaccount/blogtags" %>
+        <%= render "shared/breadcrumb_one", text: "Create new Blogtag" %>
+      <% elsif current_named_route == :myaccount_blogtag_list %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogtag_list_path %>
+        <%= render "shared/breadcrumb_one", text: "Blogtags" %>
+      <% elsif current_named_route == :myaccount_blogtag_show %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogtag_show_path %>
+        <%= render "shared/breadcrumb_one", text: "Blogtags", link: "/myaccount/blogtags" %>
+        <%= render "shared/breadcrumb_one", text: "Blogtag #{params[:slug]}" %>
+      <% elsif current_named_route == :myaccount_blogtag_edit %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogtag_edit_path %>
+        <%= render "shared/breadcrumb_one", text: "Blogtags", link: "/myaccount/blogtags" %>
+        <%= render "shared/breadcrumb_one", text: "Blogtag #{params[:slug]}", link: "/myaccount/blogtags/#{params[:slug]}" %>
+        <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% end %>
     </ol>
   </div>
