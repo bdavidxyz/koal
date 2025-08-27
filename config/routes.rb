@@ -38,23 +38,23 @@ Rails.application.routes.draw do
   end
 
   #
-  # Admin dashboard: Chronicles
+  # Admin dashboard: Blogposts
   #
-  scope path: "myaccount/chronicles", as: "myaccount_chronicle" do
-    get    "/",            to: "myaccount_chronicles#index", as: :list
-    get    "/new",         to: "myaccount_chronicles#new", as: :new
-    post   "/",            to: "myaccount_chronicles#create", as: :create
-    get    "/:slug",       to: "myaccount_chronicles#show", as: :show
-    get    "/:slug/edit",  to: "myaccount_chronicles#edit", as: :edit
-    put    "/:slug",       to: "myaccount_chronicles#update", as: :update
-    delete "/:slug",       to: "myaccount_chronicles#destroy", as: :destroy
+  scope path: "myaccount/blogposts", as: "myaccount_blogpost" do
+    get    "/",            to: "myaccount_blogposts#index", as: :list
+    get    "/new",         to: "myaccount_blogposts#new", as: :new
+    post   "/",            to: "myaccount_blogposts#create", as: :create
+    get    "/:slug",       to: "myaccount_blogposts#show", as: :show
+    get    "/:slug/edit",  to: "myaccount_blogposts#edit", as: :edit
+    put    "/:slug",       to: "myaccount_blogposts#update", as: :update
+    delete "/:slug",       to: "myaccount_blogposts#destroy", as: :destroy
   end
 
   #
-  # Public chronicles routes
+  # Public blogposts routes
   #
-  get "chronicles", to: "chronicles#index"
-  get "chronicles/:slug", to: "chronicles#show", as: :chronicle
+  get "blogposts", to: "blogposts#index"
+  get "blogposts/:slug", to: "blogposts#show", as: :blogpost
 
   #
   # Pages routes

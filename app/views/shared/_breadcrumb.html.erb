@@ -47,21 +47,21 @@
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
         <%= render "shared/breadcrumb_one", text: "User #{params[:slug]}", link: "/myaccount/users/#{params[:slug]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
-      <% elsif current_named_route == :myaccount_chronicle_new %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_chronicle_new_path %>
-        <%= render "shared/breadcrumb_one", text: "Chronicles", link: "/myaccount/chronicles" %>
-        <%= render "shared/breadcrumb_one", text: "Create new Chronicle" %>
-      <% elsif current_named_route == :myaccount_chronicle_list %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_chronicle_list_path %>
-        <%= render "shared/breadcrumb_one", text: "Chronicles" %>
-      <% elsif current_named_route == :myaccount_chronicle_show %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_chronicle_show_path %>
-        <%= render "shared/breadcrumb_one", text: "Chronicles", link: "/myaccount/chronicles" %>
-        <%= render "shared/breadcrumb_one", text: "Chronicle #{params[:slug]}" %>
-      <% elsif current_named_route == :myaccount_chronicle_edit %>
-        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_chronicle_edit_path %>
-        <%= render "shared/breadcrumb_one", text: "Chronicles", link: "/myaccount/chronicles" %>
-        <%= render "shared/breadcrumb_one", text: "Chronicle #{params[:slug]}", link: "/myaccount/chronicles/#{params[:slug]}" %>
+      <% elsif current_named_route == :myaccount_blogpost_new %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogpost_new_path %>
+        <%= render "shared/breadcrumb_one", text: "Blogposts", link: "/myaccount/blogposts" %>
+        <%= render "shared/breadcrumb_one", text: "Create new Blogpost" %>
+      <% elsif current_named_route == :myaccount_blogpost_list %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogpost_list_path %>
+        <%= render "shared/breadcrumb_one", text: "Blogposts" %>
+      <% elsif current_named_route == :myaccount_blogpost_show %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogpost_show_path %>
+        <%= render "shared/breadcrumb_one", text: "Blogposts", link: "/myaccount/blogposts" %>
+        <%= render "shared/breadcrumb_one", text: "Blogpost #{params[:slug]}" %>
+      <% elsif current_named_route == :myaccount_blogpost_edit %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogpost_edit_path %>
+        <%= render "shared/breadcrumb_one", text: "Blogposts", link: "/myaccount/blogposts" %>
+        <%= render "shared/breadcrumb_one", text: "Blogpost #{params[:slug]}", link: "/myaccount/blogposts/#{params[:slug]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% end %>
     </ol>

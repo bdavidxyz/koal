@@ -98,10 +98,10 @@ o_user = User.create!(
 
   puts "Users seeded successfully!"
 
-  # Seed chronicles
-  puts "Seeding chronicles..."
+  # Seed blogposts
+  puts "Seeding blogposts..."
 
-  Chronicle.create!(
+  Blogpost.create!(
     id: 1,
     title: "The Future of Web Development",
     kontent: "Web development continues to evolve at a rapid pace. With the rise of new frameworks and tools, developers are finding more efficient ways to build robust applications. The focus on performance, accessibility, and user experience has never been more important.",
@@ -112,7 +112,7 @@ o_user = User.create!(
     updated_at: Time.current
   )
 
-  Chronicle.create!(
+  Blogpost.create!(
     id: 2,
     title: "Understanding Modern Authentication",
     kontent: "Authentication is a critical aspect of any application's security. Modern authentication methods have moved beyond simple username and password combinations. We now have OAuth, JWT, and other sophisticated methods to ensure secure access to our applications.",
@@ -123,7 +123,7 @@ o_user = User.create!(
     updated_at: Time.current
   )
 
-  puts "Chronicles seeded successfully!"
+  puts "Blogposts seeded successfully!"
 else
   puts "Users already exist in database. Skipping user seeds."
 end

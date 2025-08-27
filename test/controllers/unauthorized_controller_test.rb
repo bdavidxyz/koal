@@ -10,17 +10,17 @@ class UnauthorizedControllerTest < ActionDispatch::IntegrationTest
     sign_in_as(@user_without_superadmin)
 
     # Test the index action
-    get myaccount_chronicle_list_path
+    get myaccount_blogpost_list_path
     assert_response :redirect
     assert_redirected_to root_path
 
     # Test the show action
-    get myaccount_chronicle_show_path("some-slug")
+    get myaccount_blogpost_show_path("some-slug")
     assert_response :redirect
     assert_redirected_to root_path
 
     # Test the create action
-    post myaccount_chronicle_create_path, params: { chronicle: { title: "Test" } }
+    post myaccount_blogpost_create_path, params: { blogpost: { title: "Test" } }
     assert_response :redirect
     assert_redirected_to root_path
   end
