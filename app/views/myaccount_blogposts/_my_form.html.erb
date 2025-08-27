@@ -27,8 +27,8 @@
             multiple: true,
             class: "up_choices text-sm",
             'up-data': {
-              'allTags': Blogtag.all.pluck(:name),
-              'selectedTags': target_blogpost.blogtags.pluck(:name)
+              'allItems': Blogtag.all.pluck_all(:name, :id),
+              'selItems': target_blogpost.blogtags.pluck_all(:name, :id)
             }.to_json
           } %>
     </div>

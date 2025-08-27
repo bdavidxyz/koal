@@ -209,6 +209,9 @@ GEM
     pg (1.6.1-x86_64-darwin)
     pg (1.6.1-x86_64-linux)
     pg (1.6.1-x86_64-linux-musl)
+    pluck_all (2.3.4)
+      activesupport (>= 3.0.0)
+      rails_compatibility (>= 0.0.10)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -264,6 +267,8 @@ GEM
     rails-html-sanitizer (1.6.2)
       loofah (~> 2.21)
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
+    rails_compatibility (0.0.10)
+      activerecord (>= 3)
     railties (8.0.2.1)
       actionpack (= 8.0.2.1)
       activesupport (= 8.0.2.1)
@@ -404,6 +409,7 @@ DEPENDENCIES
   dotenv-rails
   pagy
   pg (~> 1.1)
+  pluck_all
   propshaft
   puma (>= 5.0)
   rabarber

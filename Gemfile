@@ -76,6 +76,9 @@ gem "rails-controller-testing"
 # Code coverage
 gem "simplecov", require: false, groups: [ :test ]
 
+# pluck nicely
+gem "pluck_all"
+
 group :development do
   gem "ruby-debug-ide", "~> 0.7.2"
   gem "debase", "0.2.9"
