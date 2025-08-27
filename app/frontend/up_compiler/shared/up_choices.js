@@ -32,6 +32,7 @@ up.compiler(".up_choices", function (element, data) {
         "!rounded-md",
         "!transition-colors",
       ],
+      itemChoice: ["choices__item--choice", "!border-0", "!rounded-none"],
       button: [
         "choices__button",
         "!text-blue-600",
