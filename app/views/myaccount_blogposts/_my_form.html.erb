@@ -27,6 +27,7 @@
             multiple: true,
             class: "up_choices text-sm",
             'up-data': {
+              'placeholder': "Add or remove tags...",
               'allItems': Blogtag.all.pluck_all(:name, :id),
               'selItems': target_blogpost.blogtags.pluck_all(:name, :id)
             }.to_json

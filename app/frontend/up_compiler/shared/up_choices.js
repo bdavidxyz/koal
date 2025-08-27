@@ -3,7 +3,7 @@ import Choices from "choices.js";
 up.compiler(".up_choices", function (element, data) {
   const selector = new Choices(element, {
     placeholder: true,
-    placeholderValue: "Blog tags",
+    placeholderValue: data.placeholder,
     removeItemButton: true,
     classNames: {
       containerOuter: ["choices", "w-full", "!mt-2"],

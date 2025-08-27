@@ -41,8 +41,9 @@ class MyaccountUsersController < ApplicationController
   grant_access action: :create, roles: [ :superadmin ]
   # @route POST /myaccount/users (myaccount_user)
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params_without_roles)
     if @user.save
+      update_role_associations(@user)
       redirect_to myaccount_user_list_path, notice: "User was successfully created."
     else
       render :new, status: :unprocessable_content
@@ -54,7 +55,8 @@ class MyaccountUsersController < ApplicationController
   # @route PUT /myaccount/users/:slug
   def update
     @user = retrieve_user
-    if @user.update(user_params)
+    if @user.update(user_params_without_roles)
+      update_role_associations(@user)
       redirect_to myaccount_user_list_path, notice: "User was successfully updated."
     else
       render :edit, status: :unprocessable_content
@@ -76,7 +78,21 @@ class MyaccountUsersController < ApplicationController
     User.find_by(slug: params[:slug]) or not_found
   end
 
-  def user_params
+  def user_params_without_roles
     params.require(:user).permit(:email, :name, :verified, :password, :slug)
+  end
+
+  def update_role_associations(user)
+    # Remove all existing role associations
+    user.roles.clear
+
+    # Create new associations if role_ids are provided
+    if params[:user][:role_ids].present?
+      role_ids = params[:user][:role_ids].reject(&:blank?)
+      role_ids.each do |role_id|
+        role = Rabarber::Role.find(role_id)
+        user.assign_roles(role.name) if role
+      end
+    end
   end
 end

@@ -25,6 +25,21 @@
       </div>
     <% end %>
     <div class="form-group mt-3">
+      <%= form.label :role_ids, "Roles", class: "block font-medium text-sm text-gray-700" %>
+      <%= form.select :role_ids,
+          [],
+          { include_blank: false },
+          {
+            multiple: true,
+            class: "up_choices text-sm",
+            "up-data": {
+              "placeholder": "Add role...",
+              "allItems": Rabarber::Role.all.map { |role| {name: role.name, id: role.id} },
+              "selItems": target_user.persisted? ? Rabarber::Role.where(name: target_user.roles).map { |role| {name: role.name, id: role.id} } : []
+            }.to_json
+          } %>
+    </div>
+    <div class="form-group mt-3">
       <%= form.label :verified, "Verified", class: "font-semibold text-sm" %>
       <div class="w-full">
         <%= form.check_box :verified, value: target_user.verified, class: "cursor-pointer" %>

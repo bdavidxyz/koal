@@ -78,10 +78,6 @@ class MyaccountBlogpostsController < ApplicationController
     Blogpost.find_by(slug: params[:slug]) or not_found
   end
 
-  def blogpost_params
-    params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at, blogtag_ids: [])
-  end
-
   def blogpost_params_without_blogtags
     params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at)
   end
