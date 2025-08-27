@@ -79,6 +79,22 @@
         <%= render "shared/breadcrumb_one", text: "Blogtags", link: "/myaccount/blogtags" %>
         <%= render "shared/breadcrumb_one", text: "Blogtag #{params[:slug]}", link: "/myaccount/blogtags/#{params[:slug]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
+      <% elsif current_named_route == :myaccount_role_new %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_role_new_path %>
+        <%= render "shared/breadcrumb_one", text: "Roles", link: "/myaccount/roles" %>
+        <%= render "shared/breadcrumb_one", text: "Create new Role" %>
+      <% elsif current_named_route == :myaccount_role_list %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_role_list_path %>
+        <%= render "shared/breadcrumb_one", text: "Roles" %>
+      <% elsif current_named_route == :myaccount_role_show %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_role_show_path %>
+        <%= render "shared/breadcrumb_one", text: "Roles", link: "/myaccount/roles" %>
+        <%= render "shared/breadcrumb_one", text: "Role #{params[:id]}" %>
+      <% elsif current_named_route == :myaccount_role_edit %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_role_edit_path %>
+        <%= render "shared/breadcrumb_one", text: "Roles", link: "/myaccount/roles" %>
+        <%= render "shared/breadcrumb_one", text: "Role #{params[:id]}", link: "/myaccount/roles/#{params[:id]}" %>
+        <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% end %>
     </ol>
   </div>

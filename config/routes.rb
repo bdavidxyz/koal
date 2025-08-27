@@ -38,6 +38,19 @@ Rails.application.routes.draw do
   end
 
   #
+  # Admin dashboard: Roles
+  #
+  scope path: "myaccount/roles", as: "myaccount_role" do
+    get    "/",            to: "myaccount_roles#index", as: :list
+    get    "/new",         to: "myaccount_roles#new", as: :new
+    post   "/",            to: "myaccount_roles#create", as: :create
+    get    "/:id",       to: "myaccount_roles#show", as: :show
+    get    "/:id/edit",  to: "myaccount_roles#edit", as: :edit
+    put    "/:id",       to: "myaccount_roles#update", as: :update
+    delete "/:id",       to: "myaccount_roles#destroy", as: :destroy
+  end
+
+  #
   # Admin dashboard: Blogposts
   #
   scope path: "myaccount/blogposts", as: "myaccount_blogpost" do
