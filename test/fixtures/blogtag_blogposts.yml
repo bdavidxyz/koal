@@ -1,20 +1,20 @@
 first_blogpost_alpha:
   id: 1
-  blogpost: first_blogpost
-  blogtag: first_blogtag
+  blogpost_id: 1
+  blogtag_id: 1
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
 
 second_blogpost_beta:
   id: 2
-  blogpost: second_blogpost
-  blogtag: second_blogtag
+  blogpost_id: 2
+  blogtag_id: 2
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
 
 first_blogpost_beta:
   id: 3
-  blogpost: first_blogpost
-  blogtag: second_blogtag
+  blogpost_id: 1
+  blogtag_id: 2
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>

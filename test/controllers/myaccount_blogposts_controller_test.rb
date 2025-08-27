@@ -84,18 +84,19 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update blogpost and replace blogtag associations" do
-    # First add some initial blogtag associations
-    @blogpost.blogtag_blogposts.create(blogtag: @first_blogtag)
+    # @blogpost (first_blogpost) already has 2 associations from fixtures: Alpha and Beta
     initial_count = BlogtagBlogpost.count
+    initial_blogpost_associations = @blogpost.blogtags.count
 
-    # Update with different blogtags - should replace existing ones
+    # Update with just one blogtag - should replace existing ones
     put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: @blogpost.title, blogtag_ids: [@second_blogtag.id] } }
 
     @blogpost.reload
     assert_equal 1, @blogpost.blogtags.count
     assert_includes @blogpost.blogtags, @second_blogtag
     assert_not_includes @blogpost.blogtags, @first_blogtag
-    assert_equal initial_count, BlogtagBlogpost.count  # Should remain same since we replaced 1 with 1
+    # Should decrease by (initial_associations - new_associations)
+    assert_equal initial_count - (initial_blogpost_associations - 1), BlogtagBlogpost.count
     assert_redirected_to myaccount_blogpost_list_url
   end
 
@@ -112,11 +113,10 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update blogpost and remove all blogtag associations when empty blogtag_ids provided" do
-    # First add some initial blogtag associations
-    @blogpost.blogtag_blogposts.create(blogtag: @first_blogtag)
-    @blogpost.blogtag_blogposts.create(blogtag: @second_blogtag)
+    # @blogpost (first_blogpost) already has 2 associations from fixtures: Alpha and Beta
+    initial_associations = @blogpost.blogtags.count
 
-    assert_difference("BlogtagBlogpost.count", -2) do
+    assert_difference("BlogtagBlogpost.count", -initial_associations) do
       put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: @blogpost.title, blogtag_ids: [] } }
     end
 

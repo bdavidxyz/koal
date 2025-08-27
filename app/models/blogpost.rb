@@ -4,7 +4,7 @@ class Blogpost < ApplicationRecord
   searchable_attributes :kontent, :chapo, :title
   after_create :generate_decent_slug
 
-  has_many :blogtag_blogposts
+  has_many :blogtag_blogposts, dependent: :destroy
   has_many :blogtags, through: :blogtag_blogposts
 
   validates :title, presence: true
