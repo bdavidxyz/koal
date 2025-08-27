@@ -4,6 +4,9 @@ class Blogpost < ApplicationRecord
   searchable_attributes :kontent, :chapo, :title
   after_create :generate_decent_slug
 
+  has_many :blogtagblogposts
+  has_many :blogtags, through: :blogtagblogposts
+
   validates :title, presence: true
 
   def generate_decent_slug

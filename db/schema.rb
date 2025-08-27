@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_05_051348) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_05_051350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,6 +20,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_05_051348) do
     t.text "chapo"
     t.text "kontent"
     t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blogtagblogposts", force: :cascade do |t|
+    t.bigint "blogtag_id"
+    t.bigint "blogpost_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blogpost_id"], name: "index_blogtagblogposts_on_blogpost_id"
+    t.index ["blogtag_id"], name: "index_blogtagblogposts_on_blogtag_id"
+  end
+
+  create_table "blogtags", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
