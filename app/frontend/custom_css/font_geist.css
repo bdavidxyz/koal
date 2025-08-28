@@ -1,0 +1,80 @@
+/* geist-thin - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../fonts/geist/Geist-Thin.ttf') format('truetype');
+}
+
+/* geist-extralight - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../fonts/geist/Geist-ExtraLight.ttf') format('truetype');
+}
+
+/* geist-light - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/geist/Geist-Light.ttf') format('truetype');
+}
+
+/* geist-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/geist/Geist-Regular.ttf') format('truetype');
+}
+
+/* geist-medium - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/geist/Geist-Medium.ttf') format('truetype');
+}
+
+/* geist-semibold - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/geist/Geist-SemiBold.ttf') format('truetype');
+}
+
+/* geist-bold - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/geist/Geist-Bold.ttf') format('truetype');
+}
+
+/* geist-extrabold - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/geist/Geist-ExtraBold.ttf') format('truetype');
+}
+
+/* geist-black - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/geist/Geist-Black.ttf') format('truetype');
+}
