@@ -85,5 +85,6 @@ Rails.application.routes.draw do
   #
   # Pages routes
   #
+  get "styleguide", to: "styleguide#index"
   root to: "home#index"
 end
