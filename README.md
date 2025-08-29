@@ -26,9 +26,9 @@ Minimalistic Rails 8 app.
 - cd koal
 - bundle install
 - npm install
-- VISUAL="code --wait" bin/rails credentials:edit
 - create .env file (see below)
-- RAILS_ENV=development bin/rails db:create db:migrate
+- RAILS_ENV=development bin/rails db:create db:migrate db:seed
+- DATABASE_URL="postgres://localhost:5432/koal_test" RAILS_ENV=test bin/rails db:create
 - bin/dev
 
 The app should be displayed at localhost:3000
