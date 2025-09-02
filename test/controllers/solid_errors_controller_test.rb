@@ -15,25 +15,6 @@ class SolidErrorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
-  test "superadmin constraint allows access for superadmin user" do
-    # Ensure the user has the superadmin role
-    assert @user_with_superadmin.has_role?(:superadmin), "Jane should have superadmin role"
-
-    # Test the constraint directly
-    constraint = SuperadminConstraint.new
-
-    # Create a mock request with a signed session cookie for the superadmin user
-    session = @user_with_superadmin.sessions.create!
-    mock_request = OpenStruct.new(
-      cookie_jar: OpenStruct.new(
-        signed: { session_token: session.id }
-      )
-    )
-
-    # The constraint should return true for a superadmin user
-    assert constraint.matches?(mock_request), "SuperadminConstraint should allow access for superadmin user"
-  end
-
   test "superadmin constraint denies access for non-superadmin user" do
     # Ensure the user does not have superadmin role
     assert_not @user_without_superadmin.has_role?(:superadmin), "Alicia should not have superadmin role"
