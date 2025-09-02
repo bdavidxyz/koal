@@ -3,7 +3,7 @@ module CurrentRouteHelper
     return nil unless defined?(request) && request&.path
 
     path = request.path
-    method = request.method_symbol
+    method = request.request_method.downcase.to_sym
 
     # On récupère les paramètres reconnus (controller, action, etc.)
     recognized = Rails.application.routes.recognize_path(path, method: method)
@@ -16,9 +16,15 @@ module CurrentRouteHelper
 
       # Vérification si les defaults correspondent (controller, action, etc.)
       route_defaults = route.defaults.symbolize_keys
-      recognized_compact = recognized.slice(*route_defaults.keys).symbolize_keys
+      recognized_symbolized = recognized.symbolize_keys
 
-      if route_defaults == recognized_compact
+      # Skip routes with empty defaults unless recognized is also empty
+      if route_defaults.empty?
+        next unless recognized_symbolized.empty?
+      end
+
+      # Check if all route defaults match the recognized parameters
+      if route_defaults.all? { |key, value| recognized_symbolized[key] == value }
         return route.name.to_sym
       end
     end

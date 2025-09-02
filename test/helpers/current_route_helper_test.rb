@@ -101,7 +101,7 @@ class CurrentRouteHelperTest < ActionView::TestCase
   def mock_request_with_path(path, method_symbol)
     request = Object.new
     request.define_singleton_method(:path) { path }
-    request.define_singleton_method(:method_symbol) { method_symbol }
+    request.define_singleton_method(:request_method) { method_symbol.to_s.upcase }
     request
   end
 

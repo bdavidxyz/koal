@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   #
+  # Superadmin only
+  #
+  constraints(SuperadminConstraint.new) do
+    # mount MissionControl::Jobs::Engine, at: "/jobs"
+    get "/jobs", to: proc { |env| [200, {}, ["Jobs accessible"]] }
+    mount SolidErrors::Engine, at: "/solid_errors"
+  end
+
+  #
   # Account-related routes
   #
   get  "sign_in", to: "sessions#new"
@@ -22,6 +31,7 @@ Rails.application.routes.draw do
   get "myaccount/profile", to: "myaccount#profile"
   get "myaccount/billing", to: "myaccount#billing"
   get "myaccount/danger", to: "myaccount#danger"
+  get "myaccount/adminpanel", to: "myaccount#adminpanel"
   delete "myaccount/destroy", to: "myaccount#destroy_account"
 
   #

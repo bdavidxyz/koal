@@ -15,6 +15,7 @@
       Admin area
     </div>
     <div class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700 rounded-md text-sm font-medium">
+      <a class="<%= activation == "adminpanel" ? active_css : default_css %>" href="/myaccount/adminpanel">Admin Panel</a>
       <a class="<%= activation == "users" ? active_css : default_css %>" href="/myaccount/users">Users</a>
       <a class="<%= activation == "roles" ? active_css : default_css %>" href="/myaccount/roles">Roles</a>
       <a class="<%= activation == "blogposts" ? active_css : default_css %>" href="/myaccount/blogposts">Blogposts</a>

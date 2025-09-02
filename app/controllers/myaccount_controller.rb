@@ -50,6 +50,12 @@ class MyaccountController < ApplicationController
   def danger
   end
 
+  require_auth action: :adminpanel
+  grant_access action: :adminpanel, roles: [ :superadmin ]
+  # @route GET /myaccount/adminpanel (myaccount_myadmin)
+  def adminpanel
+  end
+
   require_auth action: :destroy_account
   grant_access action: :destroy_account, roles: [ :member ]
   # @route DELETE /myaccount/destroy (myaccount_destroy)

@@ -83,3 +83,6 @@ group :development do
   gem "ruby-debug-ide", "~> 0.7.2"
   gem "debase", "0.2.9"
 end
+
+# Error reporting
+gem "solid_errors"

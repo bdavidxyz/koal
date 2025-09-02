@@ -1,0 +1,53 @@
+<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10">
+  <div class="sm:flex items-center justify-between mb-3">
+    <h1 class="flex-1 text-2xl font-bold -tracking-wide">Admin Panel</h1>
+  </div>
+  <section>
+    <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+      Background Jobs
+    </h2>
+    <div class="mb-8 flex gap-8  mt-2">
+      <div class="flex-1">
+        <div class="text-neutral-700">
+          Monitor and manage background jobs processing
+        </div>
+        <div class="mt-2">
+          <%= link_to "Open Background Jobs Dashboard", "/jobs", target: "_blank", class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+      Error Monitoring
+    </h2>
+    <div class="mb-8 flex gap-8  mt-2">
+      <div class="flex-1">
+        <div class="text-neutral-700">
+          View and track application errors and exceptions
+        </div>
+        <div class="mt-2">
+          <%= link_to "Open Errors Dashboard", "/solid_errors", target: "_blank", class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+      System Management
+    </h2>
+    <div class="mb-8 flex gap-8  mt-2">
+      <div class="flex-1">
+        <div class="text-neutral-700">
+          Access various admin management areas
+        </div>
+        <div class="mt-2 space-y-2">
+          <%= link_to "Manage Users", "/myaccount/users", class: "cursor-pointer font-medium text-blue-600 hover:underline block" %>
+          <%= link_to "Manage Roles", "/myaccount/roles", class: "cursor-pointer font-medium text-blue-600 hover:underline block" %>
+          <%= link_to "Manage Blogposts", "/myaccount/blogposts", class: "cursor-pointer font-medium text-blue-600 hover:underline block" %>
+          <%= link_to "Manage Blogtags", "/myaccount/blogtags", class: "cursor-pointer font-medium text-blue-600 hover:underline block" %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

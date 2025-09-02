@@ -19,6 +19,10 @@ databases: &databases
     <<: *default
     url: <%= URI.parse(ENV['DATABASE_URL']).tap { |u| u.path += '_cable' } if ENV['DATABASE_URL'] && !Rails.env.test? %>
     migrations_paths: db/cable_migrate
+  errors:
+    <<: *default
+    url: <%= URI.parse(ENV['DATABASE_URL']).tap { |u| u.path += '_errors' } if ENV['DATABASE_URL'] && !Rails.env.test? %>
+    migrations_paths: db/errors_migrate
 
 development:
   <<: *databases

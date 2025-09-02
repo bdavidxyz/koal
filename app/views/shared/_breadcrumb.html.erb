@@ -31,6 +31,9 @@
       <% elsif current_named_route == :myaccount_email %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_path %>
         <%= render "shared/breadcrumb_one", text: "Email" %>
+      <% elsif current_named_route == :myaccount_myadmin %>
+        <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_path %>
+        <%= render "shared/breadcrumb_one", text: "Admin" %>
       <% elsif current_named_route == :myaccount_user_new %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_path %>
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
