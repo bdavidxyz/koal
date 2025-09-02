@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   # Superadmin only
   #
   constraints(SuperadminConstraint.new) do
-    # mount MissionControl::Jobs::Engine, at: "/jobs"
-    get "/jobs", to: proc { |env| [200, {}, ["Jobs accessible"]] }
+    mount MissionControl::Jobs::Engine, at: "/jobs"
     mount SolidErrors::Engine, at: "/solid_errors"
   end
 

@@ -86,3 +86,6 @@ end
 
 # Error reporting
 gem "solid_errors"
+
+# Monitor solid queue
+gem "mission_control-jobs"
