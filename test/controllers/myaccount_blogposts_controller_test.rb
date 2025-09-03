@@ -25,7 +25,7 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create blogpost" do
     assert_difference("Blogpost.count") do
-      post myaccount_blogpost_create_url, params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: "new_slug", title: @blogpost.title, blogtag_ids: [@first_blogtag.id, @second_blogtag.id] } }
+      post myaccount_blogpost_create_url, params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: "new_slug", title: @blogpost.title, blogtag_ids: [ @first_blogtag.id, @second_blogtag.id ] } }
     end
 
     assert_redirected_to myaccount_blogpost_list_url
@@ -42,7 +42,7 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update blogpost" do
-    put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: @blogpost.title, blogtag_ids: [@first_blogtag.id] } }
+    put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: @blogpost.title, blogtag_ids: [ @first_blogtag.id ] } }
     assert_redirected_to myaccount_blogpost_list_url
   end
 
@@ -56,7 +56,7 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not create blogpost with invalid params" do
     assert_no_difference("Blogpost.count") do
-      post myaccount_blogpost_create_url, params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: "new_slug", title: "", blogtag_ids: [@first_blogtag.id] } }
+      post myaccount_blogpost_create_url, params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: "new_slug", title: "", blogtag_ids: [ @first_blogtag.id ] } }
     end
 
     assert_response :unprocessable_content
@@ -64,7 +64,7 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not update blogpost with invalid params" do
-    put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: "", blogtag_ids: [@first_blogtag.id] } }
+    put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: "", blogtag_ids: [ @first_blogtag.id ] } }
     assert_response :unprocessable_content
     assert_template :edit
   end
@@ -72,7 +72,7 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
   test "should create blogpost with blogtag associations" do
     assert_difference("Blogpost.count", 1) do
       assert_difference("BlogtagBlogpost.count", 2) do
-        post myaccount_blogpost_create_url, params: { blogpost: { chapo: "Test chapo", kontent: "Test content", published_at: Time.current, slug: "test_slug", title: "Test Title", blogtag_ids: [@first_blogtag.id, @second_blogtag.id] } }
+        post myaccount_blogpost_create_url, params: { blogpost: { chapo: "Test chapo", kontent: "Test content", published_at: Time.current, slug: "test_slug", title: "Test Title", blogtag_ids: [ @first_blogtag.id, @second_blogtag.id ] } }
       end
     end
 
@@ -89,7 +89,7 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
     initial_blogpost_associations = @blogpost.blogtags.count
 
     # Update with just one blogtag - should replace existing ones
-    put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: @blogpost.title, blogtag_ids: [@second_blogtag.id] } }
+    put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: @blogpost.title, blogtag_ids: [ @second_blogtag.id ] } }
 
     @blogpost.reload
     assert_equal 1, @blogpost.blogtags.count

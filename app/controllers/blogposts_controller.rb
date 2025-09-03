@@ -31,5 +31,4 @@ class BlogpostsController < ApplicationController
       blogpost
     end
   end
-
 end

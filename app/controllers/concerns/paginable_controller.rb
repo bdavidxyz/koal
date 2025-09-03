@@ -14,4 +14,4 @@ module PaginableController
     redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
   end
   # :nocov:
-end 
+end

@@ -44,7 +44,7 @@ class MyaccountController < ApplicationController
   def billing
   end
 
-  require_auth action: :danger 
+  require_auth action: :danger
   grant_access action: :danger, roles: [ :member ]
   # @route GET /myaccount/danger (myaccount_danger)
   def danger

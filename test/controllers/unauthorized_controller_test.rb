@@ -23,11 +23,11 @@ class UnauthorizedControllerTest < ActionDispatch::IntegrationTest
 
     # Test that superadmin user can access these actions
     sign_in_as(@user_with_superadmin)
-    
+
     # Index should work for superadmin
     get myaccount_blogpost_list_path
     assert_response :success
-    
+
     # Create should work for superadmin (but may redirect after successful creation)
     post myaccount_blogpost_create_path, params: { blogpost: { title: "Test Post", slug: "test-post", kontent: "Content" } }
     assert_response :redirect # Should redirect after successful creation

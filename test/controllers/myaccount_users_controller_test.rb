@@ -39,7 +39,7 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
           name: "New User",
           password: "321Password!!!",
           slug: "new-user",
-          role_ids: [member_role.id.to_s]
+          role_ids: [ member_role.id.to_s ]
         }
       }
     end
@@ -80,7 +80,7 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
         email: @other_user.email,
         name: @other_user.name,
         slug: @other_user.slug,
-        role_ids: [superadmin_role.id.to_s]
+        role_ids: [ superadmin_role.id.to_s ]
       }
     }
 
@@ -101,7 +101,7 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
         email: @other_user.email,
         name: @other_user.name,
         slug: @other_user.slug,
-        role_ids: [superadmin_role.id.to_s]
+        role_ids: [ superadmin_role.id.to_s ]
       }
     }
 
