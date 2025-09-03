@@ -44,11 +44,11 @@
       <% elsif current_named_route == :myaccount_user_show %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_user_show_path %>
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
-        <%= render "shared/breadcrumb_one", text: "User #{params[:slug]}" %>
+        <%= render "shared/breadcrumb_one", text: "User #{h(params[:slug])}" %>
       <% elsif current_named_route == :myaccount_user_edit %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_user_edit_path %>
         <%= render "shared/breadcrumb_one", text: "Users", link: "/myaccount/users" %>
-        <%= render "shared/breadcrumb_one", text: "User #{params[:slug]}", link: "/myaccount/users/#{params[:slug]}" %>
+        <%= render "shared/breadcrumb_one", text: "User #{h(params[:slug])}", link: "/myaccount/users/#{params[:slug]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% elsif current_named_route == :myaccount_blogpost_new %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogpost_new_path %>
@@ -60,11 +60,11 @@
       <% elsif current_named_route == :myaccount_blogpost_show %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogpost_show_path %>
         <%= render "shared/breadcrumb_one", text: "Blogposts", link: "/myaccount/blogposts" %>
-        <%= render "shared/breadcrumb_one", text: "Blogpost #{params[:slug]}" %>
+        <%= render "shared/breadcrumb_one", text: "Blogpost #{h(params[:slug])}" %>
       <% elsif current_named_route == :myaccount_blogpost_edit %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogpost_edit_path %>
         <%= render "shared/breadcrumb_one", text: "Blogposts", link: "/myaccount/blogposts" %>
-        <%= render "shared/breadcrumb_one", text: "Blogpost #{params[:slug]}", link: "/myaccount/blogposts/#{params[:slug]}" %>
+        <%= render "shared/breadcrumb_one", text: "Blogpost #{h(params[:slug])}", link: "/myaccount/blogposts/#{params[:slug]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% elsif current_named_route == :myaccount_blogtag_new %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogtag_new_path %>
@@ -76,11 +76,11 @@
       <% elsif current_named_route == :myaccount_blogtag_show %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogtag_show_path %>
         <%= render "shared/breadcrumb_one", text: "Blogtags", link: "/myaccount/blogtags" %>
-        <%= render "shared/breadcrumb_one", text: "Blogtag #{params[:slug]}" %>
+        <%= render "shared/breadcrumb_one", text: "Blogtag #{h(params[:slug])}" %>
       <% elsif current_named_route == :myaccount_blogtag_edit %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_blogtag_edit_path %>
         <%= render "shared/breadcrumb_one", text: "Blogtags", link: "/myaccount/blogtags" %>
-        <%= render "shared/breadcrumb_one", text: "Blogtag #{params[:slug]}", link: "/myaccount/blogtags/#{params[:slug]}" %>
+        <%= render "shared/breadcrumb_one", text: "Blogtag #{h(params[:slug])}", link: "/myaccount/blogtags/#{params[:slug]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% elsif current_named_route == :myaccount_role_new %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_role_new_path %>
@@ -92,11 +92,11 @@
       <% elsif current_named_route == :myaccount_role_show %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_role_show_path %>
         <%= render "shared/breadcrumb_one", text: "Roles", link: "/myaccount/roles" %>
-        <%= render "shared/breadcrumb_one", text: "Role #{params[:id]}" %>
+        <%= render "shared/breadcrumb_one", text: "Role #{h(params[:id])}" %>
       <% elsif current_named_route == :myaccount_role_edit %>
         <%= render "shared/breadcrumb_one", text: "My account", link: myaccount_role_edit_path %>
         <%= render "shared/breadcrumb_one", text: "Roles", link: "/myaccount/roles" %>
-        <%= render "shared/breadcrumb_one", text: "Role #{params[:id]}", link: "/myaccount/roles/#{params[:id]}" %>
+        <%= render "shared/breadcrumb_one", text: "Role #{h(params[:id])}", link: "/myaccount/roles/#{params[:id]}" %>
         <%= render "shared/breadcrumb_one", text: "Edit" %>
       <% end %>
     </ol>
