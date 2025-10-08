@@ -62,7 +62,7 @@ gem "debugbar", groups: [ :development ]
 gem "chusaku", require: false, groups: [ :development ]
 
 # Authorizations
-gem "rabarber"
+gem "rabarber", "5.2.1"
 
 # Print nicely locally
 gem "awesome_print", groups: [ :development, :test ]

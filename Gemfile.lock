@@ -232,7 +232,7 @@ GEM
     puma (7.0.4)
       nio4r (~> 2.0)
     raabro (1.4.0)
-    rabarber (5.1.2)
+    rabarber (5.2.1)
       dry-configurable (~> 1.1)
       dry-types (~> 1.7)
       rails (>= 7.1, < 8.1)
@@ -438,7 +438,7 @@ DEPENDENCIES
   pluck_all
   propshaft
   puma (>= 5.0)
-  rabarber
+  rabarber (= 5.2.1)
   rails (~> 8.0.3)
   rails-controller-testing
   rubocop-rails-omakase
