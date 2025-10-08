@@ -23,8 +23,8 @@ Minimalistic Rails 8 app.
 
 - git clone `git@github.com:bdavidxyz/koal.git`
 - cd koal
-- rename "koal" to "myapp" in the whole application
-- rename the "koal" files to "myapp"
+- (optional) rename "koal" to "myapp" in the whole application
+- (optional) rename the "koal" files to "myapp"
 - bundle install
 - npm install
 - create .env file (see below)

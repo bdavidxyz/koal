@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include Rabarber::HasRoles
+  include Rabarber::Roleable
   include SearchableResource
 
   searchable_attributes :email
