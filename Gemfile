@@ -1,12 +1,12 @@
 source "https://rubygems.org"
-ruby "3.2.2"
+ruby "3.4.6"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.2.1"
+gem "rails", "~> 8.0.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+# Use sqlite3 as the database for Active Record
+gem "sqlite3", ">= 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
@@ -79,13 +79,11 @@ gem "simplecov", require: false, groups: [ :test ]
 # pluck nicely
 gem "pluck_all"
 
-group :development do
-  gem "ruby-debug-ide", "~> 0.7.2"
-  gem "debase", "0.2.9"
-end
-
 # Error reporting
 gem "solid_errors"
 
 # Monitor solid queue
 gem "mission_control-jobs"
+
+# Generate OpenStruct
+gem "ostruct"

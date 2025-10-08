@@ -16,7 +16,6 @@ Minimalistic Rails 8 app.
 ## Prerequisites
 
 - Git
-- PostGre
 - NodeJS >= 22
 - Ruby >= 3.2.2
 
@@ -30,7 +29,7 @@ Minimalistic Rails 8 app.
 - npm install
 - create .env file (see below)
 - RAILS_ENV=development bin/rails db:create db:migrate db:seed
-- DATABASE_URL="postgres://localhost:5432/koal_test" RAILS_ENV=test bin/rails db:create
+- RAILS_ENV=test bin/rails db:create
 - bin/dev
 
 The app should be displayed at localhost:3000
@@ -61,8 +60,6 @@ The app should be displayed at localhost:3000
 Content of .env:
 
 ```
-DATABASE_URL=postgres://localhost:5432/koal_development
-
 SMTP_SERVER=
 SMTP_PORT=
 SMTP_USERNAME=
