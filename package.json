@@ -10,10 +10,11 @@
     "vite-plugin-ruby": "^5.1.1"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "choices.js": "^11.1.0",
+    "esbuild": ">=0.25.0",
     "tailwindcss": "^4.1.4",
-    "unpoly": "3.10.2",
-    "esbuild": ">=0.25.0"
+    "unpoly": "3.10.2"
   },
   "engines": {
     "node": "22.x"

@@ -87,3 +87,6 @@ gem "mission_control-jobs"
 
 # Generate OpenStruct
 gem "ostruct"
+
+# Markdown parser
+gem "kramdown"
