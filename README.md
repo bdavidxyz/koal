@@ -55,6 +55,11 @@ The app should be displayed at localhost:3000
   end
 ```
 
+## Launch tests
+
+bin/rails test
+bin/rails test:system (none yet)
+
 ## .env file
 
 Content of .env:
