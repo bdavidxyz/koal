@@ -10,6 +10,9 @@ gem "sqlite3", ">= 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
+# TODO : not working from version 6, fix it later : https://github.com/rails/rails/issues/56406
+gem "minitest", "< 6"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
