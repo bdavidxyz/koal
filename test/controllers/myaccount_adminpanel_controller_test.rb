@@ -18,4 +18,10 @@ class MyaccountAdminpanelControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to myaccount_adminpanel_url
     assert_equal "Hello World job triggered!", flash[:notice]
   end
+
+  test "should trigger division by zero" do
+    assert_raises(ZeroDivisionError) do
+      post myaccount_adminpanel_trigger_division_by_zero_url
+    end
+  end
 end

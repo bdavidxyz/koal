@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get "myaccount/danger", to: "myaccount#danger"
   get "myaccount/adminpanel", to: "myaccount#adminpanel"
   post "myaccount/adminpanel/trigger_hello_world_job", to: "myaccount#trigger_hello_world_job"
+  post "myaccount/adminpanel/trigger_division_by_zero", to: "myaccount#trigger_division_by_zero"
   delete "myaccount/destroy", to: "myaccount#destroy_account"
 
   #

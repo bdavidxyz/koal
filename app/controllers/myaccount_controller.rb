@@ -64,6 +64,13 @@ class MyaccountController < ApplicationController
     redirect_to myaccount_adminpanel_path, notice: "Hello World job triggered!"
   end
 
+  require_auth action: :trigger_division_by_zero
+  grant_access action: :trigger_division_by_zero, roles: [ :superadmin ]
+  # @route POST /myaccount/adminpanel/trigger_division_by_zero (myaccount_trigger_division_by_zero)
+  def trigger_division_by_zero
+    result = 1 / 0
+  end
+
   require_auth action: :destroy_account
   grant_access action: :destroy_account, roles: [ :member ]
   # @route DELETE /myaccount/destroy (myaccount_destroy)
