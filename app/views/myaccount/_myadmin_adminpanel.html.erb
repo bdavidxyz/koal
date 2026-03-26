@@ -11,8 +11,9 @@
         <div class="text-neutral-700">
           Monitor and manage background jobs processing
         </div>
-        <div class="mt-2">
+        <div class="mt-2 flex">
           <%= link_to "Open Background Jobs Dashboard", "/jobs", target: "_blank", class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+          <%= button_to "Trigger Hello World Job", myaccount_adminpanel_trigger_hello_world_job_path, class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0 ml-2" %>
         </div>
       </div>
     </div>

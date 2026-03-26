@@ -56,6 +56,14 @@ class MyaccountController < ApplicationController
   def adminpanel
   end
 
+  require_auth action: :trigger_hello_world_job
+  grant_access action: :trigger_hello_world_job, roles: [ :superadmin ]
+  # @route POST /myaccount/adminpanel/trigger_hello_world_job (myaccount_trigger_hello_world_job)
+  def trigger_hello_world_job
+    HelloWorldJob.perform_later
+    redirect_to myaccount_adminpanel_path, notice: "Hello World job triggered!"
+  end
+
   require_auth action: :destroy_account
   grant_access action: :destroy_account, roles: [ :member ]
   # @route DELETE /myaccount/destroy (myaccount_destroy)
