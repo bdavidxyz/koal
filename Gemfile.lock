@@ -458,7 +458,7 @@ DEPENDENCIES
   sqlite3 (>= 1.4)
   thruster
   tzinfo-data
-  vite_rails
+  vite_rails (= 3.0.19)
   web-console
 
 RUBY VERSION
