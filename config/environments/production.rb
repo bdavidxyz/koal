@@ -100,7 +100,7 @@ Rails.application.configure do
 
   # Configure Solid Errors
   config.solid_errors.connects_to = { database: { writing: :errors } }
-  config.solid_errors.send_emails = true
+  config.solid_errors.send_emails = false
   config.solid_errors.email_from = ENV["EMAIL_DEFAULT_FROM"]
   config.solid_errors.email_to = ENV["EMAIL_REPORT_EXCEPTION_TO"]
 end
