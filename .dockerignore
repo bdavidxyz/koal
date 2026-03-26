@@ -1,0 +1,71 @@
+# .dockerignore
+# Exclude files not needed for production build
+
+# Git
+.git
+.gitignore
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.circleci
+.travis.yml
+
+# Documentation
+README*
+CHANGELOG*
+LICENSE
+docs/
+
+# Test files
+test/
+spec/
+coverage/
+.rspec
+.rubocop*
+.brakeman
+
+# Development files
+.env
+.env.*
+# Docker files
+docker-compose*.yml
+Dockerfile*
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+log/*.log
+tmp/
+.cache/
+
+# Database dumps
+*.sql
+*.sqlite3
+
+# Node modules (will be installed during build)
+node_modules/
+
+# Frontend dependencies (will be installed during build)
+app/frontend/node_modules/
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Misc
+.browserslistrc
+.ruby-version
+.tool-versions
+Procfile.dev
+.rake_tasks~
+storage/*.sqlite3
+storage/*.sqlite3-*
+public/assets/
+public/packs/

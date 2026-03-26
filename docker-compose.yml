@@ -1,0 +1,60 @@
+# docker-compose.yml - Production
+# Usage: docker-compose up --build
+
+services:
+  # ============================================
+  # Web application (Puma)
+  # ============================================
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3031:3031"
+    volumes:
+      # Persist SQLite databases and assets
+      - koal_storage:/app/storage
+      - koal_public:/app/public
+    environment:
+      - RAILS_ENV=production
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_LOG_TO_STDOUT=true
+      - RAILS_MAX_THREADS=3
+      - PORT=3031
+      # Database (using SQLite, no env vars needed as it's file-based)
+      # SMTP Configuration
+      - SMTP_SERVER=${SMTP_SERVER:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - APPLICATION_HOST=${APPLICATION_HOST:-localhost:3031}
+      - SMTP_USERNAME=${SMTP_USERNAME:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      - EMAIL_DEFAULT_FROM=${EMAIL_DEFAULT_FROM:-noreply@example.com}
+      - EMAIL_REPORT_EXCEPTION_TO=${EMAIL_REPORT_EXCEPTION_TO:-}
+    restart: unless-stopped
+    depends_on:
+      - worker
+
+  # ============================================
+  # Background job worker (Solid Queue)
+  # ============================================
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["bundle", "exec", "solid_queue", "start"]
+    volumes:
+      - koal_storage:/app/storage
+    environment:
+      - RAILS_ENV=production
+      - RAILS_LOG_TO_STDOUT=true
+      # Database (using SQLite, no env vars needed as it's file-based)
+    restart: unless-stopped
+
+# ============================================
+# Named volumes for persistence
+# ============================================
+volumes:
+  koal_storage:
+    driver: local
+  koal_public:
+    driver: local
