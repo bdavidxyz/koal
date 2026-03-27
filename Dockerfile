@@ -27,7 +27,7 @@ FROM base AS deps
 
 # Copy Gemfile and install gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --jobs 4 --retry 3
+RUN bundle install --jobs 1 --retry 3
 
 # Copy package.json and install npm packages
 COPY package.json package-lock.json ./
