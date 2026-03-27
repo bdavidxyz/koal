@@ -30,6 +30,7 @@ module Koal
 
     config.mission_control.jobs.http_basic_auth_enabled = false
     config.mission_control.jobs.base_controller_class = "MissionControlController"
+    config.active_storage.variant_processor = :disabled
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
