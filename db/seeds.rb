@@ -61,5 +61,3 @@ if User.count == 0
 else
   puts "Already sth in the DB, skipped seed"
 end
-
-
