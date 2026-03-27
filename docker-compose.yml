@@ -13,7 +13,7 @@ services:
       [
         "sh",
         "-c",
-        "RAILS_ENV=production bundle exec rails assets:precompile && rails db:migrate db:seed && exec ./bin/thrust bin/rails server -p $PORT",
+        "bundle install && RAILS_ENV=production bundle exec rails assets:precompile && rails db:migrate && rails db:seed && exec ./bin/thrust bin/rails server -p $PORT",
       ]
     ports:
       - "3031:3031"
