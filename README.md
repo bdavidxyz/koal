@@ -72,3 +72,7 @@ SMTP_PASSWORD=
 
 SECRET_KEY_BASE=
 ```
+
+## TODO
+
+fix RAILS_ENV inside vite.config.ts if you want to use it locally

@@ -7,6 +7,7 @@ if User.count == 0
   # The member role is automatically assigned via after_create callback on User
   # So we just need to create the superadmin role
   superadmin_role = Rabarber::Role.create!(name: 'superadmin')
+  member_role = Rabarber::Role.create!(name: 'member')
 
   # Create users
   jane = User.create!(

@@ -40,8 +40,14 @@ FROM deps AS build
 # Copy the rest of the application
 COPY . .
 
-# Precompile assets for production
-RUN bundle exec rails assets:precompile
+# # Set environment for production build
+# ENV RAILS_ENV=production
+
+# # Build Vite assets for production FIRST
+# RUN bundle exec vite build
+
+# # Then precompile Rails assets (includes manifest)
+# RUN bundle exec rails assets:precompile
 
 # ============================================
 # Stage 4: Production - Final image
