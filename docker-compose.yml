@@ -9,6 +9,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command:
+      [
+        "sh",
+        "-c",
+        "rails db:migrate && exec ./bin/thrust bin/rails server -p $PORT",
+      ]
     ports:
       - "3031:3031"
     volumes:
@@ -16,6 +22,7 @@ services:
       - koal_storage:/app/storage
       - koal_public:/app/public
     environment:
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE:-}
       - RAILS_ENV=production
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_LOG_TO_STDOUT=true
@@ -25,28 +32,29 @@ services:
       # SMTP Configuration
       - SMTP_SERVER=${SMTP_SERVER:-}
       - SMTP_PORT=${SMTP_PORT:-587}
-      - APPLICATION_HOST=${APPLICATION_HOST:-localhost:3031}
       - SMTP_USERNAME=${SMTP_USERNAME:-}
       - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      - APPLICATION_HOST=${APPLICATION_HOST:-localhost:3031}
       - EMAIL_DEFAULT_FROM=${EMAIL_DEFAULT_FROM:-noreply@example.com}
-      - EMAIL_REPORT_EXCEPTION_TO=${EMAIL_REPORT_EXCEPTION_TO:-}
+      - EMAIL_REPORT_EXCEPTION_TO=${EMAIL_REPORT_EXCEPTION_TO:-noreply@example.com}
     restart: unless-stopped
-    depends_on:
-      - worker
 
   # ============================================
   # Background job worker (Solid Queue)
   # ============================================
   worker:
+    depends_on:
+      - web
     build:
       context: .
       dockerfile: Dockerfile
-    command: ["bundle", "exec", "solid_queue", "start"]
+    command: ["bin/jobs"]
     volumes:
       - koal_storage:/app/storage
     environment:
       - RAILS_ENV=production
       - RAILS_LOG_TO_STDOUT=true
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE:-}
       # Database (using SQLite, no env vars needed as it's file-based)
     restart: unless-stopped
 
