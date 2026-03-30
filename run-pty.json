@@ -1,6 +1,6 @@
 [
   {
-    "command": ["bin/rails", "server"],
+    "command": ["bin/rails", "server", "-p", "3031"],
     "status": {
       "Listening on": null
     },

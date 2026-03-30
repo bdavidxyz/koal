@@ -6,7 +6,7 @@
   },
   "development": {
     "autoBuild": false,
-    "host": "vite",
+    "host": "localhost",
     "port": 3036
   },
   "test": {
