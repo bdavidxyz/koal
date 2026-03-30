@@ -4,50 +4,10 @@
 @import url("../custom_css/font_geist.css");
 @import url("../custom_css/font_inter.css");
 @import url("../custom_css/custom_pagy.css");
+@import url("../custom_css/unpoly.css");
 
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-
-/* Unpoly progress bar styling */
-up-progress-bar {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 4px !important;
-  background-color: #e5e7eb !important;
-  z-index: 99999 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-up-progress-bar::before {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: #2563eb !important;
-  transform-origin: 0% !important;
-  animation: up-progress-bar-indeterminate 2s infinite linear !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-@keyframes up-progress-bar-indeterminate {
-  0% {
-    transform: translateX(-100%) scaleX(0);
-  }
-  50% {
-    transform: translateX(0%) scaleX(0.5);
-  }
-  100% {
-    transform: translateX(100%) scaleX(0);
-  }
-}
 
 @theme {
   --color-primary-50: #eff6ff;
