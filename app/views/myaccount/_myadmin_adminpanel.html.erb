@@ -36,6 +36,21 @@
   </section>
   <section>
     <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+      Slow page
+    </h2>
+    <div class="mb-8 flex gap-8  mt-2">
+      <div class="flex-1">
+        <div class="text-neutral-700">
+          Simulate a slow network query
+        </div>
+        <div class="mt-2 flex">
+          <%= button_to "Simulate Slow Query", myaccount_adminpanel_simulate_slow_query_path, class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
       System Management
     </h2>
     <div class="mb-8 flex gap-8  mt-2">

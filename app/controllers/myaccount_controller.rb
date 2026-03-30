@@ -68,7 +68,17 @@ class MyaccountController < ApplicationController
   grant_access action: :trigger_division_by_zero, roles: [ :superadmin ]
   # @route POST /myaccount/adminpanel/trigger_division_by_zero (myaccount_trigger_division_by_zero)
   def trigger_division_by_zero
-    result = 1 / 0
+    1 / 0
+  end
+
+  require_auth action: :simulate_slow_query
+  grant_access action: :simulate_slow_query, roles: [ :superadmin ]
+  # @route POST /myaccount/adminpanel/simulate_slow_query (myaccount_simulate_slow_query)
+  def simulate_slow_query
+    # :nocov:
+    sleep 2
+    redirect_to myaccount_adminpanel_path, notice: "slow query simulated"
+    # :nocov:
   end
 
   require_auth action: :destroy_account
