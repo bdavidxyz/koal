@@ -11,5 +11,5 @@ up.form.config.submitSelectors.push("form");
 up.link.config.instantSelectors.push("a[href]");
 
 // disable/enable logs for Unpoly
-up.log.disable();
+up.log.enable();
 up.fragment.config.autoFocus = "keep";
