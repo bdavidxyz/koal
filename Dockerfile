@@ -65,7 +65,7 @@ COPY --from=build /app .
 RUN mkdir -p storage log tmp
 
 # Expose port
-EXPOSE 3031
+EXPOSE 3000
 
 # Environment variables
 ENV RAILS_ENV=production

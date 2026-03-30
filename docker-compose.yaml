@@ -13,10 +13,8 @@ services:
       [
         "sh",
         "-c",
-        "bundle install --jobs 1 && RAILS_ENV=production bundle exec rails assets:precompile && rails db:migrate && rails db:seed && exec ./bin/thrust bin/rails server -b '0.0.0.0' -p ${PORT:-3031}",
+        "bundle install --jobs 1 && RAILS_ENV=production bundle exec rails assets:precompile && rails db:migrate && rails db:seed && exec ./bin/thrust bin/rails server -b '0.0.0.0' -p ${PORT:-3000}",
       ]
-    ports:
-      - "3031:3031"
     volumes:
       # Persist SQLite databases and assets
       - koal_storage:/app/storage
@@ -27,14 +25,13 @@ services:
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_LOG_TO_STDOUT=true
       - RAILS_MAX_THREADS=3
-      - PORT=3031
       # Database (using SQLite, no env vars needed as it's file-based)
       # SMTP Configuration
       - SMTP_SERVER=${SMTP_SERVER:-}
       - SMTP_PORT=${SMTP_PORT:-587}
       - SMTP_USERNAME=${SMTP_USERNAME:-}
       - SMTP_PASSWORD=${SMTP_PASSWORD:-}
-      - APPLICATION_HOST=${APPLICATION_HOST:-localhost:3031}
+      - APPLICATION_HOST=${APPLICATION_HOST:-localhost:3000}
       - EMAIL_DEFAULT_FROM=${EMAIL_DEFAULT_FROM:-noreply@example.com}
       - EMAIL_REPORT_EXCEPTION_TO=${EMAIL_REPORT_EXCEPTION_TO:-noreply@example.com}
     restart: unless-stopped
