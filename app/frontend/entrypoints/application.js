@@ -13,3 +13,23 @@ up.link.config.instantSelectors.push("a[href]");
 // disable/enable logs for Unpoly
 up.log.enable();
 up.fragment.config.autoFocus = "keep";
+
+// configure progress bar to appear after 500ms delay
+up.network.config.lateDelay = 500;
+
+// show global loading spinner during any network request
+up.on("up:network:late", function () {
+  const spinner = document.getElementById("global-loading-spinner");
+  if (spinner) {
+    spinner.classList.remove("hidden");
+  }
+});
+
+up.on("up:network:recover", function () {
+  const spinner = document.getElementById("global-loading-spinner");
+  if (spinner) {
+    spinner.classList.add("hidden");
+  }
+});
+
+// keep Unpoly progress bar enabled (shown at top of page after 500ms)
