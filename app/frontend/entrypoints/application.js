@@ -15,7 +15,7 @@ up.log.enable();
 up.fragment.config.autoFocus = "keep";
 
 // configure progress bar to appear after 500ms delay
-up.network.config.lateDelay = 500;
+up.network.config.lateDelay = 200;
 
 // show global loading spinner during any network request
 up.on("up:network:late", function () {
