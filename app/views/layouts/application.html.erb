@@ -8,6 +8,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= yield :head %>
+    <% if controller_name == 'sessions' && action_name == 'new' %>
+      <style>
+        body { background: #fafafa; }
+      </style>
+    <% end %>
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -27,33 +32,37 @@
     <div id="global-loading-spinner" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 hidden">
       <div class="w-8 h-8 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>
     </div>
-    <%= render 'shared/navbar' %>
+    <%- unless controller_name == 'sessions' && action_name == 'new' -%>
+      <%= render 'shared/navbar' %>
+    <%- end -%>
     <main id="main" class="main <%= request.path.include?('myaccount') ? 'bg-gray-50' : '' %> flex-grow">
       <%= yield %>
     </main>
-  <footer class="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 mt-auto">
-      <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+    <%- unless controller_name == 'sessions' && action_name == 'new' -%>
+      <footer class="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 mt-auto">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
           <div class="sm:flex sm:items-center sm:justify-between">
-              <%= render 'shared/brand_logo'%>
-              <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                  <li>
-                      <a href="#" class="hover:underline me-4 md:me-6">About</a>
-                  </li>
-                  <li>
-                      <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-                  </li>
-                  <li>
-                      <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-                  </li>
-                  <li>
-                      <a href="#" class="hover:underline">Contact</a>
-                  </li>
-              </ul>
+            <%= render 'shared/brand_logo'%>
+            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+              <li>
+                <a href="#" class="hover:underline me-4 md:me-6">About</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline">Contact</a>
+              </li>
+            </ul>
           </div>
           <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="/styleguide" class="hover:underline">Koal™</a>. All Rights Reserved.</span>
-      </div>
-  </footer>
+        </div>
+      </footer>
+    <%- end -%>
     <%= debugbar_body if defined? Debugbar %>
   </body>
 </html>

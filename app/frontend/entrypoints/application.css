@@ -10,18 +10,65 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  /* Shadcn zinc color palette */
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-800: #27272a;
+  --color-zinc-900: #18181b;
+  --color-zinc-950: #09090b;
 
-  --color-primary: var(--color-primary-700);
+  /* Shadcn primary color (zinc-900 for dark, zinc-50 for light in dark mode) */
+  --color-primary-50: #fafafa;
+  --color-primary-100: #f4f4f5;
+  --color-primary-200: #e4e4e7;
+  --color-primary-300: #d4d4d8;
+  --color-primary-400: #a1a1aa;
+  --color-primary-500: #71717a;
+  --color-primary-600: #52525b;
+  --color-primary-700: #3f3f46;
+  --color-primary-800: #27272a;
+  --color-primary-900: #18181b;
+  --color-primary-950: #09090b;
+
+  --color-primary: var(--color-zinc-900);
+  --color-primary-foreground: var(--color-zinc-50);
+
+  /* Shadcn input ring color */
+  --color-ring: var(--color-zinc-400);
+
+  /* Border colors */
+  --color-border: var(--color-zinc-200);
+  --color-input: var(--color-zinc-200);
+
+  /* Background colors */
+  --color-background: #ffffff;
+  --color-foreground: var(--color-zinc-900);
+
+  /* Card colors */
+  --color-card: #ffffff;
+  --color-card-foreground: var(--color-zinc-900);
+
+  /* Muted colors for secondary text */
+  --color-muted: var(--color-zinc-100);
+  --color-muted-foreground: var(--color-zinc-500);
+
+  /* Accent colors */
+  --color-accent: var(--color-zinc-100);
+  --color-accent-foreground: var(--color-zinc-900);
+
+  /* Destructive colors */
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+
+  /* Additional shadcn theme variables */
+  --color-secondary: var(--color-zinc-100);
+  --color-secondary-foreground: var(--color-zinc-900);
 
   --font-sans:
     "Inter", "ui-sans-serif", "system-ui", "-apple-system", "system-ui",
@@ -35,6 +82,9 @@
     "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
     "Liberation Mono", "Courier New", "monospace";
   --font-heading: "Geist", ui-serif, serif;
+
+  /* Radius */
+  --radius: 0.625rem;
 }
 
 @layer base {

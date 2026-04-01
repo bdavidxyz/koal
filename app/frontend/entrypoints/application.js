@@ -2,6 +2,9 @@ import "unpoly/unpoly.js";
 
 import "../up_compiler/all.js";
 
+// configure Unpoly to replace the whole body by default instead of just the main tag
+up.fragment.config.mainTargets = ["body"];
+
 // config links for Unpoly
 up.link.config.followSelectors.push("a[href]");
 up.link.config.preloadSelectors.push("a[href]");
