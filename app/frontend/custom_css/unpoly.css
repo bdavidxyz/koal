@@ -19,7 +19,7 @@ up-progress-bar::before {
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  background-color: #2563eb !important;
+  background-color: var(--color-zinc-900) !important;
   transform-origin: 0% !important;
   animation: up-progress-bar-indeterminate 2s infinite linear !important;
   display: block !important;
