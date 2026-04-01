@@ -1,7 +1,7 @@
 <%# locals: (admin_activation: nil, account_activation: "dashboard") %>
 <% is_superadmin = current_user.has_role?(:superadmin) %>
 <aside class="w-full lg:w-64 shrink-0" aria-label="Sidebar">
-  <div class="overflow-y-auto py-4 px-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
+  <div id="zesidebar" class="overflow-y-auto py-4 px-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
     <!-- User Profile Section -->
     <div class="flex items-center p-4 mb-4 border-b border-zinc-200 dark:border-zinc-800">
       <div class="flex-shrink-0">
