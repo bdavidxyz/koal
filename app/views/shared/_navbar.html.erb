@@ -19,10 +19,10 @@
           <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="#">Customers</a></li>
           <li><a class="md:p-4 py-2 block hover:text-primary font-base" href="/blogposts">Blog</a></li>
           <% if Current&.user&.email&.present? %>
-            <li class="flex items-center justify-start md:justify-center md:ms-4"><a class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" href="/myaccount">My account</a></li>
+            <li class="flex items-center justify-start md:justify-center md:ms-4"><a class="cursor-pointer text-white bg-gray-900 hover:bg-gray-900/90 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] font-medium rounded-md text-sm px-5 py-2" href="/myaccount">My account</a></li>
           <% else %>
             <li class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-4 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" href="/sign_in">Log in</a></li>
-            <li class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2" href="/sign_up">Sign Up</a></li>
+            <li class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-white bg-gray-900 hover:bg-gray-900/90 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] font-medium rounded-md text-sm px-5 py-2" href="/sign_up">Sign Up</a></li>
           <% end %>
         </ul>
       </div>
