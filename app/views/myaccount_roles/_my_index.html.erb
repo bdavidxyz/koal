@@ -1,4 +1,4 @@
-<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-8 h-full space-y-4">
+<div class="table-scroll p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-8 h-full space-y-4">
 
   <!-- Header row -->
   <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -26,13 +26,54 @@
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold">Action</th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold">Id</th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold">Name</th>
+          <%
+            col = 'created_at'
+            is_sorted_asc  = params[:sort] == col && params[:direction] == 'asc'
+            is_sorted_desc = params[:sort] == col && params[:direction] == 'desc'
+          %>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
-            <a href="?<%= build_href_to_sort('created_at', request.query_parameters) %>" class="inline-flex items-center gap-1.5 cursor-pointer hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
-              Created at
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/>
-              </svg>
-            </a>
+            <div class="up_sort_dropdown relative inline-block">
+              <button data-sort-toggle class="inline-flex items-center gap-1.5 cursor-pointer hover:text-gray-900 dark:hover:text-gray-100 transition-colors font-bold text-sm">
+                Created at
+                <% if is_sorted_asc %>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                <% elsif is_sorted_desc %>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                <% else %>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+                <% end %>
+              </button>
+              <div data-sort-menu class="hidden absolute top-full left-0 mt-1 z-50 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md shadow-md min-w-[130px] py-1">
+                <a href="?<%= build_sort_direction_href(col, 'asc', request.query_parameters) %>"
+                   class="flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                   up-target=".table-scroll" up-history="true">
+                  <span class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                    Asc
+                  </span>
+                  <% if is_sorted_asc %>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <% end %>
+                </a>
+                <a href="?<%= build_sort_direction_href(col, 'desc', request.query_parameters) %>"
+                   class="flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                   up-target=".table-scroll" up-history="true">
+                  <span class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    Desc
+                  </span>
+                  <% if is_sorted_desc %>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <% end %>
+                </a>
+                <a href="?<%= build_sort_reset_href(request.query_parameters) %>"
+                   class="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                   up-target=".table-scroll" up-history="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                  Reset
+                </a>
+              </div>
+            </div>
           </th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
             <a href="?<%= build_href_to_sort('updated_at', request.query_parameters) %>" class="inline-flex items-center gap-1.5 cursor-pointer hover:text-gray-900 dark:hover:text-gray-100 transition-colors">

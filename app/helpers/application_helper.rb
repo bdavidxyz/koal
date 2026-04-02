@@ -17,4 +17,18 @@ module ApplicationHelper
     query_string = query_copy.map { |key, value| "#{key}=#{value}" }.join("&")
     query_string
   end
+
+  def build_sort_direction_href(column, direction, query_params)
+    query_copy = query_params.map { |k, v| [ k, v ] }.to_h
+    query_copy["sort"] = column
+    query_copy["direction"] = direction
+    query_copy.map { |key, value| "#{key}=#{value}" }.join("&")
+  end
+
+  def build_sort_reset_href(query_params)
+    query_copy = query_params.map { |k, v| [ k, v ] }.to_h
+    query_copy.delete("sort")
+    query_copy.delete("direction")
+    query_copy.map { |key, value| "#{key}=#{value}" }.join("&")
+  end
 end
