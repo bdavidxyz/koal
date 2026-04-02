@@ -1,67 +1,66 @@
 .pagy {
   display: inline-flex;
-  position: relative;
-  border-radius: 0.375rem; /* rounded-md */
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-xs */
-  overflow: hidden;
+  align-items: center;
+  gap: 0.25rem; /* gap-1 */
 }
 
-.pagy a, 
+.pagy a,
 .pagy span {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem .5rem; /* py-2 px-4 */
+  min-width: 2.25rem; /* h-9 w-9 */
+  height: 2.25rem;
+  padding: 0 0.5rem;
   font-size: 0.875rem; /* text-sm */
-  font-weight: 600; /* font-semibold */
+  font-weight: 400;
   text-decoration: none;
-  color: #111827; /* text-gray-900 */
-  background-color: white;
+  border-radius: 0.375rem; /* rounded-md */
+  border: 1px solid #e4e4e7; /* border-zinc-200 */
+  background-color: #ffffff;
+  color: #18181b; /* text-zinc-900 */
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+  cursor: pointer;
 }
 
-.pagy a:hover,
-.pagy span:hover {
-  background-color: #f9fafb; /* hover:bg-gray-50 */
+.pagy a:hover {
+  background-color: #fafafa; /* bg-zinc-50 */
 }
 
-.pagy a:focus,
-.pagy span:focus {
-  z-index: 20;
-  outline-offset: 0;
-}
-
-.pagy a.current {
-  background-color: #1447e6; /* bg-indigo-600 */
-  color: white;
-  z-index: 10;
-  border-radius: 6px;
-}
-
-.pagy a.current:focus-visible {
-  outline: 2px solid #1447e6; /* outline-indigo-600 */
+.pagy a:focus-visible {
+  outline: 2px solid #18181b; /* ring-zinc-900 */
   outline-offset: 2px;
 }
 
-.pagy span {
-  color: #374151; /* text-gray-700 */
+.pagy a.current {
+  background-color: #18181b; /* bg-zinc-900 */
+  color: #fafafa; /* text-zinc-50 */
+  border-color: #18181b;
+  font-weight: 500;
 }
 
-.pagy a:first-child {
-  border-top-left-radius: 0.375rem; /* rounded-l-md */
-  border-bottom-left-radius: 0.375rem;
-  padding: 0.5rem; /* px-2 py-2 */
-  color: #9ca3af; /* text-gray-400 */
+.pagy a.current:hover {
+  background-color: #27272a; /* bg-zinc-800 */
 }
 
-.pagy a:last-child {
-  border-top-right-radius: 0.375rem; /* rounded-r-md */
-  border-bottom-right-radius: 0.375rem;
-  padding: 0.5rem; /* px-2 py-2 */
-  color: #9ca3af; /* text-gray-400 */
+.pagy span.gap {
+  border: none;
+  background: transparent;
+  color: #71717a; /* text-zinc-500 */
+  cursor: default;
+  min-width: 2.25rem;
 }
 
-/* cache certains éléments en dessous de md */
+.pagy svg {
+  width: 1rem; /* size-4 */
+  height: 1rem;
+  fill: currentColor;
+}
+
+/* Hide gap on small screens */
 .pagy .gap {
   display: none;
 }
@@ -72,9 +71,32 @@
   }
 }
 
-/* Styles pour les icônes SVG dans les boutons Previous/Next */
-.pagy svg {
-  width: 1.25rem; /* size-5 */
-  height: 1.25rem;
-  fill: currentColor;
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .pagy a,
+  .pagy span {
+    border-color: #3f3f46; /* border-zinc-700 */
+    background-color: transparent;
+    color: #fafafa; /* text-zinc-50 */
+  }
+
+  .pagy a:hover {
+    background-color: #27272a; /* bg-zinc-800 */
+  }
+
+  .pagy a.current {
+    background-color: #fafafa; /* bg-zinc-50 */
+    color: #18181b; /* text-zinc-900 */
+    border-color: #fafafa;
+  }
+
+  .pagy a.current:hover {
+    background-color: #e4e4e7; /* bg-zinc-200 */
+  }
+
+  .pagy span.gap {
+    border: none;
+    background: transparent;
+    color: #71717a; /* text-zinc-500 */
+  }
 }
