@@ -36,7 +36,7 @@
     <main id="main" class="main <%= request.path.include?('myaccount') ? 'bg-gray-50' : '' %> flex-grow">
       <%= yield %>
     </main>
-    <%= render LayoutFooterComponent.new(controller_name: controller_name, action_name: action_name) %>
+    <%= render LayoutFooterComponent.new(controller_name: controller_name, action_name: action_name, request_path: request.path) %>
     <%= debugbar_body if defined? Debugbar %>
   </body>
 </html>
