@@ -1,4 +1,4 @@
-<div id="listof" class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10 h-full">
+<div id="listof" class="table-scroll p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10 h-full">
   <div class="sm:flex items-center justify-between mb-8">
     <h1 class="flex-1 text-2xl font-bold -tracking-wide">Blogposts</h1>
     <form class="search" up-target=".table-scroll" up-focus="#q" up-history="true" method="get">
@@ -12,13 +12,17 @@
       <thead>
         <tr>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Action</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Id</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Slug</th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
-            <a href="?<%= build_href_to_sort('created_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Created at</a>
+            <%= render SortDropdownComponent.new(column: 'id', label: 'Id', query_params: request.query_parameters) %>
           </th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
-            <a href="?<%= build_href_to_sort('updated_at', request.query_parameters) %>" class="cursor-pointer hover:underline">Updated at</a>
+            <%= render SortDropdownComponent.new(column: 'slug', label: 'Slug', query_params: request.query_parameters) %>
+          </th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+            <%= render SortDropdownComponent.new(column: 'created_at', label: 'Created at', query_params: request.query_parameters) %>
+          </th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+            <%= render SortDropdownComponent.new(column: 'updated_at', label: 'Updated at', query_params: request.query_parameters) %>
           </th>
         </tr>
       </thead>
@@ -44,7 +48,12 @@
       </tbody>
     </table>
   </div>
-  <ul class="mt-6">
-    <%== pagy_nav(@pagy) %>
-  </ul>
+  <div class="flex items-center justify-between px-1 mt-6">
+    <p class="text-sm text-gray-500 dark:text-gray-400">
+      Showing <%= @pagy.from %>–<%= @pagy.to %> of <%= @pagy.count %> rows
+    </p>
+    <ul class="flex items-center">
+      <%== pagy_nav(@pagy) %>
+    </ul>
+  </div>
 </div>

@@ -44,7 +44,12 @@
       </tbody>
     </table>
   </div>
-  <ul class="mt-6">
-    <%== pagy_nav(@pagy) %>
-  </ul>
+  <div class="flex items-center justify-between px-1 mt-6">
+    <p class="text-sm text-gray-500 dark:text-gray-400">
+      Showing <%= @pagy.from %>–<%= @pagy.to %> of <%= @pagy.count %> rows
+    </p>
+    <ul class="flex items-center">
+      <%== pagy_nav(@pagy) %>
+    </ul>
+  </div>
 </div>
