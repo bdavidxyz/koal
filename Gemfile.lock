@@ -81,7 +81,7 @@ GEM
     awesome_print (1.9.2)
     base64 (0.3.0)
     bcrypt (3.1.22)
-    bigdecimal (3.3.1)
+    bigdecimal (4.1.0)
     bindex (0.8.1)
     bootsnap (1.23.0)
       msgpack (~> 1.2)
@@ -115,7 +115,7 @@ GEM
       dotenv (= 3.2.0)
       railties (>= 6.1)
     drb (2.2.3)
-    dry-cli (1.3.0)
+    dry-cli (1.4.1)
     dry-configurable (1.3.0)
       dry-core (~> 1.1)
       zeitwerk (~> 2.6)
@@ -129,8 +129,8 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.1)
       zeitwerk (~> 2.6)
-    dry-types (1.8.3)
-      bigdecimal (~> 3.0)
+    dry-types (1.9.1)
+      bigdecimal (>= 3.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0)
       dry-inflector (~> 1.0)
@@ -243,7 +243,7 @@ GEM
       dry-types (~> 1.7)
       rails (>= 7.1, < 8.2)
     racc (1.8.1)
-    rack (3.2.5)
+    rack (3.2.6)
     rack-proxy (0.7.7)
       rack
     rack-session (2.1.1)
@@ -397,10 +397,10 @@ GEM
       actionview (>= 7.1.0)
       activesupport (>= 7.1.0)
       concurrent-ruby (~> 1)
-    vite_rails (3.0.19)
+    vite_rails (3.10.0)
       railties (>= 5.1, < 9)
       vite_ruby (~> 3.0, >= 3.2.2)
-    vite_ruby (3.9.2)
+    vite_ruby (3.10.2)
       dry-cli (>= 0.7, < 2)
       logger (~> 1.6)
       mutex_m
@@ -463,7 +463,7 @@ DEPENDENCIES
   thruster
   tzinfo-data
   view_component
-  vite_rails (= 3.0.19)
+  vite_rails (= 3.10.0)
   web-console
 
 RUBY VERSION
