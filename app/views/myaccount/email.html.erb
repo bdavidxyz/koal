@@ -1,9 +1,1 @@
-<%= render "shared/breadcrumb" %>
-<div class="flex flex-wrap items-stretch lg:px-4 bg-gray-50">
-  <div class="w-full lg:w-64 mr-4 lg:p-4">
-    <%= render "dashboard_sidebar", account_activation: "email" %>
-  </div>
-  <div class="w-full lg:flex-1 lg:p-4">
-    <%= render "myaccount_email", user: user %>
-  </div>
-</div>
+<%= render "dashboard_shell", account_activation: "email", content: capture { render "myaccount_email", user: user } %>

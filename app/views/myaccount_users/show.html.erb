@@ -1,9 +1,1 @@
-<%= render "shared/breadcrumb" %>
-<div class="flex flex-wrap items-stretch lg:px-4 bg-gray-50">
-  <div class="w-full lg:w-64 mr-4 lg:p-4">
-    <%= render "myaccount/dashboard_sidebar", admin_activation: "users", account_activation: "none" %>
-  </div>
-  <div class="w-full lg:flex-1 lg:p-4">
-    <%= render "my_show" %>
-  </div>
-</div>
+<%= render "myaccount/dashboard_shell", admin_activation: "users", account_activation: "none", content: capture { render "my_show" } %>
