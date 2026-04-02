@@ -24,18 +24,17 @@
       <thead>
         <tr class="border-b border-gray-200">
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold">Action</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">Id</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">Name</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
+            <%= render SortDropdownComponent.new(column: 'id', label: 'Id', query_params: request.query_parameters) %>
+          </th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
+            <%= render SortDropdownComponent.new(column: 'name', label: 'Name', query_params: request.query_parameters) %>
+          </th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
             <%= render SortDropdownComponent.new(column: 'created_at', label: 'Created at', query_params: request.query_parameters) %>
           </th>
           <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
-            <a href="?<%= build_href_to_sort('updated_at', request.query_parameters) %>" class="inline-flex items-center gap-1.5 cursor-pointer hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
-              Updated at
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/>
-              </svg>
-            </a>
+            <%= render SortDropdownComponent.new(column: 'updated_at', label: 'Updated at', query_params: request.query_parameters) %>
           </th>
         </tr>
       </thead>
