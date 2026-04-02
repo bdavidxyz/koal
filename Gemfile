@@ -93,3 +93,6 @@ gem "ostruct"
 
 # Markdown parser
 gem "kramdown"
+
+# View components
+gem "view_component"

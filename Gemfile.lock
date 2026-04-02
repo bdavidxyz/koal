@@ -393,6 +393,10 @@ GEM
     unicode-emoji (4.0.4)
     uri (1.1.1)
     useragent (0.16.11)
+    view_component (4.6.0)
+      actionview (>= 7.1.0)
+      activesupport (>= 7.1.0)
+      concurrent-ruby (~> 1)
     vite_rails (3.0.19)
       railties (>= 5.1, < 9)
       vite_ruby (~> 3.0, >= 3.2.2)
@@ -458,6 +462,7 @@ DEPENDENCIES
   sqlite3 (>= 1.4)
   thruster
   tzinfo-data
+  view_component
   vite_rails (= 3.0.19)
   web-console
 
