@@ -1,54 +1,68 @@
-<div class="table-scroll p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10 h-full">
-  <div class="sm:flex items-center justify-between mb-8">
-    <h1 class="flex-1 text-2xl font-bold -tracking-wide">Users</h1>
-    <form class="search" up-target=".table-scroll" up-focus="#q" up-history="true" method="get">
-      <input type="hidden" name="page" id="page" value="<%= params[:page] || 1 %>" autocomplete="off">
-      <input type="search" name="q" id="q" placeholder="Search" value="<%= params[:q] %>" class="appearance-none bg-[#fff] rounded-[.375rem] [box-shadow:inset_0_0_0_1px_#9ca3af] leading-[1.85rem] px-[.75rem] py-[.190rem]">
-    </form>
-    <%= link_to "New user", myaccount_user_new_path, class: "inline-flex items-center justify-center leading-4.5 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-2 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
+<div class="table-scroll p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-8 h-full space-y-4">
+
+  <!-- Header row -->
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <h1 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">Users</h1>
+    <div class="flex items-center gap-2">
+      <form class="search" up-target=".table-scroll" up-focus="#q" up-history="true" method="get">
+        <input type="hidden" name="page" id="page" value="<%= params[:page] || 1 %>" autocomplete="off">
+        <div class="relative">
+          <svg class="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input type="search" name="q" id="q" placeholder="Filter users..." value="<%= params[:q] %>"
+                 class="h-9 w-44 rounded-md border border-gray-200 bg-white pl-8 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-0 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
+        </div>
+      </form>
+      <%= link_to "New user", myaccount_user_new_path, class: "inline-flex items-center justify-center h-9 rounded-md bg-gray-900 px-4 text-sm font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 transition-colors whitespace-nowrap dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200" %>
+    </div>
   </div>
-  <div class="">
-    <table class="min-w-full divide-y divide-gray-200">
+
+  <!-- Table -->
+  <div class="rounded-md border border-gray-200 overflow-x-auto">
+    <table class="w-full caption-bottom text-sm">
       <thead>
-        <tr>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">Action</th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+        <tr class="border-b border-gray-200">
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">Action</th>
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
             <%= render SortDropdownComponent.new(column: 'email', label: 'Email', query_params: request.query_parameters) %>
           </th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
             <%= render SortDropdownComponent.new(column: 'verified', label: 'Verified?', query_params: request.query_parameters) %>
           </th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
             <%= render SortDropdownComponent.new(column: 'created_at', label: 'Created at', query_params: request.query_parameters) %>
           </th>
-          <th scope="col" class="px-6 py-3 text-start text-sm font-bold bg-gray-100">
+          <th scope="col" class="px-6 py-3 text-start text-sm font-bold">
             <%= render SortDropdownComponent.new(column: 'updated_at', label: 'Updated at', query_params: request.query_parameters) %>
           </th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-200">
+      <tbody>
         <% @users.each do |user| %>
-          <tr>
-            <td class="py-2 text-xs pl-4">
-              <%= link_to "Edit", myaccount_user_edit_path(user.slug), class: "cursor-pointer text-white bg-gray-900 hover:bg-gray-900/90 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
-              <%= link_to "Show", myaccount_user_show_path(user.slug), class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
+          <tr class="border-b border-gray-200 last:border-b-0 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-colors">
+            <td class="px-4 py-3 align-middle whitespace-nowrap">
+              <%= link_to "Edit", myaccount_user_edit_path(user.slug), class: "inline-flex items-center justify-center h-7 rounded-md bg-gray-900 px-3 text-xs font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-1 transition-colors mr-1.5 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200" %>
+              <%= link_to "Show", myaccount_user_show_path(user.slug), class: "inline-flex items-center justify-center h-7 rounded-md border border-gray-200 bg-white px-3 text-xs font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-1 transition-colors dark:border-gray-700 dark:bg-transparent dark:text-gray-300 dark:hover:bg-gray-800" %>
             </td>
-            <td class="py-2 text-xs pl-6"><%= user.email %></td>
-            <td class="py-2 text-xs pl-6"><%= user.verified %></td>
-            <td class="py-2 text-xs pl-6">
-              <div><%= user.created_at.strftime('%-d %b %Y') %></div>
-              <div><%= user.created_at.strftime('%H:%M:%S') %></div>
+            <td class="px-4 py-3 align-middle text-gray-900 dark:text-gray-100 whitespace-nowrap"><%= user.email %></td>
+            <td class="px-4 py-3 align-middle text-gray-900 dark:text-gray-100 whitespace-nowrap"><%= user.verified %></td>
+            <td class="px-4 py-3 align-middle whitespace-nowrap">
+              <div class="text-gray-900 dark:text-gray-100"><%= user.created_at.strftime('%-d %b %Y') %></div>
+              <div class="text-xs text-gray-400 dark:text-gray-500"><%= user.created_at.strftime('%H:%M:%S') %></div>
             </td>
-            <td class="py-2 text-xs pl-6">
-              <div><%= user.updated_at.strftime('%-d %b %Y') %></div>
-              <div><%= user.updated_at.strftime('%H:%M:%S') %></div>
+            <td class="px-4 py-3 align-middle whitespace-nowrap">
+              <div class="text-gray-900 dark:text-gray-100"><%= user.updated_at.strftime('%-d %b %Y') %></div>
+              <div class="text-xs text-gray-400 dark:text-gray-500"><%= user.updated_at.strftime('%H:%M:%S') %></div>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-  <div class="flex items-center justify-between px-1 mt-6">
+
+  <!-- Footer -->
+  <div class="flex items-center justify-between px-1">
     <p class="text-sm text-gray-500 dark:text-gray-400">
       Showing <%= @pagy.from %>–<%= @pagy.to %> of <%= @pagy.count %> rows
     </p>
@@ -56,4 +70,5 @@
       <%== pagy_nav(@pagy) %>
     </ul>
   </div>
+
 </div>
