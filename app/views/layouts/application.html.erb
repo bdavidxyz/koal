@@ -32,15 +32,11 @@
     <div id="global-loading-spinner" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 hidden">
       <div class="w-8 h-8 border-4 border-zinc-300 border-t-zinc-900 rounded-full animate-spin"></div>
     </div>
-    <% if show_layout_navigation? %>
-      <%= render 'shared/navbar' %>
-    <% end %>
+    <%= render LayoutNavbarComponent.new(controller_name: controller_name, action_name: action_name) %>
     <main id="main" class="main <%= request.path.include?('myaccount') ? 'bg-gray-50' : '' %> flex-grow">
       <%= yield %>
     </main>
-    <% if show_layout_navigation? %>
-      <%= render 'shared/footer' %>
-    <% end %>
+    <%= render LayoutFooterComponent.new(controller_name: controller_name, action_name: action_name) %>
     <%= debugbar_body if defined? Debugbar %>
   </body>
 </html>
