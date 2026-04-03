@@ -1,12 +1,14 @@
-<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10">
-  <div class="sm:flex items-center justify-between mb-8">
-    <h1 class="flex-1 text-2xl font-bold -tracking-wide">Edit <%= params[:slug] %></h1>
+<div class="h-full space-y-4">
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <h1 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">Edit <%= params[:slug] %></h1>
   </div>
+  <div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10">
   <div class="">
     <%= render "my_form",
       target_user: @user,
       target_url: myaccount_user_update_path,
       target_method: :put,
       target_submit: "Update User" %>
+  </div>
   </div>
 </div>
