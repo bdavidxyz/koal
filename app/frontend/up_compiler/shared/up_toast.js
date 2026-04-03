@@ -5,9 +5,9 @@ up.compiler(".up_toast", function (element, data) {
     text: data.msg,
     progressBar: true,
     progressBarStyle: {
-      background: "gray",
-      barBackground: data.color || "#1d4ed8",
-      height: "5px",
+      background: "#3f3f46",
+      barBackground: data.color || "#ffffff",
+      height: "4px",
     },
     progressBarPosition: "bottom",
     duration: 5000,
