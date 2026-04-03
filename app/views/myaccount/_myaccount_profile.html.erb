@@ -1,46 +1,41 @@
 <%# locals: (user:) %>
-<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10 h-full">
-  <div class="sm:flex items-center justify-between mb-5">
-    <h1 class="flex-1 text-2xl font-bold -tracking-wide">Edit profile</h1>
+<div class="p-6 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl h-full">
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Edit profile</h1>
   </div>
-  <section class="">
+  <section>
     <%= form_with(url: password_path, method: :patch, html: { 'up-submit': true }) do |form| %>
       <% if user.errors.any? %>
-        <div style="color: red">
-          <h2><%= pluralize(user.errors.count, "error") %> occured:</h2>
-          <ul>
+        <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <h2 class="text-sm font-semibold text-red-800"><%= pluralize(user.errors.count, "error") %> occurred:</h2>
+          <ul class="mt-1 text-sm text-red-700 list-disc list-inside">
             <% user.errors.each do |error| %>
               <li><%= error.full_message %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-      <div>
-        <%= form.label :current_avatar, "Avatar",  style: "display: block", class: "font-medium text-sm text-gray-700" %>
-      </div>
-      <div class="text-sm text-neutral-600 ">
-        <img src="/img/avatardefault.svg" alt="Avatar" class="rounded-full w-12 border border-gray-400" />
-        <div class="mt-2">
-          The avatar cannot be changed (yet)
+      <div class="space-y-6">
+        <div>
+          <%= form.label :current_avatar, "Avatar", class: "block text-sm font-medium text-gray-900 dark:text-gray-100" %>
+          <img src="/img/avatardefault.svg" alt="Avatar" class="rounded-full w-12 h-12 border border-gray-300" />
+          <p class="mt-2 text-sm text-stone-500">The avatar cannot be changed yet.</p>
         </div>
-      </div>
-      <div class="mt-6">
-        <%= form.label :full_name, "Full Name", style: "display: block", class: "font-medium text-sm text-gray-700" %>
-        <%= form.text_field :full_name, required: true, autocomplete: "new-password", placeholder: "Full Name", class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3" %>
-      </div>
-      <div class="mt-6">
-        <%= form.label :email, "Email", style: "display: block", class: "font-medium text-sm text-gray-700" %>
-        <%= form.email_field :email, required: true, autocomplete: "email", placeholder: "Email", readonly: "true", value: Current.user.email, class: "cursor-not-allowed text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-400 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-92 py-1 px-3 bg-gray-50" %>
-      </div>
-      <div class="mt-2">
-        <%= link_to Current.user.verified? ? "Change email" : "⚠ Verify email", myaccount_email_path, class: "cursor-pointer font-medium text-blue-600 hover:underline" %>
-      </div>
-      <div class="mt-8">
-        <div class="flex">
-          <div class="">
-            <%= form.submit "Save changes", class: "cursor-pointer text-white bg-gray-900 hover:bg-gray-900/90 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] font-medium rounded-md text-sm px-5 py-2" %>
+        <div>
+          <%= form.label :full_name, "Full Name", class: "block text-sm font-medium text-gray-900 dark:text-gray-100" %>
+          <%= form.text_field :full_name, required: true, autocomplete: "new-password", placeholder: "Full Name", class: "text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-700 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-full py-1 px-3" %>
+          <p class="mt-2 text-sm text-stone-500">This is the name that will be displayed on your profile.</p>
+        </div>
+        <div>
+          <%= form.label :email, "Email", class: "block text-sm font-medium text-gray-900 dark:text-gray-100" %>
+          <%= form.email_field :email, required: true, autocomplete: "email", placeholder: "Email", readonly: "true", value: Current.user.email, class: "cursor-not-allowed text-sm placeholder:text-sm placeholder:font-base placeholder:text-neutral-500 shadow-[0_1px_2px_#0000000d] border border-gray-300 text-neutral-400 rounded-md focus:border-2 focus:border-primary-400 focus:outline-none w-full py-1 px-3 bg-gray-50" %>
+          <div class="mt-2">
+            <%= link_to Current.user.verified? ? "Go to email modification" : "⚠ Verify email", myaccount_email_path, class: "cursor-pointer inline-block text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 font-medium rounded-md text-sm px-4 py-1.5" %>
           </div>
-          <div class="flex items-center justify-start md:justify-center"><a class="cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 md:ms-4 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" href="/myaccount/danger">Go to account deletion page</a></div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <%= form.submit "Save changes", class: "cursor-pointer text-white bg-gray-900 hover:bg-gray-900/90 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] font-medium rounded-md text-sm px-5 py-2" %>
+          <a class="cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-50 font-medium rounded-md text-sm px-5 py-2" href="/myaccount/danger">Go to account deletion page</a>
         </div>
       </div>
     <% end %>
