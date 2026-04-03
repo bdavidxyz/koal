@@ -1,4 +1,4 @@
-up.compiler("#logout button", function (element) {
+export function up_logout(element) {
   function handleClick() {
     element.style.cursor = "default";
     element.classList.remove("cursor-pointer");
@@ -11,4 +11,8 @@ up.compiler("#logout button", function (element) {
   return () => {
     element.removeEventListener("click", handleClick);
   };
-});
+}
+
+if (typeof up !== "undefined") {
+  up.compiler("#logout button", up_logout);
+}
