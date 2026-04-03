@@ -13,6 +13,4 @@ export function up_logout(element) {
   };
 }
 
-if (typeof up !== "undefined") {
-  up.compiler("#logout button", up_logout);
-}
+up.compiler("#logout button", up_logout);
