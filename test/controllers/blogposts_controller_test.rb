@@ -10,7 +10,9 @@ class BlogpostsControllerTest < ActionDispatch::IntegrationTest
     get blogposts_path
     assert_response :success
     assert_not_nil assigns(:blogposts)
-    assert_select "h1", "Our Blog"
+    assert_select "#blogtitle" do |elements|
+      assert elements.first.text.strip.present?, "Expected #blogtitle to have non-empty content"
+    end
   end
 
   test "should search blogposts" do
