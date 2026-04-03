@@ -12,19 +12,19 @@
     "vite-plugin-ruby": "^5.1.1"
   },
   "scripts": {
-    "test": "node --test app/frontend/jstest/**/*.test.js",
-    "test:coverage": "c8 --reports-dir=coveragejs --reporter=text node --test app/frontend/jstest/**/*.test.js",
-    "test:coverage:html": "c8 --reports-dir=coveragejs --reporter=html node --test app/frontend/jstest/**/*.test.js && echo '\nHTML coverage report generated at: coveragejs/index.html'"
+    "test": "node --experimental-test-module-mocks --test app/frontend/jstest/**/*.test.js",
+    "test:coverage": "c8 --reports-dir=coveragejs --reporter=text node --experimental-test-module-mocks --test app/frontend/jstest/**/*.test.js",
+    "test:coverage:html": "c8 --reports-dir=coveragejs --reporter=html node --experimental-test-module-mocks --test app/frontend/jstest/**/*.test.js && echo '\nHTML coverage report generated at: coveragejs/index.html'"
   },
   "c8": {
     "include": [
-      "app/frontend/up_compiler/**/*.js",
-      "app/frontend/custom_js/**/*.js"
+      "app/frontend/up_compiler/**/*.js"
     ],
     "exclude": [
       "**/*.test.js",
       "**/*.spec.js",
-      "app/frontend/jstest/**"
+      "app/frontend/jstest/**",
+      "app/frontend/up_compiler/all.js"
     ],
     "all": true,
     "reporter": [
@@ -39,7 +39,7 @@
     "choices.js": "^11.1.0",
     "esbuild": ">=0.25.0",
     "tailwindcss": "^4.1.4",
-    "unpoly": "3.10.2"
+    "unpoly": "3.14.1"
   },
   "engines": {
     "node": "22.x"
