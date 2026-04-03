@@ -5,6 +5,6 @@ class HomeTest < ApplicationSystemTestCase
   test "visiting the homepage shows a heading" do
     visit root_path
 
-    assert_selector "h1", text: /customers/
+    assert_selector "h1", text: /faster/
   end
 end
