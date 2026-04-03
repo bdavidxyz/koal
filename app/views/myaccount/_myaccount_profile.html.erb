@@ -1,8 +1,9 @@
 <%# locals: (user:) %>
-<div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl h-full lg:p-10">
-  <div class="mb-8">
-    <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Edit profile</h1>
+<div class="h-full space-y-4">
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <h1 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">Edit profile</h1>
   </div>
+  <div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl lg:p-10">
   <section>
     <%= form_with(url: password_path, method: :patch, html: { 'up-submit': true }) do |form| %>
       <% if user.errors.any? %>
@@ -40,4 +41,5 @@
       </div>
     <% end %>
   </section>
+  </div>
 </div>
