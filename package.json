@@ -3,6 +3,7 @@
   "type": "module",
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.4",
+    "c8": "^11.0.0",
     "jsdom": "^25.0.0",
     "rollup": "^4.40.0",
     "run-pty": "^5.0.0",
@@ -11,7 +12,27 @@
     "vite-plugin-ruby": "^5.1.1"
   },
   "scripts": {
-    "test": "node --test app/frontend/jstest/**/*.test.js"
+    "test": "node --test app/frontend/jstest/**/*.test.js",
+    "test:coverage": "c8 --reports-dir=coveragejs --reporter=text node --test app/frontend/jstest/**/*.test.js",
+    "test:coverage:html": "c8 --reports-dir=coveragejs --reporter=html node --test app/frontend/jstest/**/*.test.js && echo '\nHTML coverage report generated at: coveragejs/index.html'"
+  },
+  "c8": {
+    "include": [
+      "app/frontend/up_compiler/**/*.js",
+      "app/frontend/custom_js/**/*.js"
+    ],
+    "exclude": [
+      "**/*.test.js",
+      "**/*.spec.js",
+      "app/frontend/jstest/**"
+    ],
+    "all": true,
+    "reporter": [
+      "html",
+      "text",
+      "lcov"
+    ],
+    "reportsDir": "coveragejs"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",

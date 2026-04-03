@@ -16,6 +16,8 @@
 
 /coverage/*
 !/coverage/.keep
+/coveragejs/*
+!/coveragejs/.keep
 
 # Ignore all logfiles and tempfiles.
 /log/*
