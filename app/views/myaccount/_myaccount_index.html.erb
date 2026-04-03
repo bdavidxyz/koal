@@ -15,10 +15,8 @@
         <div class="mt-2 flex items-center gap-2">
           <%= button_to "Log out", current_session, method: :delete, class: "cursor-pointer text-white bg-gray-900 hover:bg-gray-900/90 font-medium rounded-md text-xs px-3 py-1.5", form: {"up-submit" => "false"} %>
           <%= link_to Current.user.verified? ? "Go to email modification" : "⚠ Verify email", myaccount_email_path, class: "cursor-pointer text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 font-medium rounded-md text-sm px-3 py-1" %>
+          <%= link_to "View all sessions", myaccount_sessions_path, class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1" %>
         </div>
-      </div>
-      <div>
-        <%= link_to "View all sessions", myaccount_sessions_path, class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 md:ms-4 md:me-2 mt-2 mb-2 md:mt-0 md:mb-0" %>
       </div>
     </div>
   </section>

@@ -23,7 +23,7 @@ class SortDropdownComponent < ViewComponent::Base
   end
 
   def reset_href
-    query_copy = @query_params.map { |k, v| [k, v] }.to_h
+    query_copy = @query_params.map { |k, v| [ k, v ] }.to_h
     query_copy.delete("sort")
     query_copy.delete("direction")
     "?#{query_copy.map { |k, v| "#{k}=#{v}" }.join("&")}"
@@ -32,7 +32,7 @@ class SortDropdownComponent < ViewComponent::Base
   private
 
   def build_direction_href(direction)
-    query_copy = @query_params.map { |k, v| [k, v] }.to_h
+    query_copy = @query_params.map { |k, v| [ k, v ] }.to_h
     query_copy["sort"] = @column
     query_copy["direction"] = direction
     "?#{query_copy.map { |k, v| "#{k}=#{v}" }.join("&")}"
