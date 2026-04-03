@@ -1,69 +1,56 @@
 <section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-    <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-      <h1 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Blog</h1>
-      <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Discover insights, tutorials, and stories from our team</p>
-    </div>
-    
-    <% if @blogposts.any? %>
-      <div class="grid gap-8 lg:grid-cols-2">
-        <% @blogposts.each do |blogpost| %>
-          <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex justify-between items-center mb-5 text-gray-500">
-              <div class="flex flex-wrap gap-2">
-                <% if blogpost.blogtags.any? %>
-                  <% blogpost.blogtags.each do |blogtag| %>
-                    <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                      <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                      <%= blogtag.name %>
-                    </span>
-                  <% end %>
-                <% else %>
-                  <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                    <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                    Article
-                  </span>
-                <% end %>
-              </div>
-              <span class="text-sm"><%= blogpost.published_at.strftime("%B %d, %Y") %></span>
-            </div>
-            <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              <%= link_to blogpost_path(blogpost.slug), class: "hover:underline" do %>
-                <%= blogpost.title %>
-              <% end %>
-            </h2>
-            <% if blogpost.chapo.present? %>
-              <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
-                <%= truncate(blogpost.chapo, length: 150) %>
-              </p>
-            <% end %>
-            <div class="flex justify-between items-center">
-              <div class="flex items-center space-x-4">
-                <img class="w-7 h-7 rounded-full" src="/img/avatardefault.svg" alt="Author avatar">
-                <span class="font-medium text-gray-900 dark:text-white">
-                  Admin
-                </span>
-              </div>
-              <%= link_to blogpost_path(blogpost.slug), class: "inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline" do %>
-                Read more
-                <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-              <% end %>
-            </div>
-          </article>
+  <div class="py-12 px-4 mx-auto max-w-screen-xl lg:py-20 lg:px-8">
+    <div class="flex flex-col gap-12 lg:flex-row lg:gap-16">
+
+      <!-- Left: intro panel -->
+      <div class="lg:w-2/5 lg:sticky lg:top-20 lg:self-start">
+        <p class="text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-4">Our Blogs</p>
+        <h1 class="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">What We're Learning</h1>
+        <p class="text-gray-500 dark:text-gray-400 mb-8">A collection of thoughts, experiments, and learnings from our team — covering UX, code, product, and everything in between.</p>
+        <%= link_to blogposts_path, class: "inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" do %>
+          View All Blogs
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         <% end %>
       </div>
-      
-      <!-- Pagination -->
-      <% if @pagy.pages > 1 %>
-        <div class="flex justify-center mt-8">
-          <%== pagy_nav(@pagy) %>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="text-center py-16">
-        <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">No articles yet</h3>
-        <p class="text-gray-500 dark:text-gray-400">Check back soon for new content!</p>
+
+      <!-- Right: blog post list -->
+      <div class="lg:w-3/5 flex flex-col gap-3">
+        <% if @blogposts.any? %>
+          <% @blogposts.each do |blogpost| %>
+            <%= link_to blogpost_path(blogpost.slug), class: "group flex items-center justify-between gap-4 p-5 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" do %>
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 mb-1.5">
+                  <% if blogpost.blogtags.any? %>
+                    <span><%= blogpost.blogtags.first.name %></span>
+                  <% else %>
+                    <span>Article</span>
+                  <% end %>
+                  <span class="text-gray-300 dark:text-gray-600">&bull;</span>
+                  <span><%= blogpost.published_at.strftime("%-d %B %Y") %></span>
+                </div>
+                <h2 class="text-base font-bold text-gray-900 dark:text-white leading-snug"><%= blogpost.title %></h2>
+              </div>
+              <div class="shrink-0 text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if @pagy.pages > 1 %>
+            <div class="flex justify-center mt-4">
+              <%== pagy_nav(@pagy) %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="flex items-center justify-center py-16 bg-gray-100 dark:bg-gray-800 rounded-xl">
+            <div class="text-center">
+              <p class="text-gray-500 dark:text-gray-400 font-medium">No articles yet</p>
+              <p class="text-sm text-gray-400 dark:text-gray-500 mt-1">Check back soon for new content!</p>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+
+    </div>
   </div>
 </section>
