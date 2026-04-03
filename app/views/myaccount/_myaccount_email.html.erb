@@ -5,10 +5,10 @@
   </div>
   <section class="">
     <% if user.verified? %>
-      <div class="">
+      <div class="text-sm">
         Your current email is <%= user.email %>
       </div>
-      <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800 pb-2 mt-8">
         Change your email
       </h2>
       <%= form_with(url: identity_email_path, method: :patch) do |form| %>
@@ -35,11 +35,11 @@
         </div>
       <% end %>
     <% else %>
-      <h2 class="text-lg text-neutral-700 dark:text-gray-300 font-semibold mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 border-b border-gray-100 dark:border-gray-800 pb-2 mt-1">
         Verify your email
       </h2>
-      <p class="mt-6">We sent a verification email to <%= user.email %> </p>
-      <p class="mt-2"><strong>Check that email</strong> and follow those instructions to confirm it's your email address.</p>
+      <p class="mt-6 text-sm">We sent a verification email to <%= user.email %> </p>
+      <p class="mt-2 text-sm"><strong>Check that email</strong> and follow those instructions to confirm it's your email address.</p>
       <div class="flex mt-4 items-center">
         <%= button_to "Re-send verification email", identity_email_verification_path, class: "cursor-pointer text-white bg-gray-900 hover:bg-gray-900/90 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] font-medium rounded-md text-sm px-5 py-2" %>
         <%= link_to "Back to my account", myaccount_path, class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-5 py-2 ms-4" %>
