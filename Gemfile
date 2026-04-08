@@ -99,3 +99,6 @@ gem "kramdown"
 
 # View components
 gem "view_component"
+
+# Crawler detection
+gem "crawler_detect"
