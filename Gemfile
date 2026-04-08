@@ -88,6 +88,9 @@ gem "solid_errors"
 # Monitor solid queue
 gem "mission_control-jobs"
 
+# Analytics dashboard
+gem "lookout-ahoy"
+
 # Generate OpenStruct
 gem "ostruct"
 

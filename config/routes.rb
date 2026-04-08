@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   constraints(SuperadminConstraint.new) do
     mount MissionControl::Jobs::Engine, at: "/jobs"
     mount SolidErrors::Engine, at: "/solid_errors"
+    mount Lookout::Engine, at: "/analytics"
   end
 
   #
