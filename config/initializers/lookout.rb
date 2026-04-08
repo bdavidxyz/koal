@@ -27,10 +27,12 @@ Lookout.configure do |config|
   #   config.event.url_column = "properties->>'url'"
   # For SQLite:
   #   config.event.url_column = "JSON_EXTRACT(properties, '$.url')"
+  config.event.url_column = "JSON_EXTRACT(properties, '$.url')"
   #
   # URL exists
   # A query that indicates if a view event has the correct properties for a page view.
   # This is also automatically adapted for your database.
+  config.event.url_exists = "JSON_EXTRACT(properties, '$.url') IS NOT NULL"
   #
   # ==> Models
   #
