@@ -5,7 +5,7 @@
 # ============================================
 # Stage 1: Base - Ruby environment
 # ============================================
-FROM ruby:3.4.6-bookworm AS base
+FROM ruby:4.0.2-bookworm AS base
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \

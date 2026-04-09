@@ -427,7 +427,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.5)
       unicode-emoji (~> 4.0, >= 4.0.4)
-    unicode-emoji (4.0.4)
+    unicode-emoji (4.2.0)
     uri (1.1.1)
     useragent (0.16.11)
     view_component (4.6.0)
@@ -506,7 +506,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.4.6p54
+   ruby 4.0.2p0
 
 BUNDLED WITH
    2.5.11
