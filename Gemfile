@@ -101,3 +101,6 @@ gem "view_component"
 
 # Crawler detection
 gem "crawler_detect"
+
+# Addressable gem, security update only
+gem "addressable", ">= 2.9.0"
