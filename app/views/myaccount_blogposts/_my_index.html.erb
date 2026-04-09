@@ -67,7 +67,7 @@
       Showing <%= @pagy.from %>–<%= @pagy.to %> of <%= @pagy.count %> rows
     </p>
     <ul class="flex items-center">
-      <%== pagy_nav(@pagy) %>
+      <%== @pagy.series_nav %>
     </ul>
   </div>
 

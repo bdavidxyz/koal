@@ -1,5 +1,5 @@
 class MyaccountBlogtagsController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   require_auth action: :index
   grant_access action: :index, roles: [ :superadmin ]
@@ -13,7 +13,7 @@ class MyaccountBlogtagsController < ApplicationController
     end
     scope = Blogtag.order(sort)
     blogtags = !!q ? Fuzzy::Search.new(scope, Blogtag, q).run : scope
-    @pagy, @blogtags = pagy(blogtags, limit: 10)
+    @pagy, @blogtags = pagy(:offset, blogtags, limit: 10)
   end
 
   require_auth action: :show

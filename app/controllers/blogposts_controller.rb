@@ -1,5 +1,5 @@
 class BlogpostsController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   grant_access action: :index
   # @route GET /blogposts (blogposts)
@@ -12,7 +12,7 @@ class BlogpostsController < ApplicationController
     end
     scope = Blogpost.includes(:blogtags).where("published_at IS NOT NULL AND published_at <= ?", Time.current).order(sort)
     blogposts = params[:q].present? ? Fuzzy::Search.new(scope, Blogpost, params[:q]).run : scope
-    @pagy, @blogposts = pagy(blogposts, limit: 10)
+    @pagy, @blogposts = pagy(:offset, blogposts, limit: 10)
   end
 
   grant_access action: :show

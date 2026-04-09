@@ -1,5 +1,5 @@
 class MyaccountRolesController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   require_auth action: :index
   grant_access action: :index, roles: [ :superadmin ]
@@ -18,7 +18,7 @@ class MyaccountRolesController < ApplicationController
     else
       scope
     end
-    @pagy, @roles = pagy(roles, limit: 10)
+    @pagy, @roles = pagy(:offset, roles, limit: 10)
   end
 
   require_auth action: :show
