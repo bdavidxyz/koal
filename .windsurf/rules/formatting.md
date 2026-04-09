@@ -6,3 +6,4 @@ These are the rule to format correctly the files related to code (.js, .rb or wh
 
 - Do not insert white space on empty lines
 - Add an empty line at the end of each file (if not yet present)
+- If you modified or created any Ruby file, ensure to run `bin/rubocop -A` to format it
