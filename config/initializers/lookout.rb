@@ -4,12 +4,12 @@ Lookout.configure do |config|
   # Return path for the back link in the dashboard header
   # Default: "/"
   # config.return_path = "/admin"
-  
+
   # Return link text (can include HTML entities)
   # Default: "← Back"
   # config.return_copy = "← Dashboard"
   # config.return_copy = "⟵ Admin Panel"
-  
+
   # ==> Event tracking
   #
   # View name
