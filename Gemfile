@@ -55,7 +55,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "vite_rails", "3.0.19"
+gem "vite_rails", "~> 3.10"
 
 gem "dotenv-rails", groups: [ :development, :test ]
 
