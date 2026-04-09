@@ -20,7 +20,7 @@
           <div class="rounded-lg bg-zinc-50 p-4 text-sm text-zinc-600">
             <p>You are already connected as <%= Current.user.email %></p>
             <p class="mt-2">
-              Do you wish to <%= button_to "log out?", Current.session, method: :delete, class: "font-medium text-zinc-900 hover:underline cursor-pointer" %>?
+              Do you wish to <%= button_to "log out?", Current.session, method: :delete, class: "font-medium text-zinc-900 hover:underline cursor-pointer" %>
             </p>
           </div>
         <% else %>

@@ -13,6 +13,12 @@ up.link.config.preloadSelectors.push("a[href]");
 up.form.config.submitSelectors.push("form");
 up.link.config.instantSelectors.push("a[href]");
 
+// prevent Unpoly from treating every <nav> as an up-nav container — it would
+// strip the server-set aria-current="page" from Pagy links that have no href
+up.status.config.navSelectors = up.status.config.navSelectors.filter(
+  (s) => s !== "nav",
+);
+
 // disable/enable logs for Unpoly
 up.log.enable();
 up.fragment.config.autoFocus = "keep";
