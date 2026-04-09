@@ -59,7 +59,6 @@ gem "vite_rails", "~> 3.10"
 
 gem "dotenv-rails", groups: [ :development, :test ]
 
-gem "debugbar", groups: [ :development ]
 
 # Annotate controllers
 gem "chusaku", require: false, groups: [ :development ]

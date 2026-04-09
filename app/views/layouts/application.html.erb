@@ -25,7 +25,6 @@
     <%= vite_client_tag %>
     <%= vite_javascript_tag 'application' %>
     <%= vite_stylesheet_tag 'application' %>
-    <%= debugbar_head  if defined? Debugbar %>
   </head>
   <body class="h-full flex flex-col">
     <%= render "shared/app_flash" %>
@@ -37,6 +36,5 @@
       <%= yield %>
     </main>
     <%= render LayoutFooterComponent.new(controller_name: controller_name, action_name: action_name, request_path: request.path) %>
-    <%= debugbar_body if defined? Debugbar %>
   </body>
 </html>

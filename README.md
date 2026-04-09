@@ -55,9 +55,16 @@ The app should be displayed at localhost:3000
   end
 ```
 
-## Launch tests
+## Launch backend tests
 
 bin/rails test
+
+## Launch frontend tests
+
+npm run test:coverage
+
+## Launch e2e tests
+
 bin/rails test:system
 
 ## .env file
