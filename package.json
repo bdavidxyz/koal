@@ -42,6 +42,6 @@
     "unpoly": "3.14.1"
   },
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   }
 }

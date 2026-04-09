@@ -16,7 +16,7 @@ Minimalistic Rails 8 app.
 ## Prerequisites
 
 - Git
-- NodeJS >= 22
+- NodeJS >= 24
 - Ruby >= 3.2.2
 
 ## Installation
