@@ -35,14 +35,15 @@
   outline-offset: 2px;
 }
 
-.pagy a.current {
+.pagy a[aria-current="page"] {
   background-color: #18181b; /* bg-zinc-900 */
   color: #fafafa; /* text-zinc-50 */
   border-color: #18181b;
   font-weight: 500;
+  cursor: default;
 }
 
-.pagy a.current:hover {
+.pagy a[aria-current="page"]:hover {
   background-color: #27272a; /* bg-zinc-800 */
 }
 
@@ -84,13 +85,13 @@
     background-color: #27272a; /* bg-zinc-800 */
   }
 
-  .pagy a.current {
+  .pagy a[aria-current="page"] {
     background-color: #fafafa; /* bg-zinc-50 */
     color: #18181b; /* text-zinc-900 */
     border-color: #fafafa;
   }
 
-  .pagy a.current:hover {
+  .pagy a[aria-current="page"]:hover {
     background-color: #e4e4e7; /* bg-zinc-200 */
   }
 
