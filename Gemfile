@@ -70,7 +70,7 @@ gem "rabarber"
 gem "awesome_print", groups: [ :development, :test ]
 
 # Paginate large dataset
-gem "pagy", "~> 43.0"
+gem "pagy", "~> 43.5"
 
 # Test controllers decently
 gem "rails-controller-testing"
