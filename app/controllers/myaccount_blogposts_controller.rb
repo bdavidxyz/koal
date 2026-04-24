@@ -1,6 +1,7 @@
 class MyaccountBlogpostsController < ApplicationController
   include Pagy::Method
 
+
   require_auth action: :index
   grant_access action: :index, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts (myaccount_blogpost)
@@ -14,12 +15,14 @@ class MyaccountBlogpostsController < ApplicationController
     @pagy, @result.data[:blogposts] = pagy(:offset, @result.data[:blogposts], limit: 10) if @result.success?
   end
 
+
   require_auth action: :show
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts/:slug
   def show
     @blogpost = retrieve_blogpost
   end
+
 
   require_auth action: :new
   grant_access action: :new, roles: [ :superadmin ]
@@ -28,12 +31,14 @@ class MyaccountBlogpostsController < ApplicationController
     @blogpost = Blogpost.new
   end
 
+
   require_auth action: :edit
   grant_access action: :edit, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts/:slug/edit
   def edit
     @blogpost = retrieve_blogpost
   end
+
 
   require_auth action: :create
   grant_access action: :create, roles: [ :superadmin ]
@@ -51,22 +56,26 @@ class MyaccountBlogpostsController < ApplicationController
     end
   end
 
+
   require_auth action: :update
   grant_access action: :update, roles: [ :superadmin ]
   # @route PUT /myaccount/blogposts/:slug
   def update
     @result = MyaccountBlogposts::Update::Service.call(
-      blogpost: retrieve_blogpost,
+      slug: params[:slug],
       attributes: blogpost_params_without_blogtags.to_h,
       blogtag_ids: params.dig(:blogpost, :blogtag_ids)
     )
 
     if @result.success?
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully updated."
+    elsif @result.error&.http_status == :not_found
+      render_error_page(:not_found, @result.error.message)
     else
       render :edit, status: :unprocessable_content
     end
   end
+
 
   require_auth action: :destroy
   grant_access action: :destroy, roles: [ :superadmin ]

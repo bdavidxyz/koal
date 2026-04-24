@@ -6,7 +6,7 @@ class MyaccountBlogposts::Update::ServiceTest < ActiveSupport::TestCase
     second_blogtag = blogtags(:second_blogtag)
 
     result = MyaccountBlogposts::Update::Service.call(
-      blogpost: blogpost,
+      slug: blogpost.slug,
       attributes: {
         title: "Updated through Servus",
         slug: blogpost.slug,
@@ -26,7 +26,7 @@ class MyaccountBlogposts::Update::ServiceTest < ActiveSupport::TestCase
     blogpost = blogposts(:first_blogpost)
 
     result = MyaccountBlogposts::Update::Service.call(
-      blogpost: blogpost,
+      slug: blogpost.slug,
       attributes: {
         title: blogpost.title,
         slug: blogpost.slug,
@@ -46,7 +46,7 @@ class MyaccountBlogposts::Update::ServiceTest < ActiveSupport::TestCase
     original_blogtag_ids = blogpost.blogtag_ids.sort
 
     result = MyaccountBlogposts::Update::Service.call(
-      blogpost: blogpost,
+      slug: blogpost.slug,
       attributes: {
         title: "",
         slug: blogpost.slug,
@@ -61,5 +61,19 @@ class MyaccountBlogposts::Update::ServiceTest < ActiveSupport::TestCase
     assert_instance_of Blogpost, result.data[:blogpost]
     assert_includes result.data[:blogpost].errors[:title], "can't be blank"
     assert_equal original_blogtag_ids, blogpost.reload.blogtag_ids.sort
+  end
+
+  test "returns not found when the blogpost does not exist" do
+    result = MyaccountBlogposts::Update::Service.call(
+      slug: "missing-blogpost",
+      attributes: {
+        title: "Nope",
+        slug: "missing-blogpost"
+      },
+      blogtag_ids: []
+    )
+
+    assert result.failure?
+    assert_instance_of Servus::Support::Errors::NotFoundError, result.error
   end
 end

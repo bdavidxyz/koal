@@ -1,12 +1,15 @@
 module MyaccountBlogposts::Update
   class Service < Servus::Base
-    def initialize(blogpost:, attributes:, blogtag_ids:)
-      @blogpost = blogpost
+    def initialize(slug:, attributes:, blogtag_ids:)
+      @slug = slug
       @attributes = attributes
       @blogtag_ids = blogtag_ids
     end
 
     def call
+      @blogpost = Blogpost.find_by(slug: @slug)
+      return failure("Blogpost not found", type: NotFoundError) unless @blogpost
+
       persisted = persist
       if persisted
         success(blogpost: @blogpost)
