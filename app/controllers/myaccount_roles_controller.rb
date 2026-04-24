@@ -25,11 +25,7 @@ class MyaccountRolesController < ApplicationController
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/roles/:slug
   def show
-    @role = retrieve_role
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @role }
-    end
+    run_controller(MyaccountRoles::Show::Service, id: params[:id])
   end
 
   require_auth action: :new
@@ -80,6 +76,15 @@ class MyaccountRolesController < ApplicationController
   end
 
   private
+
+  def render_role_show(role)
+    @role = role
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @role }
+    end
+  end
 
   def retrieve_role
     Rabarber::Role.find_by(id: params[:id]) or not_found
