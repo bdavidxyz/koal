@@ -6,17 +6,9 @@ module MyaccountRoles::Show
 
     def call
       role = Rabarber::Role.find_by(id: @id)
-      return role_not_found unless role
+      return failure("Role not found", type: NotFoundError) unless role
 
       success(role: role)
     end
-
-    private
-      def role_not_found
-        failure(
-          "Role not found",
-          type: NotFoundError
-        )
-      end
   end
 end
