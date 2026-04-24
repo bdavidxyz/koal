@@ -11,8 +11,7 @@ class MyaccountBlogtagsController < ApplicationController
       query: q
     )
 
-    @pagy, @result.data[:blogtags] = pagy(:offset, @result.data[:blogtags], limit: 10)
-    @blogtags = @result.data[:blogtags]
+    @result.data[:pagy], @result.data[:blogtags] = pagy(:offset, @result.data[:blogtags], limit: 10)
   end
 
   require_auth action: :show
@@ -21,11 +20,7 @@ class MyaccountBlogtagsController < ApplicationController
   def show
     @result = MyaccountBlogtags::Show::Service.call(slug: params[:slug])
 
-    if @result.success?
-      @blogtag = @result.data[:blogtag]
-    else
-      render_error_page(@result.error.http_status, @result.error.message)
-    end
+    render_error_page(@result.error.http_status, @result.error.message) if @result.failure?
   end
 
   require_auth action: :new
@@ -33,7 +28,6 @@ class MyaccountBlogtagsController < ApplicationController
   # @route GET /myaccount/blogtags/new (myaccount_blogtag_new)
   def new
     @result = MyaccountBlogtags::New::Service.call
-    @blogtag = @result.data[:blogtag]
   end
 
   require_auth action: :edit
@@ -42,9 +36,7 @@ class MyaccountBlogtagsController < ApplicationController
   def edit
     @result = MyaccountBlogtags::Edit::Service.call(slug: params[:slug])
 
-    if @result.success?
-      @blogtag = @result.data[:blogtag]
-    else
+    if @result.failure?
       render_error_page(@result.error.http_status, @result.error.message)
     end
   end
@@ -54,7 +46,6 @@ class MyaccountBlogtagsController < ApplicationController
   # @route tag /myaccount/blogtags (myaccount_blogtag)
   def create
     @result = MyaccountBlogtags::Create::Service.call(attributes: blogtag_params)
-    @blogtag = @result.data[:blogtag]
 
     if @result.success?
       redirect_to myaccount_blogtag_list_path, notice: "Blogtag was successfully created."
@@ -71,7 +62,6 @@ class MyaccountBlogtagsController < ApplicationController
       slug: params[:slug],
       attributes: blogtag_params
     )
-    @blogtag = @result.data&.[](:blogtag)
 
     if @result.success?
       redirect_to myaccount_blogtag_list_path, notice: "Blogtag was successfully updated."
