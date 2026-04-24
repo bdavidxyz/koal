@@ -26,17 +26,14 @@ class MyaccountRolesController < ApplicationController
   # @route GET /myaccount/roles/:slug
   def show
     @result = MyaccountRoles::Show::Service.call(id: params[:id])
-    if @result.failure?
-      return not_found if @result.error.is_a?(Servus::Support::Errors::NotFoundError)
-
-      raise @result.error
-    end
-
-    @role = @result.data[:role]
-
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @role }
+    if @result.success?
+      @role = @result.data[:role]
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @result.data[:role] }
+      end
+    else
+      not_found
     end
   end
 

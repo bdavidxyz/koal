@@ -27,8 +27,10 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not sign in with wrong credentials" do
     post sign_in_url, params: { email: @user.email, password: "SecretWrong1*3" }
-    assert_redirected_to sign_in_url(email_hint: @user.email)
-    assert_equal "That email or password is incorrect", flash[:alert]
+    assert_redirected_to sign_in_url(
+      email_hint: @user.email,
+      alert: "That email or password is incorrect"
+    )
   end
 
   test "should sign out" do

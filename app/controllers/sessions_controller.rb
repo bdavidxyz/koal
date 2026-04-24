@@ -16,15 +16,14 @@ class SessionsController < ApplicationController
       cookies: cookies,
     )
 
-    if @result.failure?
-      if @result.error.is_a?(Servus::Support::Errors::AuthenticationError)
-        return redirect_to sign_in_path(email_hint: @result.data[:email_hint]), alert: @result.error.message
-      end
-
-      raise @result.error
+    if @result.success?
+      redirect_to myaccount_path, notice: "Signed in successfully"
+    else
+      redirect_to sign_in_path(
+        email_hint: @result.data[:email_hint],
+        alert: @result.error.message
+      )
     end
-
-    redirect_to myaccount_path, notice: "Signed in successfully"
   end
 
   require_auth action: :destroy
