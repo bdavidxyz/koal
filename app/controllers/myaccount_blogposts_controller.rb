@@ -55,9 +55,13 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :update, roles: [ :superadmin ]
   # @route PUT /myaccount/blogposts/:slug
   def update
-    @blogpost = retrieve_blogpost
-    if @blogpost.update(blogpost_params_without_blogtags)
-      update_blogtag_associations(@blogpost)
+    @result = MyaccountBlogposts::Update::Service.call(
+      blogpost: retrieve_blogpost,
+      attributes: blogpost_params_without_blogtags.to_h,
+      blogtag_ids: params.dig(:blogpost, :blogtag_ids)
+    )
+
+    if @result.success?
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully updated."
     else
       render :edit, status: :unprocessable_content
@@ -81,18 +85,5 @@ class MyaccountBlogpostsController < ApplicationController
 
   def blogpost_params_without_blogtags
     params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at)
-  end
-
-  def update_blogtag_associations(blogpost)
-    # Remove all existing blogtag associations
-    blogpost.blogtag_blogposts.destroy_all
-
-    # Create new associations if blogtag_ids are provided
-    if params[:blogpost][:blogtag_ids].present?
-      blogtag_ids = params[:blogpost][:blogtag_ids].reject(&:blank?)
-      blogtag_ids.each do |blogtag_id|
-        blogpost.blogtag_blogposts.create(blogtag_id: blogtag_id)
-      end
-    end
   end
 end
