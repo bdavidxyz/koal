@@ -39,9 +39,28 @@ class MyaccountBlogtagsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should render not found when editing a missing blogtag" do
+    get myaccount_blogtag_edit_url(slug: "missing-blogtag")
+
+    assert_response :not_found
+    assert_match "Blogtag not found", response.body
+  end
+
   test "should update blogtag" do
     put myaccount_blogtag_update_url(slug: @blogtag.slug), params: { blogtag: { name: @blogtag.name, slug: @blogtag.slug } }
     assert_redirected_to myaccount_blogtag_list_url
+  end
+
+  test "should render not found when updating a missing blogtag" do
+    put myaccount_blogtag_update_url(slug: "missing-blogtag"), params: {
+      blogtag: {
+        name: "Missing Blogtag",
+        slug: "missing-blogtag"
+      }
+    }
+
+    assert_response :not_found
+    assert_match "Blogtag not found", response.body
   end
 
   test "should destroy blogtag" do
@@ -50,6 +69,13 @@ class MyaccountBlogtagsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to myaccount_url
+  end
+
+  test "should render not found when destroying a missing blogtag" do
+    delete myaccount_blogtag_destroy_url(slug: "missing-blogtag")
+
+    assert_response :not_found
+    assert_match "Blogtag not found", response.body
   end
 
   test "should not create blogtag with invalid params" do
