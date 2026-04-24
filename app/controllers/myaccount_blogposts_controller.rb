@@ -43,7 +43,6 @@ class MyaccountBlogpostsController < ApplicationController
       attributes: blogpost_params_without_blogtags.to_h,
       blogtag_ids: params.dig(:blogpost, :blogtag_ids)
     )
-    @blogpost = @result.data[:blogpost]
 
     if @result.success?
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully created."

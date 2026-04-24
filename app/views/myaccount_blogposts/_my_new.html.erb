@@ -1,3 +1,5 @@
+<% blogpost = @result&.data&.[](:blogpost) || @blogpost %>
+
 <div class="h-full space-y-4">
   <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
     <h1 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">Create a new Blogpost</h1>
@@ -5,7 +7,7 @@
   <div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-md lg:p-10">
   <div class="">
     <%= render "my_form",
-      target_blogpost: @blogpost,
+      target_blogpost: blogpost,
       target_url: myaccount_blogpost_create_path,
       target_method: :post,
       target_submit: "Create Blogpost" %>

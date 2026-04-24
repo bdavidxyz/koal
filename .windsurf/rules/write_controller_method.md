@@ -9,7 +9,7 @@ description: "Rules about generating controllers actions"
 2. Each controller action should use a service. The corresponding service uses the servus gem, whose docs are here https://zarpay.github.io/servus and repo is here https://github.com/zarpay/servus. In case of doubt, use app/services/soccer_odds/show_tip.rb as a reference.
 3. If you need to write a controller action that is not empty, always go through the service layer. Look at app/services/sessions/create/service.rb as an example, and it's used here : app/controllers/sessions_controller.rb#create
 4. Never use the run_service method to execute the service. If you are in doubt, use the app/controllers/sessions_controller.rb#create method as a reference.
-5. Always use the @result.data in the view when you need to display data from the service.
+5. Always use the @result.data in the view when you need to display data from the service. Do not create instance variables in the controller other than @result.
 6. Servus is able to map errors to HTTP codes, so don't prefix errors with Servus::Support::Errors::AuthenticationError, just use the error name directly like AuthenticationError
 7. Use instance variable to initialize vars inside the service, and avoid attr_reader.
 8. Write unit test under test/services/{service_name}/service_test.rb
