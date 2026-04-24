@@ -15,7 +15,7 @@ module Sessions::Create
 
       success(
         session: session_record,
-        controller_method: :redirect_to_route,
+        controller_method: :dynamic_redirect_to,
         controller_args: [
           :myaccount_path,
           {},
@@ -31,7 +31,7 @@ module Sessions::Create
         failure(
           "That email or password is incorrect",
           data: {
-            controller_method: :redirect_to_route,
+            controller_method: :dynamic_redirect_to,
             controller_args: [
               :sign_in_path,
               { email_hint: email },

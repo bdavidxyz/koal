@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
       send(data.controller_method, *Array(data.controller_args))
     end
 
-    def redirect_to_route(route_helper, route_params = {}, redirect_options = {})
+    def dynamic_redirect_to(route_helper, route_params = {}, redirect_options = {})
       redirect_to public_send(route_helper, **route_params.to_h.symbolize_keys), **redirect_options.to_h.symbolize_keys
     end
 end
