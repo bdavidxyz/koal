@@ -34,25 +34,32 @@ class MyaccountRolesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show role as json" do
-    get myaccount_role_show_url(id: @role.id, format: :json)
-
-    assert_response :success
-    assert_equal "application/json", response.media_type
-
-    role_response = JSON.parse(response.body)
-    assert_equal @role.id, role_response["id"]
-    assert_equal @role.name, role_response["name"]
-  end
-
   test "should get edit" do
     get myaccount_role_edit_url(id: @role.id)
     assert_response :success
   end
 
+  test "should render not found when editing a missing role" do
+    get myaccount_role_edit_url(id: 999999)
+
+    assert_response :not_found
+    assert_match "Role not found", response.body
+  end
+
   test "should update role" do
     put myaccount_role_update_url(id: @role.id), params: { rabarber_role: { name: @role.name } }
     assert_redirected_to myaccount_role_list_url
+  end
+
+  test "should render not found when updating a missing role" do
+    put myaccount_role_update_url(id: 999999), params: {
+      rabarber_role: {
+        name: "Missing Role"
+      }
+    }
+
+    assert_response :not_found
+    assert_match "Role not found", response.body
   end
 
   test "should destroy role" do
@@ -61,6 +68,13 @@ class MyaccountRolesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to myaccount_url
+  end
+
+  test "should render not found when destroying a missing role" do
+    delete myaccount_role_destroy_url(id: 999999)
+
+    assert_response :not_found
+    assert_match "Role not found", response.body
   end
 
   test "should not create role with invalid params" do

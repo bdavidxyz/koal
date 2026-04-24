@@ -1,4 +1,5 @@
 <% roles = @result.data[:roles] %>
+<% pagy = @result.data[:pagy] %>
 
 <div id="listof" class="table-scroll rounded-md h-full space-y-4">
 
@@ -66,10 +67,10 @@
   <!-- Footer -->
   <div class="flex items-center justify-between px-1">
     <p class="text-sm text-gray-500 dark:text-gray-400">
-      Showing <%= @pagy.from %>–<%= @pagy.to %> of <%= @pagy.count %> rows
+      Showing <%= pagy.from %>–<%= pagy.to %> of <%= pagy.count %> rows
     </p>
     <ul class="flex items-center">
-      <%== @pagy.series_nav %>
+      <%== pagy.series_nav %>
     </ul>
   </div>
 
