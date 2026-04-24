@@ -13,6 +13,7 @@ description: "Rules about generating controllers actions"
 6. Servus is able to map errors to HTTP codes, so don't prefix errors with Servus::Support::Errors::AuthenticationError, just use the error name directly like AuthenticationError
 7. Use instance variable to initialize vars inside the service, and avoid attr_reader.
 8. Write unit test under test/services/{service_name}/service_test.rb
-9. Use NotFoundError from Servus::Support::Errors for not found errors, if you need another kind of error, use the appropriate error from Servus::Support::Errors, that you can find under the servus gem at servus/lib/servus/support/errors.rb.
-10. Pass everything needed to the service, wether it's Current.user, cookies, session, flash, etc. Only the params should be unwrapped first.
-11. The controller is finally responsible of where to redirect, render, content of flash message, etc; depending on result.success? most of the time. See what already exist in the codebase.
+9. Always use if/else statement, not in a trailing way, see app/controllers/myaccount_blogposts_controller.rb#update as an example
+10. Use NotFoundError from Servus::Support::Errors for not found errors, if you need another kind of error, use the appropriate error from Servus::Support::Errors, that you can find under the servus gem at servus/lib/servus/support/errors.rb.
+11. Pass everything needed to the service, wether it's Current.user, cookies, session, flash, etc. Only the params should be unwrapped first.
+12. The controller is finally responsible of where to redirect, render, content of flash message, etc; depending on result.success? most of the time. See what already exist in the codebase.
