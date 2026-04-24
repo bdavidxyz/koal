@@ -10,14 +10,12 @@ class SessionsController < ApplicationController
   grant_access action: :create
   # @route POST /sign_in (sign_in)
   def create
-    if user = User.authenticate_by(email: params[:email], password: params[:password])
-      @session = user.sessions.create!
-      cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }
-
-      redirect_to myaccount_path, notice: "Signed in successfully"
-    else
-      redirect_to sign_in_path(email_hint: params[:email]), alert: "That email or password is incorrect"
-    end
+    run_controller(
+      Sessions::Create::Service,
+      email: params[:email],
+      password: params[:password],
+      cookies: cookies,
+    )
   end
 
   require_auth action: :destroy
