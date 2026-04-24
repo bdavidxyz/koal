@@ -32,7 +32,7 @@ class MyaccountRolesController < ApplicationController
         format.json { render json: @result.data[:role] }
       end
     else
-      not_found
+      render_error_page(@result.error.http_status, @result.error.message)
     end
   end
 
