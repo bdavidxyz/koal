@@ -1,3 +1,5 @@
+<% blogposts = @result.data[:blogposts] %>
+
 <div id="listof" class="table-scroll rounded-md h-full space-y-4">
 
   <!-- Header row -->
@@ -39,7 +41,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @blogposts.each do |blogpost| %>
+        <% blogposts.each do |blogpost| %>
           <tr class="border-b border-gray-200 last:border-b-0 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-colors">
             <td class="px-4 py-3 align-middle whitespace-nowrap">
               <%= link_to "Edit", myaccount_blogpost_edit_path(blogpost.slug), class: "inline-flex items-center justify-center h-7 rounded-md bg-gray-900 px-3 text-xs font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-1 transition-colors mr-1.5 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200" %>

@@ -5,15 +5,13 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :index, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts (myaccount_blogpost)
   def index
-    sort = {}
-    if params[:sort] && params[:direction]
-      sort[params[:sort]] = params[:direction]
-    else
-      sort[:updated_at] = "desc"
-    end
-    scope = Blogpost.order(sort)
-    blogposts = !!q ? Fuzzy::Search.new(scope, Blogpost, q).run : scope
-    @pagy, @blogposts = pagy(:offset, blogposts, limit: 10)
+    @result = MyaccountBlogposts::Index::Service.call(
+      sort: params[:sort],
+      direction: params[:direction],
+      query: q
+    )
+
+    @pagy, @result.data[:blogposts] = pagy(:offset, @result.data[:blogposts], limit: 10) if @result.success?
   end
 
   require_auth action: :show
