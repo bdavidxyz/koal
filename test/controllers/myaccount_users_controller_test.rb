@@ -62,14 +62,41 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should render not found when showing a missing user" do
+    get myaccount_user_show_url(slug: "missing-user")
+
+    assert_response :not_found
+    assert_match "User not found", response.body
+  end
+
   test "should get edit" do
     get myaccount_user_edit_url(slug: @other_user.slug)
     assert_response :success
   end
 
+  test "should render not found when editing a missing user" do
+    get myaccount_user_edit_url(slug: "missing-user")
+
+    assert_response :not_found
+    assert_match "User not found", response.body
+  end
+
   test "should update user" do
     put myaccount_user_update_url(slug: @other_user.slug), params: { user: { email: @other_user.email, name: @other_user.name, slug: @other_user.slug } }
     assert_redirected_to myaccount_user_list_url
+  end
+
+  test "should render not found when updating a missing user" do
+    put myaccount_user_update_url(slug: "missing-user"), params: {
+      user: {
+        email: "missing@example.com",
+        name: "Missing User",
+        slug: "missing-user"
+      }
+    }
+
+    assert_response :not_found
+    assert_match "User not found", response.body
   end
 
   test "should update user with roles" do
@@ -124,5 +151,12 @@ class MyaccountUsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to myaccount_url
+  end
+
+  test "should render not found when destroying a missing user" do
+    delete myaccount_user_destroy_url(slug: "missing-user")
+
+    assert_response :not_found
+    assert_match "User not found", response.body
   end
 end
