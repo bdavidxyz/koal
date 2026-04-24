@@ -84,9 +84,13 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :destroy, roles: [ :superadmin ]
   # @route DELETE /myaccount/blogposts/:slug
   def destroy
-    blogpost = retrieve_blogpost
-    blogpost.destroy
-    redirect_to myaccount_path, notice: "Blogpost was successfully deleted."
+    @result = MyaccountBlogposts::Destroy::Service.call(slug: params[:slug])
+
+    if @result.success?
+      redirect_to myaccount_path, notice: "Blogpost was successfully deleted."
+    else
+      render_error_page(@result.error.http_status, @result.error.message)
+    end
   end
 
   private

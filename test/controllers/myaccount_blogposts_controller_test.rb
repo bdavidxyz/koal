@@ -77,6 +77,13 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to myaccount_url
   end
 
+  test "should render not found when destroying a missing blogpost" do
+    delete myaccount_blogpost_destroy_url(slug: "missing-blogpost")
+
+    assert_response :not_found
+    assert_match "Blogpost not found", response.body
+  end
+
   test "should not create blogpost with invalid params" do
     assert_no_difference("Blogpost.count") do
       post myaccount_blogpost_create_url, params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: "new_slug", title: "", blogtag_ids: [ @first_blogtag.id ] } }
