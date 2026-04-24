@@ -21,7 +21,7 @@ module Sessions::Create
         failure(
           "That email or password is incorrect",
           data: { email_hint: @email },
-          type: AuthenticationError
+          type: Servus::Support::Errors::AuthenticationError
         )
       end
   end
