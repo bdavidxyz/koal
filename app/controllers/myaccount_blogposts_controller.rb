@@ -39,9 +39,13 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :create, roles: [ :superadmin ]
   # @route POST /myaccount/blogposts (myaccount_blogpost)
   def create
-    @blogpost = Blogpost.new(blogpost_params_without_blogtags)
-    if @blogpost.save
-      update_blogtag_associations(@blogpost)
+    @result = MyaccountBlogposts::Create::Service.call(
+      attributes: blogpost_params_without_blogtags.to_h,
+      blogtag_ids: params.dig(:blogpost, :blogtag_ids)
+    )
+    @blogpost = @result.data[:blogpost]
+
+    if @result.success?
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully created."
     else
       render :new, status: :unprocessable_content
