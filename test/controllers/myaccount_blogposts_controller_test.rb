@@ -36,6 +36,13 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should render not found when showing a missing blogpost" do
+    get myaccount_blogpost_show_url(slug: "missing-blogpost")
+
+    assert_response :not_found
+    assert_match "Blogpost not found", response.body
+  end
+
   test "should get edit" do
     get myaccount_blogpost_edit_url(slug: @blogpost.slug)
     assert_response :success

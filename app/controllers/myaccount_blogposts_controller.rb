@@ -20,7 +20,10 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts/:slug
   def show
-    @blogpost = retrieve_blogpost
+    @result = MyaccountBlogposts::Show::Service.call(slug: params[:slug])
+    if @result.failure?
+      render_error_page(@result.error.http_status, @result.error.message)
+    end
   end
 
 
@@ -94,10 +97,6 @@ class MyaccountBlogpostsController < ApplicationController
   end
 
   private
-
-  def retrieve_blogpost
-    Blogpost.find_by(slug: params[:slug]) or not_found
-  end
 
   def blogpost_params_without_blogtags
     params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at)
