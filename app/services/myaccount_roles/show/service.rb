@@ -8,21 +8,13 @@ module MyaccountRoles::Show
       role = Rabarber::Role.find_by(id: @id)
       return role_not_found unless role
 
-      success(
-        role: role,
-        controller_method: :render_role_show,
-        controller_args: [ role ]
-      )
+      success(role: role)
     end
 
     private
       def role_not_found
         failure(
           "Role not found",
-          data: {
-            controller_method: :not_found,
-            controller_args: []
-          },
           type: Servus::Support::Errors::NotFoundError
         )
       end

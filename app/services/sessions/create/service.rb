@@ -13,15 +13,7 @@ module Sessions::Create
       session_record = user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
 
-      success(
-        session: session_record,
-        controller_method: :dynamic_redirect_to,
-        controller_args: [
-          :myaccount_path,
-          {},
-          { notice: "Signed in successfully" }
-        ]
-      )
+      success(session: session_record)
     end
 
     private
@@ -30,14 +22,7 @@ module Sessions::Create
       def invalid_credentials
         failure(
           "That email or password is incorrect",
-          data: {
-            controller_method: :dynamic_redirect_to,
-            controller_args: [
-              :sign_in_path,
-              { email_hint: email },
-              { alert: "That email or password is incorrect" }
-            ]
-          },
+          data: { email_hint: email },
           type: Servus::Support::Errors::AuthenticationError
         )
       end

@@ -25,7 +25,10 @@ class MyaccountRolesController < ApplicationController
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/roles/:slug
   def show
-    run_controller(MyaccountRoles::Show::Service, id: params[:id])
+    run_service(MyaccountRoles::Show::Service, id: params[:id])
+    return if performed? || @result.failure?
+
+    render_role_show(@result.data[:role])
   end
 
   require_auth action: :new
@@ -76,21 +79,26 @@ class MyaccountRolesController < ApplicationController
   end
 
   private
+    def render_service_error(error)
+      return not_found if error.is_a?(Servus::Support::Errors::NotFoundError)
 
-  def render_role_show(role)
-    @role = role
-
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @role }
+      super
     end
-  end
 
-  def retrieve_role
-    Rabarber::Role.find_by(id: params[:id]) or not_found
-  end
+    def render_role_show(role)
+      @role = role
 
-  def role_params
-    params.require(:rabarber_role).permit(:name)
-  end
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @role }
+      end
+    end
+
+    def retrieve_role
+      Rabarber::Role.find_by(id: params[:id]) or not_found
+    end
+
+    def role_params
+      params.require(:rabarber_role).permit(:name)
+    end
 end

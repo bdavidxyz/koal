@@ -17,30 +17,4 @@ class ApplicationController < ActionController::Base
   def when_unauthorized
     head :not_found # Custom behavior to hide existence of protected resources
   end
-
-  def run_controller(service_class, params = {})
-    run_service(service_class, params)
-    result = @result
-    return result if result.blank? || performed? || result.failure?
-
-    dispatch_controller_response(result.data)
-    result
-  end
-
-  def render_service_error(error)
-    return dispatch_controller_response(@result.data) if @result&.data&.respond_to?(:controller_method)
-
-    super
-  end
-
-  private
-    def dispatch_controller_response(data)
-      return if data.blank? || !data.respond_to?(:controller_method)
-
-      send(data.controller_method, *Array(data.controller_args))
-    end
-
-    def dynamic_redirect_to(route_helper, route_params = {}, redirect_options = {})
-      redirect_to public_send(route_helper, **route_params.to_h.symbolize_keys), **redirect_options.to_h.symbolize_keys
-    end
 end
