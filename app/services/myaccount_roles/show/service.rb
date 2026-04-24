@@ -15,7 +15,7 @@ module MyaccountRoles::Show
       def role_not_found
         failure(
           "Role not found",
-          type: Servus::Support::Errors::NotFoundError
+          type: NotFoundError
         )
       end
   end
