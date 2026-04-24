@@ -31,7 +31,7 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :new, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts/new (myaccount_blogpost_new)
   def new
-    @blogpost = Blogpost.new
+    @result = MyaccountBlogposts::New::Service.call
   end
 
 
