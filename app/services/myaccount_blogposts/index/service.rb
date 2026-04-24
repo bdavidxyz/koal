@@ -20,7 +20,7 @@ module MyaccountBlogposts::Index
         scope = Blogpost.order(sort_clause)
         return scope if normalized_query.blank?
 
-        Fuzzy::Search.new(scope, Blogpost, normalized_query).run
+        Fuzzy::Search.call(scope: scope, query: normalized_query).data[:results]
       end
 
       def sort_clause

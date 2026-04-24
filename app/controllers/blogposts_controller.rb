@@ -11,7 +11,7 @@ class BlogpostsController < ApplicationController
       sort[:published_at] = "desc"
     end
     scope = Blogpost.includes(:blogtags).where("published_at IS NOT NULL AND published_at <= ?", Time.current).order(sort)
-    blogposts = params[:q].present? ? Fuzzy::Search.new(scope, Blogpost, params[:q]).run : scope
+    blogposts = Fuzzy::Search.call(scope: scope, query: params[:q]).data[:results]
     @pagy, @blogposts = pagy(:offset, blogposts, limit: 10)
   end
 

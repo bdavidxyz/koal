@@ -12,7 +12,7 @@ class MyaccountBlogtagsController < ApplicationController
       sort[:updated_at] = "desc"
     end
     scope = Blogtag.order(sort)
-    blogtags = !!q ? Fuzzy::Search.new(scope, Blogtag, q).run : scope
+    blogtags = Fuzzy::Search.call(scope: scope, query: q).data[:results]
     @pagy, @blogtags = pagy(:offset, blogtags, limit: 10)
   end
 

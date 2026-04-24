@@ -12,7 +12,7 @@ class MyaccountUsersController < ApplicationController
       sort[:updated_at] = "desc"
     end
     scope = User.order(sort)
-    users = !!q ? Fuzzy::Search.new(scope, User, q).run : scope
+    users = Fuzzy::Search.call(scope: scope, query: q).data[:results]
     @pagy, @users = pagy(:offset, users, limit: 10)
   end
 
