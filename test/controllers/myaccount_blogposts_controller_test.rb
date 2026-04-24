@@ -41,9 +41,32 @@ class MyaccountBlogpostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should render not found when editing a missing blogpost" do
+    get myaccount_blogpost_edit_url(slug: "missing-blogpost")
+
+    assert_response :not_found
+    assert_match "Blogpost not found", response.body
+  end
+
   test "should update blogpost" do
     put myaccount_blogpost_update_url(slug: @blogpost.slug), params: { blogpost: { chapo: @blogpost.chapo, kontent: @blogpost.kontent, published_at: @blogpost.published_at, slug: @blogpost.slug, title: @blogpost.title, blogtag_ids: [ @first_blogtag.id ] } }
     assert_redirected_to myaccount_blogpost_list_url
+  end
+
+  test "should render not found when updating a missing blogpost" do
+    put myaccount_blogpost_update_url(slug: "missing-blogpost"), params: {
+      blogpost: {
+        chapo: "Missing chapo",
+        kontent: "Missing content",
+        published_at: Time.current,
+        slug: "missing-blogpost",
+        title: "Missing title",
+        blogtag_ids: [ @first_blogtag.id ]
+      }
+    }
+
+    assert_response :not_found
+    assert_match "Blogpost not found", response.body
   end
 
   test "should destroy blogpost" do

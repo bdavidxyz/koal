@@ -36,7 +36,10 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :edit, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts/:slug/edit
   def edit
-    @blogpost = retrieve_blogpost
+    @result = MyaccountBlogposts::Edit::Service.call(slug: params[:slug])
+    if @result.failure?
+      render_error_page(@result.error.http_status, @result.error.message)
+    end
   end
 
 
