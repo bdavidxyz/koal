@@ -27,7 +27,6 @@ class MyaccountRolesController < ApplicationController
   def show
     @result = MyaccountRoles::Show::Service.call(id: params[:id])
     if @result.success?
-      @role = @result.data[:role]
       respond_to do |format|
         format.html { render :show }
         format.json { render json: @result.data[:role] }
