@@ -12,7 +12,7 @@ class MyaccountBlogpostsController < ApplicationController
       query: q
     )
 
-    @pagy, @result.data[:blogposts] = pagy(:offset, @result.data[:blogposts], limit: 10) if @result.success?
+    @pagy, @result.data[:blogposts] = pagy(:offset, @result.data[:blogposts], limit: 10)
   end
 
 
@@ -51,7 +51,7 @@ class MyaccountBlogpostsController < ApplicationController
   # @route POST /myaccount/blogposts (myaccount_blogpost)
   def create
     @result = MyaccountBlogposts::Create::Service.call(
-      attributes: blogpost_params_without_blogtags.to_h,
+      attributes: blogpost_without_blogtags_attrs,
       blogtag_ids: params.dig(:blogpost, :blogtag_ids)
     )
 
@@ -69,7 +69,7 @@ class MyaccountBlogpostsController < ApplicationController
   def update
     @result = MyaccountBlogposts::Update::Service.call(
       slug: params[:slug],
-      attributes: blogpost_params_without_blogtags.to_h,
+      attributes: blogpost_without_blogtags_attrs,
       blogtag_ids: params.dig(:blogpost, :blogtag_ids)
     )
 
@@ -98,7 +98,7 @@ class MyaccountBlogpostsController < ApplicationController
 
   private
 
-  def blogpost_params_without_blogtags
-    params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at)
+  def blogpost_without_blogtags_attrs
+    params.require(:blogpost).permit(:title, :kontent, :slug, :chapo, :published_at).to_h
   end
 end
