@@ -5,20 +5,15 @@ class MyaccountRolesController < ApplicationController
   grant_access action: :index, roles: [ :superadmin ]
   # @route GET /myaccount/roles (myaccount_role)
   def index
-    sort = {}
-    if params[:sort] && params[:direction]
-      sort[params[:sort]] = params[:direction]
-    else
-      sort[:updated_at] = "desc"
+    @result = MyaccountRoles::Index::Service.call(
+      sort: params[:sort],
+      direction: params[:direction],
+      query: q
+    )
+
+    if @result.success?
+      @pagy, @result.data[:roles] = pagy(:offset, @result.data[:roles], limit: 10) if @result.success?
     end
-    scope = Rabarber::Role.order(sort)
-    # Rabarber::Role doesn't support searchable_attributes, so use simple search
-    roles = if !!q && q.present?
-      scope.where("LOWER(name) LIKE ?", "%#{q.downcase}%")
-    else
-      scope
-    end
-    @pagy, @roles = pagy(:offset, roles, limit: 10)
   end
 
   require_auth action: :show
