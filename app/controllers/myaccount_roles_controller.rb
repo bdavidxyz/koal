@@ -26,6 +26,10 @@ class MyaccountRolesController < ApplicationController
   # @route GET /myaccount/roles/:slug
   def show
     @role = retrieve_role
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @role }
+    end
   end
 
   require_auth action: :new

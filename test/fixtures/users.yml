@@ -3,7 +3,7 @@ jane:
   email: jane@hotmail.com
   slug: jane-slug
   name: jane
-  password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
+  password_digest: $2a$04$c/iz/WXaKx4LBLKq5qaw8uG7NBq3fm7uNdkjqEY3XzniUSAciCU9.
   verified: true
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
@@ -13,7 +13,7 @@ alicia:
   email: alicia@example.com
   slug: alicia-slug
   name: alicia
-  password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
+  password_digest: $2a$04$c/iz/WXaKx4LBLKq5qaw8uG7NBq3fm7uNdkjqEY3XzniUSAciCU9.
   verified: true
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>

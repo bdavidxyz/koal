@@ -34,6 +34,17 @@ class MyaccountRolesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should show role as json" do
+    get myaccount_role_show_url(id: @role.id, format: :json)
+
+    assert_response :success
+    assert_equal "application/json", response.media_type
+
+    role_response = JSON.parse(response.body)
+    assert_equal @role.id, role_response["id"]
+    assert_equal @role.name, role_response["name"]
+  end
+
   test "should get edit" do
     get myaccount_role_edit_url(id: @role.id)
     assert_response :success

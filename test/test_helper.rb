@@ -1,10 +1,13 @@
 require "simplecov"
-SimpleCov.start do
-  add_filter "/test/"
-  add_filter "/initializers/"
-  add_filter "/config/"
-  track_files "app/controllers/**/*.rb"
-  minimum_coverage_by_file 0
+
+if ENV["RUN_PARALLEL_TESTS"] != "true"
+  SimpleCov.start do
+    add_filter "/test/"
+    add_filter "/initializers/"
+    add_filter "/config/"
+    track_files "app/controllers/**/*.rb"
+    minimum_coverage_by_file 0
+  end
 end
 
 ENV["RAILS_ENV"] ||= "test"
@@ -13,7 +16,7 @@ require "rails/test_help"
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
-  # parallelize(workers: :number_of_processors)
+  parallelize(workers: :number_of_processors) if ENV["RUN_PARALLEL_TESTS"] == "true"
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
