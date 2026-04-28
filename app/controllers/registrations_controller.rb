@@ -4,18 +4,18 @@ class RegistrationsController < ApplicationController
   grant_access action: :new
   # @route GET /sign_up (sign_up)
   def new
-    @user = User.new
+    @result = Registrations::New::Service.call
   end
 
   grant_access action: :create
   # @route POST /sign_up (sign_up)
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session_record = @user.sessions.create!
-      SessionCookie.new(cookies).value = session_record.id
+    @result = Registrations::Create::Service.call(
+      attributes: user_params,
+      cookies: cookies
+    )
 
-      send_email_verification
+    if @result.success?
       redirect_to myaccount_email_path, notice: "Welcome! You have signed up successfully"
     else
       render :new, status: :unprocessable_content
@@ -25,9 +25,5 @@ class RegistrationsController < ApplicationController
   private
     def user_params
       params.permit(:email, :password, :password_confirmation)
-    end
-
-    def send_email_verification
-      UserMailer.with(user: @user).email_verification.deliver_later
     end
 end
