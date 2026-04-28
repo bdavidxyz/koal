@@ -8,9 +8,13 @@ module MyaccountBlogposts::Create
     def call
       blogpost = Blogpost.new(@attributes)
 
-      return failure("Blogpost could not be created", data: { blogpost: blogpost }) unless persist(blogpost)
+      has_persisted = persist(blogpost)
 
-      success(blogpost: blogpost)
+      if has_persisted
+        success(blogpost: blogpost)
+      else
+        failure("Blogpost could not be created", data: { blogpost: blogpost }, type: BadRequestError)
+      end
     end
 
     private
