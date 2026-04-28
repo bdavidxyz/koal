@@ -20,29 +20,21 @@ class MyaccountRolesController < ApplicationController
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/roles/:slug
   def show
-    @result = MyaccountRoles::Show::Service.call(id: params[:id])
-
-    if @result.failure?
-      render_error_page(@result.error.http_status, @result.error.message)
-    end
+    run_service(MyaccountRoles::Show::Service, id: params[:id])
   end
 
   require_auth action: :new
   grant_access action: :new, roles: [ :superadmin ]
   # @route GET /myaccount/roles/new (myaccount_role_new)
   def new
-    @result = MyaccountRoles::New::Service.call
+    run_service(MyaccountRoles::New::Service, nil)
   end
 
   require_auth action: :edit
   grant_access action: :edit, roles: [ :superadmin ]
   # @route GET /myaccount/roles/:slug/edit
   def edit
-    @result = MyaccountRoles::Edit::Service.call(id: params[:id])
-
-    if @result.failure?
-      render_error_page(@result.error.http_status, @result.error.message)
-    end
+    run_service(MyaccountRoles::Edit::Service, id: params[:id])
   end
 
   require_auth action: :create
@@ -70,7 +62,7 @@ class MyaccountRolesController < ApplicationController
     if @result.success?
       redirect_to myaccount_role_list_path, notice: "Role was successfully updated."
     elsif @result.error&.http_status == :not_found
-      render_error_page(:not_found, @result.error.message)
+      render_service_error(@result.error)
     else
       render :edit, status: :unprocessable_content
     end
@@ -85,7 +77,7 @@ class MyaccountRolesController < ApplicationController
     if @result.success?
       redirect_to myaccount_path, notice: "Role was successfully deleted."
     else
-      render_error_page(@result.error.http_status, @result.error.message)
+      render_service_error(@result.error)
     end
   end
 

@@ -18,29 +18,21 @@ class MyaccountUsersController < ApplicationController
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/users/:slug
   def show
-    @result = MyaccountUsers::Show::Service.call(slug: params[:slug])
-
-    if @result.failure?
-      render_error_page(@result.error.http_status, @result.error.message)
-    end
+    run_service(MyaccountUsers::Show::Service, slug: params[:slug])
   end
 
   require_auth action: :new
   grant_access action: :new, roles: [ :superadmin ]
   # @route GET /myaccount/users/new (myaccount_user_new)
   def new
-    @result = MyaccountUsers::New::Service.call
+    run_service(MyaccountUsers::New::Service, nil)
   end
 
   require_auth action: :edit
   grant_access action: :edit, roles: [ :superadmin ]
   # @route GET /myaccount/users/:slug/edit
   def edit
-    @result = MyaccountUsers::Edit::Service.call(slug: params[:slug])
-
-    if @result.failure?
-      render_error_page(@result.error.http_status, @result.error.message)
-    end
+    run_service(MyaccountUsers::Edit::Service, slug: params[:slug])
   end
 
   require_auth action: :create
@@ -72,7 +64,7 @@ class MyaccountUsersController < ApplicationController
     if @result.success?
       redirect_to myaccount_user_list_path, notice: "User was successfully updated."
     elsif @result.error&.http_status == :not_found
-      render_error_page(:not_found, @result.error.message)
+      render_service_error(@result.error)
     else
       render :edit, status: :unprocessable_content
     end
@@ -87,7 +79,7 @@ class MyaccountUsersController < ApplicationController
     if @result.success?
       redirect_to myaccount_path, notice: "User was successfully deleted."
     else
-      render_error_page(@result.error.http_status, @result.error.message)
+      render_service_error(@result.error)
     end
   end
 
