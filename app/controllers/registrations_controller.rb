@@ -13,7 +13,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session_record = @user.sessions.create!
-      cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
+      SessionCookie.new(cookies).value = session_record.id
 
       send_email_verification
       redirect_to myaccount_email_path, notice: "Welcome! You have signed up successfully"

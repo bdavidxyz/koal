@@ -11,7 +11,7 @@ module Sessions::Create
       return invalid_credentials unless user
 
       session_record = user.sessions.create!
-      @cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
+      SessionCookie.new(@cookies).value = session_record.id
 
       success(session: session_record)
     end

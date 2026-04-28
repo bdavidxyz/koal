@@ -26,7 +26,7 @@ module AuthenticableController
   end
 
   def set_current_session
-    if @session_record = Session.find_by_id(cookies.signed[:session_token])
+    if @session_record = Session.find_by_id(SessionCookie.new(cookies).value)
       Current.session = @session_record
     end
   end

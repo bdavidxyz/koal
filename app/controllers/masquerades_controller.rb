@@ -5,7 +5,7 @@ class MasqueradesController < ApplicationController
   grant_access action: :create, roles: [ :superadmin ]
   def create
     session_record = @user.sessions.create!
-    cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
+    SessionCookie.new(cookies).value = session_record.id
 
     redirect_to myaccount_path, notice: "Signed in successfully"
   end
