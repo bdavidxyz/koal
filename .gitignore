@@ -52,3 +52,6 @@ node_modules
 
 vendor/bundle
 .env
+
+# Kamal secrets
+/.kamal/secrets
