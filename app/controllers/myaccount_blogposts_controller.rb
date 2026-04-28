@@ -20,10 +20,7 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts/:slug
   def show
-    @result = MyaccountBlogposts::Show::Service.call(slug: params[:slug])
-    if @result.failure?
-      render_error_page(@result.error.http_status, @result.error.message)
-    end
+    run_service(MyaccountBlogposts::Show::Service, slug: params[:slug])
   end
 
 
@@ -31,7 +28,7 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :new, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts/new (myaccount_blogpost_new)
   def new
-    @result = MyaccountBlogposts::New::Service.call
+    run_service(MyaccountBlogposts::New::Service, nil)
   end
 
 
@@ -39,10 +36,7 @@ class MyaccountBlogpostsController < ApplicationController
   grant_access action: :edit, roles: [ :superadmin ]
   # @route GET /myaccount/blogposts/:slug/edit
   def edit
-    @result = MyaccountBlogposts::Edit::Service.call(slug: params[:slug])
-    if @result.failure?
-      render_error_page(@result.error.http_status, @result.error.message)
-    end
+    run_service(MyaccountBlogposts::Edit::Service, slug: params[:slug])
   end
 
 
@@ -76,7 +70,7 @@ class MyaccountBlogpostsController < ApplicationController
     if @result.success?
       redirect_to myaccount_blogpost_list_path, notice: "Blogpost was successfully updated."
     elsif @result.error&.http_status == :not_found
-      render_error_page(:not_found, @result.error.message)
+      render_service_error(@result.error)
     else
       render :edit, status: :unprocessable_content
     end
@@ -92,7 +86,7 @@ class MyaccountBlogpostsController < ApplicationController
     if @result.success?
       redirect_to myaccount_path, notice: "Blogpost was successfully deleted."
     else
-      render_error_page(@result.error.http_status, @result.error.message)
+      render_service_error(@result.error)
     end
   end
 

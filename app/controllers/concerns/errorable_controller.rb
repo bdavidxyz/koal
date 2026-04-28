@@ -5,6 +5,24 @@ module ErrorableController
 
   protected
 
+
+  def render_service_error(error)
+    status_code = normalize_error_status_code(error.http_status)
+
+    unless ERROR_PAGE_STATUS_RANGE.cover?(status_code)
+      raise ArgumentError, "HTTP error code must be between 400 and 511"
+    end
+
+    render "shared/error_page",
+      layout: false,
+      status: status_code,
+      locals: {
+        status_code: status_code,
+        status_label: Rack::Utils::HTTP_STATUS_CODES.fetch(status_code, "Unknown Error"),
+        message: error&.message&.to_s
+      }
+  end
+
   def render_error_page(status_code, message)
     status_code = normalize_error_status_code(status_code)
 

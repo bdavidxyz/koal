@@ -18,27 +18,21 @@ class MyaccountBlogtagsController < ApplicationController
   grant_access action: :show, roles: [ :superadmin ]
   # @route GET /myaccount/blogtags/:slug
   def show
-    @result = MyaccountBlogtags::Show::Service.call(slug: params[:slug])
-
-    render_error_page(@result.error.http_status, @result.error.message) if @result.failure?
+    run_service(MyaccountBlogtags::Show::Service, slug: params[:slug])
   end
 
   require_auth action: :new
   grant_access action: :new, roles: [ :superadmin ]
   # @route GET /myaccount/blogtags/new (myaccount_blogtag_new)
   def new
-    @result = MyaccountBlogtags::New::Service.call
+    run_service(MyaccountBlogtags::New::Service, nil)
   end
 
   require_auth action: :edit
   grant_access action: :edit, roles: [ :superadmin ]
   # @route GET /myaccount/blogtags/:slug/edit
   def edit
-    @result = MyaccountBlogtags::Edit::Service.call(slug: params[:slug])
-
-    if @result.failure?
-      render_error_page(@result.error.http_status, @result.error.message)
-    end
+    run_service(MyaccountBlogtags::Edit::Service, slug: params[:slug])
   end
 
   require_auth action: :create
@@ -66,7 +60,7 @@ class MyaccountBlogtagsController < ApplicationController
     if @result.success?
       redirect_to myaccount_blogtag_list_path, notice: "Blogtag was successfully updated."
     elsif @result.error&.http_status == :not_found
-      render_error_page(:not_found, @result.error.message)
+      render_service_error(@result.error)
     else
       render :edit, status: :unprocessable_content
     end
@@ -81,7 +75,7 @@ class MyaccountBlogtagsController < ApplicationController
     if @result.success?
       redirect_to myaccount_path, notice: "Blogtag was successfully deleted."
     else
-      render_error_page(@result.error.http_status, @result.error.message)
+      render_service_error(@result.error)
     end
   end
 
