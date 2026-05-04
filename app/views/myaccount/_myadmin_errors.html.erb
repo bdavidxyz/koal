@@ -3,7 +3,7 @@
     <div>
       <h1 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">Errors</h1>
       <p class="text-sm text-gray-600 dark:text-gray-400">
-        Request IDs detected from <span class="font-mono"><%= @result.data[:log_path] %></span>
+        Request IDs detected from <span class="font-medium"><%= @result.data[:source_label] %></span>
       </p>
     </div>
     <div class="inline-flex items-center rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-200">
@@ -15,10 +15,10 @@
     <div class="mb-4 flex items-center justify-between">
       <div>
         <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-          <%= @result.data[:environment] %> log
+          <%= @result.data[:environment] %> source
         </h2>
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-          Unique request IDs with a detected 5xx or uncaught exception.
+          <span class="font-mono"><%= @result.data[:source_location] %></span>
         </p>
       </div>
     </div>
@@ -35,7 +35,7 @@
       </div>
     <% else %>
       <div class="rounded-md border border-dashed border-gray-300 bg-gray-50 px-4 py-6 text-sm text-gray-600 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-400">
-        No error request IDs were found in this log file yet.
+        No error request IDs were found from this source yet.
       </div>
     <% end %>
   </div>

@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   # Session callbacks
   before_action :set_current_request_details
   before_action :set_current_session
+  before_action :set_error_reporter_context
   before_action :check_authentication_requirement
 
   # include after callbacks, see https://github.com/enjaku4/rabarber/issues/74
@@ -17,5 +18,16 @@ class ApplicationController < ActionController::Base
 
   def when_unauthorized
     head :not_found # Custom behavior to hide existence of protected resources
+  end
+
+  private
+
+  def set_error_reporter_context
+    Rails.error.set_context(
+      request_id: request.request_id,
+      request_method: request.request_method,
+      request_path: request.fullpath,
+      user_id: Current.user&.id
+    )
   end
 end
