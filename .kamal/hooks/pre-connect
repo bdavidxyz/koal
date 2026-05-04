@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Pre-connect hook: runs before connecting to the new container
+# This is the right place to run database migrations
+
+set -e
+
+echo "Running database preparation (creates databases and runs migrations)..."
+
+# Run db:prepare on the primary role (web)
+# This creates all SQLite databases if they don't exist and runs pending migrations
+kamal app exec --roles web --reuse "bin/rails db:prepare"
+
+echo "Database preparation complete!"

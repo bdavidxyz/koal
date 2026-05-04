@@ -50,31 +50,17 @@ volumes:
 builder:
   multiarch: false
   args:
-    RUBY_VERSION: 4.0.2
+    RUBY_VERSION: "4.0.2"
 
-healthcheck:
-  path: /up
-  port: 3000
-  max_attempts: 7
-  interval: 10s
-
-deploy:
-  pre_connect:
-    - bin/rails db:prepare
-
-traefik:
-  options:
-    publish:
-      - "443:443"
-    volume:
-      - "/letsencrypt/acme.json:/letsencrypt/acme.json"
-  args:
-    entryPoints.web.address: ":80"
-    entryPoints.websecure.address: ":443"
-    certificatesResolvers.letsencrypt.acme.email: "YOUR_EMAIL"
-    certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
-    certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+proxy:
+  ssl: true
+  host: YOUR_DOMAIN
+  app_port: 3000
+  healthcheck:
+    path: /up
+    interval: 10s
+    timeout: 5s
+    max_attempts: 7
 
 accessories:
   # If you need additional services like Redis, add them here
@@ -88,10 +74,10 @@ accessories:
 # Asset bridging for public assets
 asset_path: /app/public/assets
 
-# Boot configuration
-boot:
-  limit: 10
-  wait: 2
+# Deploy timeouts
+deploy_timeout: 30
+drain_timeout: 30
+readiness_delay: 7
 
 # Logging
 logging:
@@ -99,3 +85,10 @@ logging:
   options:
     max-size: "10m"
     max-file: "3"
+
+# Command aliases
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  dbconsole: app exec --interactive --reuse "bin/rails dbconsole"
+  logs: app logs --follow
+  migrate: app exec "bin/rails db:migrate"

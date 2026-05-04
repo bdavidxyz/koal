@@ -68,7 +68,9 @@ class MyaccountController < ApplicationController
   grant_access action: :trigger_division_by_zero, roles: [ :superadmin ]
   # @route POST /myaccount/adminpanel/trigger_division_by_zero (myaccount_trigger_division_by_zero)
   def trigger_division_by_zero
-    1 / 0
+    @result = Myaccount::TriggerDivisionByZero::Service.call(
+      numerator: params[:numerator].to_i,
+    )
   end
 
   require_auth action: :simulate_slow_query

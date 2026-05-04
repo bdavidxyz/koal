@@ -45,7 +45,10 @@
         </div>
         <div class="mt-2 flex">
           <%= link_to "Open Errors Dashboard", "/solid_errors", target: "_blank", class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0" %>
-          <%= button_to "Trigger Division By Zero", myaccount_adminpanel_trigger_division_by_zero_path, class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1 mt-2 mb-2 md:mt-0 md:mb-0 ml-2" %>
+          <%= form_with url: myaccount_adminpanel_trigger_division_by_zero_path, method: :post, class: "inline-flex items-center gap-2 ml-2" do |f| %>
+            <%= f.number_field :numerator, value: 1, class: "w-20 rounded-md border border-gray-300 text-sm px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-200" %>
+            <%= f.submit "Trigger Division By Zero", class: "cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-md text-sm px-3 py-1" %>
+          <% end %>
         </div>
       </div>
     </div>
