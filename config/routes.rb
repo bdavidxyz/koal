@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "myaccount/danger", to: "myaccount#danger"
   get "myaccount/adminpanel", to: "myaccount#adminpanel"
   get "myaccount/errors", to: "myaccount#errors", as: :myaccount_errors
+  get "myaccount/errors/*id", to: "myaccount#errors_show", as: :myaccount_errors_show
   post "myaccount/adminpanel/trigger_hello_world_job", to: "myaccount#trigger_hello_world_job"
   post "myaccount/adminpanel/trigger_division_by_zero", to: "myaccount#trigger_division_by_zero"
   post "myaccount/adminpanel/simulate_slow_query", to: "myaccount#simulate_slow_query"

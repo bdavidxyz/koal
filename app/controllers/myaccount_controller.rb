@@ -63,6 +63,13 @@ class MyaccountController < ApplicationController
     @result = Myaccount::Errors::Index::Service.call
   end
 
+  require_auth action: :errors_show
+  grant_access action: :errors_show, roles: [ :superadmin ]
+  # @route GET /myaccount/errors/*id (myaccount_errors_show)
+  def errors_show
+    @result = Myaccount::Errors::Show::Service.call(request_id: params[:id])
+  end
+
   require_auth action: :trigger_hello_world_job
   grant_access action: :trigger_hello_world_job, roles: [ :superadmin ]
   # @route POST /myaccount/adminpanel/trigger_hello_world_job (myaccount_trigger_hello_world_job)

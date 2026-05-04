@@ -1,8 +1,8 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-    # Replace the default in-process memory cache store with a durable alternative.
-    config.cache_store = :solid_cache_store
+  # Replace the default in-process memory cache store with a durable alternative.
+  config.cache_store = :solid_cache_store
 
   config.lograge.enabled = true
 
@@ -17,9 +17,9 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-    # Replace the default in-process and non-durable queuing backend for Active Job.
-    config.active_job.queue_adapter = :solid_queue
-    config.solid_queue.connects_to = { database: { writing: :queue } }
+  # Replace the default in-process and non-durable queuing backend for Active Job.
+  config.active_job.queue_adapter = :solid_queue
+  config.solid_queue.connects_to = { database: { writing: :queue } }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Make code changes take effect immediately without server restart.
