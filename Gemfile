@@ -107,3 +107,5 @@ gem "addressable", ">= 2.9.0"
 
 # Service as hell
 gem "servus"
+
+gem "lograge"
