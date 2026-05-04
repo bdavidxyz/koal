@@ -40,6 +40,30 @@ class Myaccount::Errors::Show::ServiceTest < ActiveSupport::TestCase
     log_file.close!
   end
 
+  test "filters solid errors persistence lines including related transactions" do
+    log_file = Tempfile.new("myaccount-errors-show")
+    log_file.write <<~LOG
+      [target-request] Started POST /myaccount/adminpanel/trigger_division_by_zero
+      [target-request] SolidErrors::Error Load (0.1ms) SELECT "solid_errors".* FROM "solid_errors" WHERE "solid_errors"."id" = 1 LIMIT 1
+      [target-request] TRANSACTION (0.0ms) BEGIN immediate TRANSACTION
+      [target-request] SolidErrors::Occurrence Create (0.2ms) INSERT INTO "solid_errors_occurrences" ("error_id") VALUES (1)
+      [target-request] TRANSACTION (0.2ms) COMMIT TRANSACTION
+      [target-request]
+      [target-request] ZeroDivisionError (divided by 0):
+      [target-request] app/services/myaccount/make_division/service.rb:9:in 'Integer#/'
+    LOG
+    log_file.flush
+
+    result = Myaccount::Errors::Show::Service.call(request_id: "target-request", log_path: log_file.path)
+
+    assert result.success?
+    assert_equal 4, result.data[:lines].size
+    assert result.data[:lines].none? { |entry| entry[:content].match?(/SolidErrors|solid_errors|TRANSACTION/) }
+    assert_equal "[target-request] ZeroDivisionError (divided by 0):", result.data[:lines][-2][:content]
+  ensure
+    log_file.close!
+  end
+
   test "raises NotFoundError when request id has no matching lines" do
     log_file = Tempfile.new("myaccount-errors-show")
     log_file.write <<~LOG

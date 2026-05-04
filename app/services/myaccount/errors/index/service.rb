@@ -1,6 +1,7 @@
 module Myaccount::Errors::Index
   class Service < Servus::Base
     REQUEST_ID_PATTERN = /\A\[(?<request_id>[^\]]+)\]/.freeze
+    ERROR_NAME_PATTERN = /(?:Caused by:\s*|uncaught exception:\s*|^)([\w:]+(?:Error|Exception))\b/.freeze
     ERROR_PATTERNS = [
       /\bstatus=5\d{2}\b/i,
       /\bCompleted 5\d{2}\b/i,
@@ -99,13 +100,23 @@ module Myaccount::Errors::Index
           errors_by_request_id[request_id] = {
             request_id: request_id,
             timestamp: occurrence.created_at,
-            error_name: occurrence.error&.class_name || "Unknown Error"
+            error_name: occurrence_error_name(occurrence)
           }
         end
 
         errors_by_request_id
           .values
           .sort_by { |error| -error[:timestamp].to_f }
+      end
+
+      def occurrence_error_name(occurrence)
+        error = occurrence.respond_to?(:error) ? occurrence.error : nil
+        return "Unknown Error" if error.blank?
+
+        error.exception_class.presence ||
+          error.try(:class_name).presence ||
+          error.to_s.presence ||
+          "Unknown Error"
       end
 
       def occurrence_request_id(occurrence)
@@ -146,8 +157,7 @@ module Myaccount::Errors::Index
       def extract_error_name_from_lines(lines)
         lines.each do |l|
           line = l[:line]
-          # Look for error patterns like "Caused by: NoMethodError" or "ActionView::Template::Error"
-          match = line.match(/(?:Caused by:\s*|^)(\w*(?:Error|Exception))\b/)
+          match = line.match(ERROR_NAME_PATTERN)
           return match[1] if match
         end
         "Unknown Error"

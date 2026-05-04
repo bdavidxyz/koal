@@ -24,19 +24,21 @@ module Myaccount::Errors::Show
 
     private
 
-      SOLID_ERRORS_PATTERN = /SolidErrors/i.freeze
+      SOLID_ERRORS_PATTERN = /(SolidErrors|solid_errors)/i.freeze
+      TRANSACTION_PATTERN = /\bTRANSACTION\b/i.freeze
 
       def log_lines_for_request_id
-        results = []
+        request_lines = []
 
         File.foreach(@log_path).with_index do |line, index|
           next unless line_matches_request_id?(line)
-          next if solid_errors_line?(line)
 
-          results << { index: index, content: line.chomp }
+          request_lines << { index: index, content: line.chomp }
         end
 
-        results
+        request_lines.reject.with_index do |entry, position|
+          solid_errors_line?(entry[:content]) || solid_errors_transaction_line?(request_lines, position)
+        end
       end
 
       def line_matches_request_id?(line)
@@ -45,6 +47,19 @@ module Myaccount::Errors::Show
 
       def solid_errors_line?(line)
         SOLID_ERRORS_PATTERN.match?(line)
+      end
+
+      def solid_errors_transaction_line?(request_lines, position)
+        return false unless TRANSACTION_PATTERN.match?(request_lines[position][:content])
+
+        neighboring_lines(request_lines, position).any? { |line| solid_errors_line?(line[:content]) }
+      end
+
+      def neighboring_lines(request_lines, position)
+        [
+          request_lines[position - 1],
+          request_lines[position + 1]
+        ].compact
       end
   end
 end
