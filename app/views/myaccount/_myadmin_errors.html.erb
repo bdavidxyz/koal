@@ -7,7 +7,7 @@
       </p>
     </div>
     <div class="inline-flex items-center rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-200">
-      <%= pluralize(@result.data[:request_ids].size, "error request") %>
+      <%= pluralize(@result.data[:errors].size, "error request") %>
     </div>
   </div>
 
@@ -23,13 +23,21 @@
       </div>
     </div>
 
-    <% if @result.data[:request_ids].any? %>
+    <% if @result.data[:errors].any? %>
       <div class="overflow-hidden rounded-md border border-gray-200 dark:border-gray-800">
         <ul class="divide-y divide-gray-200 dark:divide-gray-800">
-          <% @result.data[:request_ids].each do |request_id| %>
+          <% @result.data[:errors].each do |error| %>
             <li class="bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800">
-              <%= link_to myaccount_errors_show_path(id: request_id), class: "block px-4 py-3 font-mono text-sm text-gray-900 dark:text-gray-100" do %>
-                <%= request_id %>
+              <%= link_to myaccount_errors_show_path(id: error[:request_id]), class: "block px-4 py-3" do %>
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-sm text-gray-900 dark:text-gray-100"><%= error[:request_id] %></span>
+                  <% if error[:timestamp] %>
+                    <span class="text-xs text-gray-500 dark:text-gray-400"><%= error[:timestamp] %></span>
+                  <% end %>
+                </div>
+                <% if error[:error_name] %>
+                  <div class="mt-1 text-xs font-medium text-red-600 dark:text-red-400"><%= error[:error_name] %></div>
+                <% end %>
               <% end %>
             </li>
           <% end %>

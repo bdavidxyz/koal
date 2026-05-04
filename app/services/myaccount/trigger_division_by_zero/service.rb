@@ -5,7 +5,7 @@ module Myaccount::TriggerDivisionByZero
     end
 
     def call
-      result = @numerator / 0
+      result = Myaccount::MakeDivision::Service.call(numerator: @numerator, denominator: 0)
       success(result: result)
     end
   end

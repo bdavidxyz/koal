@@ -17,7 +17,7 @@ module Myaccount::Errors::Index
       source = selected_source
 
       success(
-        request_ids: request_ids_for(source),
+        errors: errors_for(source),
         log_path: @log_path.to_s,
         environment: Rails.env,
         source: source,
@@ -27,10 +27,10 @@ module Myaccount::Errors::Index
     end
 
     private
-      def request_ids_for(source)
+      def errors_for(source)
         case source
-        when :solid_errors then error_request_ids_from_occurrences
-        else error_request_ids_from_log
+        when :solid_errors then errors_from_occurrences
+        else errors_from_log
         end
       end
 
@@ -60,38 +60,52 @@ module Myaccount::Errors::Index
         end
       end
 
-      def error_request_ids_from_log
+      def errors_from_log
         return [] unless @log_path.exist?
 
-        request_ids_by_last_match = {}
+        error_request_ids = {}
+        all_lines = []
 
         File.foreach(@log_path).with_index do |line, index|
+          all_lines << { line: line, index: index }
           next unless error_line?(line)
 
           request_id = extract_request_id(line)
           next if request_id.blank?
 
-          request_ids_by_last_match[request_id] = index
+          error_request_ids[request_id] = index
         end
 
-        request_ids_by_last_match
-          .sort_by { |_request_id, index| -index }
-          .map(&:first)
+        error_request_ids.map do |request_id, last_index|
+          request_lines = all_lines.select { |l| extract_request_id(l[:line]) == request_id }
+          timestamp = extract_timestamp_from_lines(request_lines)
+          error_name = extract_error_name_from_lines(request_lines)
+
+          {
+            request_id: request_id,
+            timestamp: timestamp,
+            error_name: error_name
+          }
+        end.sort_by { |error| -error_request_ids[error[:request_id]] }
       end
 
-      def error_request_ids_from_occurrences
-        request_ids_by_last_seen_at = {}
+      def errors_from_occurrences
+        errors_by_request_id = {}
 
         occurrences.each do |occurrence|
           request_id = occurrence_request_id(occurrence)
           next if request_id.blank?
 
-          request_ids_by_last_seen_at[request_id] = occurrence.created_at
+          errors_by_request_id[request_id] = {
+            request_id: request_id,
+            timestamp: occurrence.created_at,
+            error_name: occurrence.error&.class_name || "Unknown Error"
+          }
         end
 
-        request_ids_by_last_seen_at
-          .sort_by { |_request_id, created_at| -created_at.to_f }
-          .map(&:first)
+        errors_by_request_id
+          .values
+          .sort_by { |error| -error[:timestamp].to_f }
       end
 
       def occurrence_request_id(occurrence)
@@ -119,6 +133,24 @@ module Myaccount::Errors::Index
 
       def extract_request_id(line)
         line.match(REQUEST_ID_PATTERN)&.[](:request_id)
+      end
+
+      def extract_timestamp_from_lines(lines)
+        lines.each do |l|
+          match = l[:line].match(/\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(\.\d+)?/)
+          return match[0] if match
+        end
+        nil
+      end
+
+      def extract_error_name_from_lines(lines)
+        lines.each do |l|
+          line = l[:line]
+          # Look for error patterns like "Caused by: NoMethodError" or "ActionView::Template::Error"
+          match = line.match(/(?:Caused by:\s*|^)(\w*(?:Error|Exception))\b/)
+          return match[1] if match
+        end
+        "Unknown Error"
       end
   end
 end
