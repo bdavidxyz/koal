@@ -32,7 +32,8 @@ module Koal
     config.mission_control.jobs.base_controller_class = "MissionControlController"
     config.active_storage.variant_processor = :disabled
     config.middleware.use Rack::CrawlerDetect
-    config.log_tags = [ :request_id ]
+    # config.log_tags = [ :request_id ]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

@@ -118,6 +118,7 @@ GEM
     crawler_detect (1.2.11)
       qonfig (>= 0.24)
     csv (3.3.5)
+    curses (1.6.0)
     date (3.5.1)
     debug (1.11.1)
       irb (~> 1.10)
@@ -162,6 +163,11 @@ GEM
       rexml (>= 3.4.4)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
+    log_bench (0.7.0)
+      curses (~> 1.5)
+      lograge (~> 0.14)
+      net-http (~> 0.6)
+      zeitwerk (~> 2.7)
     logger (1.7.0)
     lograge (0.14.0)
       actionpack (>= 4)
@@ -212,6 +218,8 @@ GEM
       turbo-rails
     msgpack (1.8.0)
     mutex_m (0.3.0)
+    net-http (0.9.1)
+      uri (>= 0.11.1)
     net-imap (0.6.3)
       date
       net-protocol
@@ -482,6 +490,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   kramdown
+  log_bench
   lograge
   lookout-ahoy
   minitest
