@@ -38,15 +38,6 @@
             <% end %>
           </li>
           <li>
-            <%= link_to myaccount_errors_path,
-                class: "flex items-center p-2 text-sm font-medium rounded-md #{admin_activation == 'errors' ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100'}" do %>
-              <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86l-7.5 13A1 1 0 003.65 18h16.7a1 1 0 00.86-1.5l-7.5-13a1 1 0 00-1.72 0z" />
-              </svg>
-              Errors
-            <% end %>
-          </li>
-          <li>
             <%= link_to "/myaccount/users",
                 class: "flex items-center p-2 text-sm font-medium rounded-md #{admin_activation == 'users' ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100'}" do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
