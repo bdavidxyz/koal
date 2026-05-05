@@ -47,7 +47,7 @@ class SessionCookieTest < ActiveSupport::TestCase
   test "reads value from signed cookies" do
     cookies = MockCookies.new
     cookies.signed.values[:session_token] = "abc"
-    
+
     session_cookie = SessionCookie.new(cookies)
     assert_equal "abc", session_cookie.value
   end
@@ -56,7 +56,7 @@ class SessionCookieTest < ActiveSupport::TestCase
     cookies = MockCookies.new
     session_cookie = SessionCookie.new(cookies)
     session_cookie.value = "123"
-    
+
     assert_equal({ value: "123", httponly: true }, cookies.signed.permanent.values[:session_token])
   end
 
@@ -64,7 +64,7 @@ class SessionCookieTest < ActiveSupport::TestCase
     cookies = MockCookies.new
     session_cookie = SessionCookie.new(cookies)
     session_cookie.delete
-    
+
     assert_includes cookies.deleted_keys, :session_token
   end
 end
