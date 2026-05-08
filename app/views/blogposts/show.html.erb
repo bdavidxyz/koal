@@ -37,7 +37,7 @@
     </div>
 
     <div class="prose prose-zinc max-w-none mt-8">
-      <%= Kramdown::Document.new(@blogpost.kontent).to_html.html_safe %>
+      <%= sanitize Kramdown::Document.new(@blogpost.kontent).to_html %>
     </div>
   </article>
 
