@@ -4,31 +4,28 @@ class BlogpostsController < ApplicationController
   grant_access action: :index
   # @route GET /blogposts (blogposts)
   def index
-    sort = {}
-    if params[:sort] && params[:direction]
-      sort[params[:sort]] = params[:direction]
+    @result = Blogposts::Index::Service.call(
+      sort: params[:sort],
+      direction: params[:direction],
+      query: params[:q]
+    )
+
+    if @result.success?
+      @pagy, @blogposts = pagy(:offset, @result.data[:blogposts], limit: 10)
     else
-      sort[:published_at] = "desc"
+      redirect_to root_path, alert: "Unable to load blogposts"
     end
-    scope = Blogpost.includes(:blogtags).where("published_at IS NOT NULL AND published_at <= ?", Time.current).order(sort)
-    blogposts = Fuzzy::Search.call(scope: scope, query: params[:q]).data[:results]
-    @pagy, @blogposts = pagy(:offset, blogposts, limit: 10)
   end
 
   grant_access action: :show
   # @route GET /blogposts/:slug
   def show
-    @blogpost = retrieve_blogpost
-  end
+    @result = Blogposts::Show::Service.call(slug: params[:slug])
 
-  private
-
-  def retrieve_blogpost
-    blogpost = Blogpost.find_by(slug: params[:slug])
-    if blogpost.nil? || blogpost.published_at.nil? || blogpost.published_at > Time.current
-      not_found
+    if @result.success?
+      @blogpost = @result.data[:blogpost]
     else
-      blogpost
+      not_found
     end
   end
 end
