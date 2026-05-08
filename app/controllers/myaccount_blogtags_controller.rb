@@ -6,8 +6,8 @@ class MyaccountBlogtagsController < ApplicationController
   # @route GET /myaccount/blogtags (myaccount_blogtag)
   def index
     @result = MyaccountBlogtags::Index::Service.call(
-      sort: params[:sort],
-      direction: params[:direction],
+      sort: sanitize_sort_param,
+      direction: sanitize_direction_param,
       query: q
     )
 
@@ -83,5 +83,13 @@ class MyaccountBlogtagsController < ApplicationController
 
   def blogtag_params
     params.require(:blogtag).permit(:slug, :name).to_h
+  end
+
+  def sanitize_sort_param
+    params[:sort].to_s.strip.presence
+  end
+
+  def sanitize_direction_param
+    params[:direction].to_s.strip.presence
   end
 end

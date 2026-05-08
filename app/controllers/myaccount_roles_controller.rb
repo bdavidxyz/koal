@@ -6,8 +6,8 @@ class MyaccountRolesController < ApplicationController
   # @route GET /myaccount/roles (myaccount_role)
   def index
     @result = MyaccountRoles::Index::Service.call(
-      sort: params[:sort],
-      direction: params[:direction],
+      sort: sanitize_sort_param,
+      direction: sanitize_direction_param,
       query: q
     )
 
@@ -84,5 +84,13 @@ class MyaccountRolesController < ApplicationController
   private
     def role_params
       params.require(:rabarber_role).permit(:name).to_h
+    end
+
+    def sanitize_sort_param
+      params[:sort].to_s.strip.presence
+    end
+
+    def sanitize_direction_param
+      params[:direction].to_s.strip.presence
     end
 end
