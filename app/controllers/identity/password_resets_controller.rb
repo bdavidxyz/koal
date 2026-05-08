@@ -1,6 +1,4 @@
 class Identity::PasswordResetsController < ApplicationController
-  before_action :set_user, only: %i[ edit update ]
-
   grant_access action: :new
   # @route GET /identity/password_reset/new (new_identity_password_reset)
   def new
@@ -9,13 +7,23 @@ class Identity::PasswordResetsController < ApplicationController
   grant_access action: :edit
   # @route GET /identity/password_reset/edit (edit_identity_password_reset)
   def edit
+    @result = Identity::PasswordResets::Edit::Service.call(
+      sid: params[:sid]
+    )
+
+    if @result.failure?
+      redirect_to new_identity_password_reset_path, alert: "That password reset link is invalid"
+    end
   end
 
   grant_access action: :create
   # @route POST /identity/password_reset (identity_password_reset)
   def create
-    if @user = User.find_by(email: params[:email], verified: true)
-      send_password_reset_email
+    @result = Identity::PasswordResets::Create::Service.call(
+      email: params[:email]
+    )
+
+    if @result.success?
       redirect_to sign_in_path, notice: "Check your email for reset instructions"
     else
       redirect_to new_identity_password_reset_path, alert: "You can’t reset your password until you verify your email"
@@ -26,25 +34,18 @@ class Identity::PasswordResetsController < ApplicationController
   # @route PATCH /identity/password_reset (identity_password_reset)
   # @route PUT /identity/password_reset (identity_password_reset)
   def update
-    if @user.update(user_params)
+    @result = Identity::PasswordResets::Update::Service.call(
+      sid: params[:sid],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation]
+    )
+
+    if @result.success?
       redirect_to sign_in_path, notice: "Your password was reset successfully. Please sign in"
+    elsif @result.error.class == Servus::Support::Errors::NotFoundError
+      redirect_to new_identity_password_reset_path, alert: "That password reset link is invalid"
     else
       render :edit, status: :unprocessable_content
     end
   end
-
-  private
-    def set_user
-      @user = User.find_by_token_for!(:password_reset, params[:sid])
-    rescue StandardError
-      redirect_to new_identity_password_reset_path, alert: "That password reset link is invalid"
-    end
-
-    def user_params
-      params.permit(:password, :password_confirmation)
-    end
-
-    def send_password_reset_email
-      UserMailer.with(user: @user).password_reset.deliver_later
-    end
 end

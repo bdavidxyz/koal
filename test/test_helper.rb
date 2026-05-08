@@ -21,6 +21,8 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
+  include ActionMailer::TestHelper
+
   def sign_in_as(user)
     post(sign_in_url, params: { email: user.email, password: "Secret1*3*5*" })
     assert_response :redirect
