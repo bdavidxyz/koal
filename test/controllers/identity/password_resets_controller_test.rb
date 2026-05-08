@@ -17,6 +17,13 @@ class Identity::PasswordResetsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should redirect to new when edit receives invalid token" do
+    get edit_identity_password_reset_url(sid: "invalid_token")
+
+    assert_redirected_to new_identity_password_reset_url
+    assert_equal "That password reset link is invalid", flash[:alert]
+  end
+
   test "should send a password reset email" do
     assert_enqueued_email_with UserMailer, :password_reset, params: { user: @user } do
       post identity_password_reset_url, params: { email: @user.email }

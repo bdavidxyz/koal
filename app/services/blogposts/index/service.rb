@@ -12,6 +12,11 @@ module Blogposts::Index
       blogposts = Fuzzy::Search.call(scope: scope, query: @query).data[:results]
 
       success(blogposts: blogposts)
+    rescue StandardError
+      failure(
+        "Unable to load blogposts",
+        type: BadRequestError
+      )
     end
 
     private

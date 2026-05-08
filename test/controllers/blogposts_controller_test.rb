@@ -33,6 +33,12 @@ class BlogpostsControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil assigns(:blogposts)
   end
 
+  test "should redirect to root when index service fails" do
+    get blogposts_path(sort: "invalid_column'; DROP TABLE blogposts; --", direction: "asc")
+    assert_redirected_to root_path
+    assert_equal "Unable to load blogposts", flash[:alert]
+  end
+
   test "should show blogpost" do
     get blogpost_path(blogposts(:first_blogpost).slug)
     assert_response :success
